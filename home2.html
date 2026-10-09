@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+ <!-- Global Error Handler: Redirects to 404.html on JS errors -->
+ <script>
+  function handleError() {
+   if (!window.location.pathname.endsWith('404.html')) {
+    window.location.href = '404.html';
+   }
+  }
+  window.addEventListener('error', handleError);
+  window.addEventListener('unhandledrejection', handleError);
+ </script>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>BalloonAura &middot; Event Styling Studio</title>
+ <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E63946'%3E%3Cellipse cx='12' cy='9' rx='7' ry='8'/%3E%3C/svg%3E" />
+ <meta name="description" content="BalloonAura — Event styling studio for weddings, corporate events, and celebrations.">
+
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+ <script>
+  tailwind.config = {
+   darkMode: 'class',
+   theme: {
+    extend: {
+     colors: {
+      'coral':   '#E63946',
+      'coral-dk':  '#C42A37',
+      'coral-soft': '#FADADD',
+      'ink':    '#1D1D2C',
+      'cream':   '#FAF7F2',
+      'cream-2':  '#F0EAE0',
+      'dk-bg':   '#12121C',
+      'dk-surface': '#1D1D2C',
+      'dk-line':  '#2E2E42',
+     },
+     fontFamily: {
+      display: ['"Fraunces"', 'serif'],
+      sans: ['"Outfit"', 'sans-serif'],
+     },
+    }
+   }
+  }
+ </script>
+
+ <style>
+  * { -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; font-size: 18px; }
+  html.dark { color-scheme: dark; }
+
+  body {
+   font-family: 'Outfit', sans-serif;
+   background: #FAF7F2;
+   color: #1D1D2C;
+   overflow-x: hidden;
+  }
+  body::-webkit-scrollbar { width: 10px; }
+  body::-webkit-scrollbar-track { background: #F0EAE0; }
+  body::-webkit-scrollbar-thumb { background: #E63946; border-radius: 10px; }
+  .dark body { background: #12121C; color: #FAF7F2; }
+  .dark body::-webkit-scrollbar-track { background: #1D1D2C; }
+
+  .font-display {
+   font-family: 'Fraunces', serif;
+   font-variation-settings: "SOFT" 50, "WONK" 1;
+  }
+
+  /* ═══ Nav + Footer ═══ */
+  .site-nav {
+   background: #FFFFFF;
+   color: #1D1D2C;
+   transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .dark .site-nav {
+   background: #1D1D2C;
+   color: #FAF7F2;
+  }
+  .site-nav::before {
+   content: '';
+   position: absolute;
+   top: 0; left: 0; right: 0;
+   height: 3px;
+   background: linear-gradient(90deg, #E63946 0%, #E63946 33%, transparent 33%, transparent 66%, #E63946 66%, #E63946 100%);
+   opacity: 0.9;
+  }
+
+  .site-footer {
+   background: #FFFFFF;
+   color: #1D1D2C;
+   transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .dark .site-footer {
+   background: #1D1D2C;
+   color: #FAF7F2;
+  }
+
+  .nav-text { color: #1D1D2C; }
+  .dark .nav-text { color: #FAF7F2; }
+  .foot-text { color: rgba(29, 29, 44, 0.65); }
+  .dark .foot-text { color: rgba(250, 247, 242, 0.65); }
+
+  /* Nav pill links */
+  .nav-pill-link {
+   position: relative;
+   display: inline-flex;
+   align-items: center;
+   gap: 0.45rem;
+   padding: 0.55rem 0.9rem;
+   border-radius: 999px;
+   color: #1D1D2C;
+   font-size: 0.8rem;
+   font-weight: 500;
+   letter-spacing: 0.02em;
+   transition: all 0.25s ease;
+  }
+  .dark .nav-pill-link { color: #FAF7F2; }
+  .nav-pill-link::before {
+   content: '';
+   width: 5px; height: 5px;
+   border-radius: 999px;
+   background: currentColor;
+   opacity: 0.25;
+   transition: all 0.25s ease;
+  }
+  .nav-pill-link:hover { color: #E63946; background: rgba(230, 57, 70, 0.06); }
+  .dark .nav-pill-link:hover { background: rgba(230, 57, 70, 0.12); }
+  .nav-pill-link:hover::before { opacity: 1; background: #E63946; transform: scale(1.4); }
+  .nav-pill-link.active { color: #E63946 !important; background: rgba(230, 57, 70, 0.08); font-weight: 600; }
+  .dark .nav-pill-link.active { background: rgba(230, 57, 70, 0.18); }
+  .nav-pill-link.active::before { opacity: 1; background: #E63946; transform: scale(1.4); }
+
+  .dropdown { position: relative; }
+  .dropdown-menu {
+   position: absolute;
+   top: calc(100% + 14px); left: 50%;
+   transform: translateX(-50%) translateY(8px);
+   min-width: 240px;
+   background: #1D1D2C;
+   border-radius: 16px;
+   padding: 0.5rem;
+   box-shadow: 0 24px 48px -16px rgba(29, 29, 44, 0.35);
+   opacity: 0; visibility: hidden;
+   transition: all 0.25s ease;
+   z-index: 1000;
+   border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .dropdown-menu::before {
+   content: '';
+   position: absolute;
+   top: -6px; left: 50%;
+   transform: translateX(-50%) rotate(45deg);
+   width: 12px; height: 12px;
+   background: #1D1D2C;
+   border-top: 1px solid rgba(255, 255, 255, 0.06);
+   border-left: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .dropdown-item {
+   display: flex; align-items: center; gap: 0.65rem;
+   padding: 0.7rem 1rem;
+   color: rgba(255, 255, 255, 0.85);
+   font-size: 0.8rem; font-weight: 500;
+   border-radius: 10px;
+   transition: all 0.2s;
+  }
+  .dropdown-item:hover { background: rgba(230, 57, 70, 0.15); color: #FFFFFF; }
+  .dropdown-item.active { background: rgba(230, 57, 70, 0.22); color: #FFFFFF; font-weight: 600; }
+  .dropdown-item i { color: #E63946; }
+
+  /* Split CTA */
+  .btn-split {
+   display: inline-flex;
+   align-items: center;
+   border-radius: 999px;
+   overflow: hidden;
+   background: #E63946;
+   transition: all 0.3s ease;
+   box-shadow: 0 10px 22px -10px rgba(230, 57, 70, 0.6);
+  }
+  .btn-split:hover { transform: translateY(-2px); box-shadow: 0 16px 28px -10px rgba(230, 57, 70, 0.7); }
+  .btn-split .btn-split-text {
+   color: #FFFFFF;
+   font-size: 0.72rem;
+   font-weight: 700;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   padding: 0.75rem 1.25rem 0.75rem 1.5rem;
+   white-space: nowrap;
+  }
+  .btn-split .btn-split-arrow {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 32px; height: 32px;
+   border-radius: 999px;
+   background: rgba(255, 255, 255, 0.2);
+   color: #FFFFFF;
+   margin-right: 4px;
+   transition: all 0.3s ease;
+  }
+  .btn-split:hover .btn-split-arrow {
+   background: #FFFFFF; color: #E63946;
+   transform: rotate(-45deg);
+  }
+
+  .icon-toggle {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 38px; height: 38px;
+   border-radius: 12px;
+   color: #1D1D2C;
+   transition: all 0.25s ease;
+  }
+  .dark .icon-toggle { color: #FAF7F2; }
+  .icon-toggle:hover { background: rgba(230, 57, 70, 0.1); color: #E63946; }
+
+  .mobile-menu {
+   background: #FFFFFF;
+   max-height: 0;
+   overflow: hidden;
+   transition: max-height 0.4s ease;
+  }
+  .dark .mobile-menu { background: #1D1D2C; }
+  .mobile-menu.open { max-height: 90vh; overflow-y: auto; }
+
+  /* Footer */
+  .foot-heading {
+   display: flex; align-items: center; gap: 0.6rem;
+   font-family: 'Fraunces', serif;
+   font-style: italic;
+   font-size: 1.05rem;
+   font-weight: 600;
+   color: #1D1D2C;
+   margin-bottom: 1.25rem;
+  }
+  .dark .foot-heading { color: #FAF7F2; }
+  .foot-heading-num {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 26px; height: 26px;
+   border-radius: 8px;
+   background: rgba(230, 57, 70, 0.12);
+   color: #E63946;
+   font-family: 'Outfit', sans-serif;
+   font-style: normal;
+   font-size: 0.65rem;
+   font-weight: 700;
+   letter-spacing: 0.05em;
+  }
+  .dark .foot-heading-num { background: rgba(230, 57, 70, 0.25); }
+
+  .social-tag {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0; width: 40px; height: 40px; justify-content: center;
+   border-radius: 10px;
+   border: 1px solid rgba(29,29,44,0.15);
+   color: #1D1D2C;
+   font-size: 0.7rem; font-weight: 600;
+   letter-spacing: 0.1em;
+   text-transform: uppercase;
+   transition: all 0.25s ease;
+  }
+  .dark .social-tag { border-color: rgba(250,247,242,0.18); color: #FAF7F2; }
+  .social-tag:hover {
+   background: #E63946;
+   border-color: #E63946;
+   color: #FFFFFF;
+   transform: translateY(-2px);
+  }
+
+  .foot-contact-card {
+   background: rgba(230, 57, 70, 0.06);
+   border: 1px solid rgba(230, 57, 70, 0.2);
+   border-radius: 20px;
+   padding: 1.5rem;
+  }
+  .dark .foot-contact-card {
+   background: rgba(230, 57, 70, 0.12);
+   border-color: rgba(230, 57, 70, 0.3);
+  }
+
+  .foot-display {
+   font-family: 'Fraunces', serif;
+   font-style: italic;
+   font-weight: 900;
+   font-size: clamp(3rem, 10vw, 8rem);
+   line-height: 0.85;
+   letter-spacing: -0.03em;
+   color: rgba(29, 29, 44, 0.06);
+   text-align: center;
+   user-select: none;
+   pointer-events: none;
+  }
+  .dark .foot-display { color: rgba(250, 247, 242, 0.05); }
+
+  /* Base buttons */
+  .btn-primary {
+   background: #E63946; color: #FFFFFF;
+   font-weight: 600;
+   border-radius: 999px;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   font-size: 0.72rem;
+   padding: 0.95rem 1.2rem;
+   transition: all 0.3s ease;
+   display: inline-flex; align-items: center; gap: 0.5rem;
+   box-shadow: 0 8px 20px -8px rgba(230,57,70,0.5);
+   white-space: nowrap;
+  }
+  .btn-primary:hover { background: #C42A37; transform: translateY(-2px); box-shadow: 0 14px 28px -8px rgba(230,57,70,0.6); }
+  .btn-outline {
+   border: 1.5px solid #1D1D2C; color: #1D1D2C;
+   background: transparent;
+   border-radius: 999px;
+   font-weight: 600;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   font-size: 0.72rem;
+   padding: 0.95rem 1.2rem;
+   transition: all 0.3s ease;
+   display: inline-flex; align-items: center; gap: 0.5rem;
+   white-space: nowrap;
+  }
+  .btn-outline:hover { background: #1D1D2C; color: #FAF7F2; transform: translateY(-2px); }
+  .dark .btn-outline { border-color: #FAF7F2; color: #FAF7F2; }
+  .dark .btn-outline:hover { background: #FAF7F2; color: #1D1D2C; }
+
+  [dir="rtl"] .dropdown-menu { left: auto; right: 50%; transform: translateX(50%) translateY(8px); }
+  [dir="rtl"] .dropdown:hover .dropdown-menu { transform: translateX(50%) translateY(0); }
+
+  .rule {
+   display: flex; align-items: center; justify-content: center;
+   gap: 1rem; color: #E63946;
+  }
+  .rule::before, .rule::after { content: ''; width: 36px; height: 1px; background: currentColor; opacity: 0.5; }
+  .rule-left::before { display: none; }
+
+  .reveal {
+   opacity: 0; transform: translateY(28px);
+   transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .card {
+   background: #FFFFFF;
+   border: 1px solid rgba(29,29,44,0.06);
+   border-radius: 20px;
+   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .dark .card { background: #1D1D2C; border-color: rgba(250,247,242,0.08); }
+  .card:hover {
+   transform: translateY(-6px);
+   box-shadow: 0 24px 48px -20px rgba(29,29,44,0.24);
+   border-color: rgba(230,57,70,0.3);
+  }
+
+  img { display: block; max-width: 100%; }
+
+  /* ═══ HOME 2 specific ═══ */
+
+  /* Hero image strip — horizontal row of 3 images */
+  .hero-strip {
+   display: grid;
+   grid-template-columns: 1fr 1.3fr 1fr;
+   gap: 0.75rem;
+   align-items: end;
+  }
+  .hero-strip img {
+   border-radius: 20px;
+   object-fit: cover;
+   width: 100%;
+   box-shadow: 0 24px 48px -20px rgba(29,29,44,0.3);
+   border: 4px solid #FFFFFF;
+  }
+  .dark .hero-strip img { border-color: #1D1D2C; }
+  .hero-strip img:nth-child(1) { height: 220px; }
+  .hero-strip img:nth-child(2) { height: 320px; }
+  .hero-strip img:nth-child(3) { height: 220px; }
+  @media (min-width: 768px) {
+   .hero-strip img:nth-child(1) { height: 320px; }
+   .hero-strip img:nth-child(2) { height: 460px; }
+   .hero-strip img:nth-child(3) { height: 320px; }
+  }
+
+  /* Numbered feature tiles */
+  .num-tile {
+   position: relative;
+   padding: 2rem 1.5rem 1.75rem;
+   background: #FFFFFF;
+   border: 1px solid rgba(29,29,44,0.06);
+   border-radius: 20px;
+   transition: all 0.35s ease;
+   overflow: hidden;
+  }
+  .dark .num-tile { background: #1D1D2C; border-color: rgba(250,247,242,0.08); }
+  .num-tile::before {
+   content: attr(data-num);
+   position: absolute;
+   top: -10px; right: 10px;
+   font-family: 'Fraunces', serif;
+   font-size: 5rem;
+   font-weight: 900;
+   font-style: italic;
+   color: rgba(230, 57, 70, 0.08);
+   line-height: 1;
+   pointer-events: none;
+  }
+  .dark .num-tile::before { color: rgba(230, 57, 70, 0.18); }
+  .num-tile:hover {
+   transform: translateY(-8px);
+   border-color: rgba(230, 57, 70, 0.35);
+   box-shadow: 0 24px 48px -20px rgba(29,29,44,0.24);
+  }
+
+  /* Timeline (dark process section) */
+  .timeline-step {
+   position: relative;
+   padding-top: 4.5rem;
+   text-align: center;
+  }
+  .timeline-step .step-badge {
+   position: absolute;
+   top: 0; left: 50%;
+   transform: translateX(-50%);
+   width: 68px; height: 68px;
+   border-radius: 999px;
+   background: #E63946;
+   border: 6px solid #1D1D2C;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-family: 'Fraunces', serif;
+   font-weight: 900;
+   font-size: 1.25rem;
+   color: #FFFFFF;
+   z-index: 2;
+  }
+  .timeline-step:not(:last-child)::after {
+   content: '';
+   position: absolute;
+   top: 34px;
+   left: calc(50% + 40px);
+   right: calc(-50% + 40px);
+   height: 2px;
+   background-image: linear-gradient(to right, rgba(230,57,70,0.4) 50%, transparent 50%);
+   background-size: 12px 2px;
+   background-repeat: repeat-x;
+   z-index: 1;
+  }
+  @media (max-width: 767px) {
+   .timeline-step:not(:last-child)::after { display: none; }
+  }
+
+  /* Horizontal scroll theme cards */
+  .hscroll {
+   display: flex;
+   gap: 1rem;
+   overflow-x: auto;
+   scroll-snap-type: x mandatory;
+   padding-bottom: 1rem;
+   -webkit-overflow-scrolling: touch;
+   scrollbar-width: thin;
+  }
+  .hscroll::-webkit-scrollbar { height: 6px; }
+  .hscroll::-webkit-scrollbar-track { background: rgba(29,29,44,0.05); border-radius: 10px; }
+  .hscroll::-webkit-scrollbar-thumb { background: #E63946; border-radius: 10px; }
+  .hscroll > * {
+   flex: 0 0 82%;
+   scroll-snap-align: start;
+  }
+  @media (min-width: 640px) { .hscroll > * { flex: 0 0 55%; } }
+  @media (min-width: 1024px) { .hscroll > * { flex: 0 0 34%; } }
+
+  /* Testimonial stack */
+  .testi-quote {
+   font-family: 'Fraunces', serif;
+   font-style: italic;
+   font-size: 1.05rem;
+   line-height: 1.6;
+  }
+  @media (min-width: 768px) {
+   .testi-quote { font-size: 1.15rem; }
+  }
+ </style>
+</head>
+
+<body>
+<div class="overflow-x-hidden w-full">
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- NAVIGATION (same as Home 1) -->
+<!-- ═══════════════════════════════════════════ -->
+<nav class="site-nav fixed top-0 left-0 right-0 z-50">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="flex items-center justify-between h-[84px] md:h-[96px] gap-4">
+
+   <a href="index.html" class="flex items-center gap-3 shrink-0 group">
+    <div class="relative w-12 h-12 md:w-14 md:h-14 shrink-0">
+     <div class="absolute inset-0 rounded-full border-2 border-coral"></div>
+     <div class="absolute inset-1 rounded-full bg-coral flex items-center justify-center">
+      <i class="fas fa-gift text-white text-xs"></i>
+     </div>
+     
+    </div>
+    <div class="leading-none">
+     <div class="text-xl md:text-2xl font-display font-black nav-text tracking-tight">
+      Balloon<span class="text-coral italic">Aura</span>
+     </div>
+     <div class="text-[8px] md:text-[9px] uppercase tracking-[0.35em] nav-text opacity-50 font-semibold mt-1">
+      Party Studio · Est. 2019
+     </div>
+    </div>
+   </a>
+
+   <div class="hidden 2xl:flex items-center gap-1">
+    <div class="dropdown">
+     <button class="nav-pill-link active">
+      Home <i class="fas fa-chevron-down text-[9px] opacity-60"></i>
+     </button>
+     <div class="dropdown-menu">
+      <a href="index.html" class="dropdown-item">
+       Home 1
+      </a>
+      <a href="home2.html" class="dropdown-item active">
+       Home 2
+      </a>
+     </div>
+    </div>
+    <a href="about.html" class="nav-pill-link">About</a>
+    <a href="services.html" class="nav-pill-link">Services</a>
+    <a href="themes.html" class="nav-pill-link">Themes</a>
+    <a href="packages.html" class="nav-pill-link">Packages</a>
+    <a href="gallery.html" class="nav-pill-link">Gallery</a>
+    <a href="blog.html" class="nav-pill-link">Blog</a>
+    <a href="contact.html" class="nav-pill-link">Contact</a>
+   </div>
+
+   <div class="flex items-center gap-1">
+    <button id="rtl-toggle" aria-label="Toggle RTL" class="hidden 2xl:inline-flex icon-toggle">
+     <span class="text-[10px] font-bold">RTL</span>
+    </button>
+    <button id="theme-toggle" aria-label="Toggle theme" class="hidden 2xl:inline-flex icon-toggle">
+     <i class="fas fa-moon dark:hidden text-sm"></i>
+     <i class="fas fa-sun hidden dark:inline text-sm"></i>
+    </button>
+
+    <div class="hidden 2xl:block w-px h-6 bg-ink/15 dark:bg-cream/20 mx-2"></div>
+
+    <a href="contact.html" class="hidden 2xl:inline-flex btn-split">
+     <span class="btn-split-text">Book Event</span>
+     <span class="btn-split-arrow">
+      <i class="fas fa-arrow-right text-xs rtl:rotate-180"></i>
+     </span>
+    </a>
+
+    <button id="mobile-toggle" aria-label="Open menu"
+     class="2xl:hidden w-10 h-10 rounded-xl bg-ink dark:bg-cream text-cream dark:text-ink flex items-center justify-center">
+     <i class="fas fa-bars text-base"></i>
+    </button>
+   </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="mobile-menu 2xl:hidden -mx-4 sm:-mx-6">
+   <div class="py-5 px-4 space-y-1">
+    <div>
+     <button onclick="document.getElementById('home-drop').classList.toggle('hidden'); document.getElementById('home-icon').classList.toggle('rotate-180')"
+      class="w-full flex items-center justify-between py-3 px-4 font-semibold text-coral bg-coral-soft/40 dark:bg-coral/15 rounded-xl text-sm">
+      <span>Home</span>
+      <i id="home-icon" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+     </button>
+     <div id="home-drop" class="hidden pl-3 space-y-1 mt-1.5">
+      <a href="index.html" class="block py-2.5 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-lg text-sm uppercase tracking-wider transition">
+       Home 1
+      </a>
+      <a href="home2.html" class="block py-2.5 px-4 font-semibold text-white bg-coral rounded-lg text-sm uppercase tracking-wider">
+       Home 2
+      </a>
+     </div>
+    </div>
+
+    <a href="about.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">About</a>
+    <a href="services.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Services</a>
+    <a href="themes.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Themes</a>
+    <a href="packages.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Packages</a>
+    <a href="gallery.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Gallery</a>
+    <a href="blog.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Blog</a>
+    <a href="contact.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Contact</a>
+
+    <div class="flex flex-col gap-3 pt-4 mt-3 border-t border-ink/10 dark:border-cream/15">
+     <a href="contact.html" class="btn-primary justify-center">Book Event</a>
+     <div class="flex gap-3">
+      <button id="mobile-theme-toggle" class="flex-1 py-3 rounded-full bg-cream-2 dark:bg-dk-line nav-text text-xs font-semibold uppercase tracking-wider">
+       <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:inline"></i> Theme
+      </button>
+      <button id="mobile-rtl-toggle" class="flex-1 py-3 rounded-full bg-cream-2 dark:bg-dk-line nav-text text-xs font-semibold uppercase tracking-wider">
+       <i class="fas fa-exchange-alt"></i> RTL
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 1 — CENTERED HEADLINE + IMAGE STRIP HERO -->
+<!-- Layout: Big centered text on top · 3-image horizontal strip below -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="pt-[110px] md:pt-[140px] pb-16 md:pb-24 bg-cream dark:bg-dk-bg border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <!-- Centered content -->
+  <div class="text-center max-w-4xl mx-auto mb-12 md:mb-16">
+   <div class="inline-flex items-center gap-2 bg-coral-soft/60 dark:bg-coral/15 border border-coral/25 px-4 py-1.5 rounded-full mb-6">
+    <span class="w-1.5 h-1.5 rounded-full bg-coral"></span>
+    <span class="text-coral text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.24em]">Event Styling Studio</span>
+   </div>
+
+   <h1 class="font-display font-black text-ink dark:text-cream text-[36px] leading-[1.02] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px] mb-6">
+    Design. Style.<br>
+    <span class="italic text-coral">Celebrate.</span>
+   </h1>
+
+   <p class="text-ink/60 dark:text-cream/65 text-base sm:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+    From concept to celebration — we design complete event styling: balloon art, florals, backdrops, table settings, and lighting, all under one roof.
+   </p>
+
+   <div class="flex flex-col sm:flex-row gap-3 justify-center">
+    <a href="contact.html" class="btn-primary justify-center">
+     <i class="fas fa-wand-magic-sparkles"></i> Book Consultation
+    </a>
+    <a href="services.html" class="btn-outline justify-center">
+     <i class="fas fa-layer-group"></i> Explore Services
+    </a>
+   </div>
+  </div>
+
+  <!-- Image strip -->
+  <div class="hero-strip reveal">
+   <img src="asserts/home1.avif" alt="Balloon styling" loading="lazy">
+   <img src="asserts/home2.avif" alt="Wedding styling" loading="lazy">
+   <img src="asserts/home3.avif" alt="Corporate styling" loading="lazy">
+  </div>
+
+  <!-- Small caption below strip -->
+  <div class="flex flex-wrap items-center justify-center gap-6 mt-8 text-ink/50 dark:text-cream/50">
+   <div class="flex items-center gap-2">
+    <i class="fas fa-star text-coral text-xs"></i>
+    <span class="text-[10px] uppercase tracking-widest font-semibold">4.9 / 5.0 Rating</span>
+   </div>
+   <div class="hidden sm:block w-px h-4 bg-ink/15 dark:bg-cream/15"></div>
+   <div class="flex items-center gap-2">
+    <i class="fas fa-heart text-coral text-xs"></i>
+    <span class="text-[10px] uppercase tracking-widest font-semibold">500+ Events Styled</span>
+   </div>
+   <div class="hidden sm:block w-px h-4 bg-ink/15 dark:bg-cream/15"></div>
+   <div class="flex items-center gap-2">
+    <i class="fas fa-shield-alt text-coral text-xs"></i>
+    <span class="text-[10px] uppercase tracking-widest font-semibold">Fully Insured</span>
+   </div>
+  </div>
+
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 2 — SPLIT TWO-COLUMN ABOUT BLOCK -->
+<!-- Layout: Left small image · Right content with mini stat row -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 bg-cream-2 dark:bg-dk-surface border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+   <!-- Left: image (5 cols) -->
+   <div class="lg:col-span-5 reveal">
+    <div class="relative break-words">
+     <div class="rounded-[24px] md:rounded-[28px] overflow-hidden shadow-2xl border-4 border-white dark:border-dk-bg">
+      <img src="asserts/home4.avif"
+         alt="Event styling detail"
+         class="w-full h-[380px] sm:h-[460px] md:h-[540px] object-cover"
+         loading="lazy">
+     </div>
+
+    </div>
+   </div>
+
+   <!-- Right: content (7 cols) -->
+   <div class="lg:col-span-7 reveal">
+    <div class="rule rule-left mb-4 justify-start">
+     <i class="fas fa-scissors text-xs"></i>
+    </div>
+    <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">About The Studio</span>
+    <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl mb-5 leading-[1.1]">
+     Every Event Tells<br>
+     <span class="italic text-coral">A Beautiful Story.</span>
+    </h2>
+    <p class="text-ink/60 dark:text-cream/65 text-sm sm:text-base leading-relaxed mb-5">
+     We're a full-service event styling studio dedicated to transforming empty venues into unforgettable experiences. Our team blends balloon artistry, floral design, prop styling, and lighting to create cohesive worlds — not just decorations.
+    </p>
+    <p class="text-ink/60 dark:text-cream/65 text-sm sm:text-base leading-relaxed mb-8">
+     From intimate home celebrations to 500-guest corporate galas, every project gets the same obsessive attention to detail.
+    </p>
+
+    <!-- Mini stat row -->
+    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-ink/10 dark:border-cream/10 mb-8">
+     <div>
+      <div class="font-display font-black text-2xl sm:text-3xl text-coral">500+</div>
+      <div class="text-[10px] uppercase tracking-widest text-ink/50 dark:text-cream/50 font-semibold mt-1">Events</div>
+     </div>
+     <div>
+      <div class="font-display font-black text-2xl sm:text-3xl text-coral">25+</div>
+      <div class="text-[10px] uppercase tracking-widest text-ink/50 dark:text-cream/50 font-semibold mt-1">Themes</div>
+     </div>
+     <div>
+      <div class="font-display font-black text-2xl sm:text-3xl text-coral">12</div>
+      <div class="text-[10px] uppercase tracking-widest text-ink/50 dark:text-cream/50 font-semibold mt-1">Cities</div>
+     </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-3">
+     <a href="about.html" class="btn-primary justify-center">
+      <i class="fas fa-arrow-right"></i> Our Full Story
+     </a>
+     <a href="gallery.html" class="btn-outline justify-center">
+      <i class="fas fa-images"></i> View Gallery
+     </a>
+    </div>
+   </div>
+
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 3 — 4-COLUMN NUMBERED FEATURE GRID -->
+<!-- Layout: 4 tiles in a row, each with a giant watermark number -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <div class="text-center mb-12 md:mb-16 reveal">
+   <div class="rule mb-4 justify-center">
+    <i class="fas fa-layer-group text-xs"></i>
+   </div>
+   <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">What We Style</span>
+   <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.1]">
+    Full-Service <span class="italic text-coral">Event Design.</span>
+   </h2>
+   <p class="text-ink/60 dark:text-cream/65 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+    Four pillars of our styling practice — combined into one seamless service for your event.
+   </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+   <!-- Tile 1 -->
+   <div class="num-tile reveal" data-num="01">
+    <div class="w-12 h-12 rounded-xl bg-coral-soft dark:bg-coral/15 flex items-center justify-center mb-5">
+     <i class="fas fa-palette text-coral text-lg"></i>
+    </div>
+    <h3 class="font-display font-bold text-lg text-ink dark:text-cream mb-2 min-h-[3.5rem] lg:min-h-[3.5rem] flex items-start">Balloon Artistry</h3>
+    <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">
+     Sculptural garlands, arches, and installations custom-designed for your palette and space.
+    </p>
+   </div>
+
+   <!-- Tile 2 -->
+   <div class="num-tile reveal" data-num="02">
+    <div class="w-12 h-12 rounded-xl bg-coral-soft dark:bg-coral/15 flex items-center justify-center mb-5">
+     <i class="fas fa-seedling text-coral text-lg"></i>
+    </div>
+    <h3 class="font-display font-bold text-lg text-ink dark:text-cream mb-2 min-h-[3.5rem] lg:min-h-[3.5rem] flex items-start">Floral Design</h3>
+    <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">
+     Fresh and preserved florals woven into balloon installations for added depth and elegance.
+    </p>
+   </div>
+
+   <!-- Tile 3 -->
+   <div class="num-tile reveal" data-num="03">
+    <div class="w-12 h-12 rounded-xl bg-coral-soft dark:bg-coral/15 flex items-center justify-center mb-5">
+     <i class="fas fa-chair text-coral text-lg"></i>
+    </div>
+    <h3 class="font-display font-bold text-lg text-ink dark:text-cream mb-2 min-h-[3.5rem] lg:min-h-[3.5rem] flex items-start">Prop Styling</h3>
+    <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">
+     Furniture, signage, table setups, and photo backdrops curated to complete your vision.
+    </p>
+   </div>
+
+   <!-- Tile 4 -->
+   <div class="num-tile reveal" data-num="04">
+    <div class="w-12 h-12 rounded-xl bg-coral-soft dark:bg-coral/15 flex items-center justify-center mb-5">
+     <i class="fas fa-lightbulb text-coral text-lg"></i>
+    </div>
+    <h3 class="font-display font-bold text-lg text-ink dark:text-cream mb-2 min-h-[3.5rem] lg:min-h-[3.5rem] flex items-start">Lighting &amp; Effects</h3>
+    <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">
+     Ambient lighting, spotlights, and special effects to transform your venue's mood.
+    </p>
+   </div>
+
+  </div>
+
+  <div class="text-center mt-12 reveal">
+   <a href="services.html" class="btn-outline">
+    <i class="fas fa-list"></i> All Services
+   </a>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 4 — DARK PROCESS TIMELINE (4 STEPS) -->
+<!-- Layout: Ink background · 4 numbered steps with dashed connector line -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-20 md:py-28 bg-ink dark:bg-dk-bg relative overflow-hidden border-b border-coral/15 dark:border-white/5">
+ <!-- Subtle dot texture -->
+ <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, #FAF7F2 1px, transparent 1px); background-size: 22px 22px;"></div>
+
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+  <div class="text-center mb-14 md:mb-20 reveal">
+   <div class="rule mb-4 justify-center">
+    <i class="fas fa-route text-xs"></i>
+   </div>
+   <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Our Process</span>
+   <h2 class="font-display font-black text-cream text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.1]">
+    From Idea to<br>
+    <span class="italic text-coral">Unforgettable.</span>
+   </h2>
+   <p class="text-cream/60 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+    A simple four-step journey. We handle every detail so you can enjoy the moment.
+   </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-6">
+
+   <div class="timeline-step reveal">
+    <div class="step-badge">01</div>
+    <h3 class="font-display font-bold text-xl text-cream mb-2">Consult</h3>
+    <p class="text-sm text-cream/60 leading-relaxed max-w-xs mx-auto">
+     We listen to your vision, budget, and venue — then suggest the best styling direction.
+    </p>
+   </div>
+
+   <div class="timeline-step reveal">
+    <div class="step-badge">02</div>
+    <h3 class="font-display font-bold text-xl text-cream mb-2">Moodboard</h3>
+    <p class="text-sm text-cream/60 leading-relaxed max-w-xs mx-auto">
+     You receive a personalized moodboard with colors, textures, and layout sketches.
+    </p>
+   </div>
+
+   <div class="timeline-step reveal">
+    <div class="step-badge">03</div>
+    <h3 class="font-display font-bold text-xl text-cream mb-2">Design</h3>
+    <p class="text-sm text-cream/60 leading-relaxed max-w-xs mx-auto">
+     Final design locked in. We source materials, florals, and props for your approval.
+    </p>
+   </div>
+
+   <div class="timeline-step reveal">
+    <div class="step-badge">04</div>
+    <h3 class="font-display font-bold text-xl text-cream mb-2">Install</h3>
+    <p class="text-sm text-cream/60 leading-relaxed max-w-xs mx-auto">
+     On event day, our team arrives early, styles the venue, and tears down after.
+    </p>
+   </div>
+
+  </div>
+
+  <div class="text-center mt-16 reveal">
+   <a href="contact.html" class="btn-primary" style="background:#E63946">
+    <i class="fas fa-calendar-check"></i> Start Your Project
+   </a>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 5 — HORIZONTAL SCROLL THEME SHOWCASE -->
+<!-- Layout: 5 theme cards in a scrollable carousel (native scroll snap) -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 bg-cream dark:bg-dk-surface border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 reveal">
+   <div>
+    <div class="rule rule-left mb-4 justify-start">
+     </div>
+    <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Signature Themes</span>
+    <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl leading-[1.1]">
+     Choose Your <span class="italic text-coral">Vibe.</span>
+    </h2>
+   </div>
+   <div class="flex items-center gap-3 text-ink/50 dark:text-cream/50 text-xs">
+    <i class="fas fa-arrow-right rtl:rotate-180"></i>
+    <span class="uppercase tracking-widest font-semibold">Scroll to explore</span>
+   </div>
+  </div>
+
+  <!-- Horizontal scroll -->
+  <div class="hscroll reveal">
+
+   <a href="themes.html" class="card !p-0 overflow-hidden group">
+    <div class="relative h-56 sm:h-64 overflow-hidden">
+     <img src="asserts/home5.avif" alt="Pastel Dream" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    </div>
+    <div class="p-5">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-1">Birthday</div>
+     <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-2">Pastel Dream</h3>
+     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Soft pastels, cloud balloons, and whimsical details.</p>
+    </div>
+   </a>
+
+   <a href="themes.html" class="card !p-0 overflow-hidden group">
+    <div class="relative h-56 sm:h-64 overflow-hidden">
+     <img src="asserts/home6.avif" alt="Golden Elegance" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    </div>
+    <div class="p-5">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-1">Wedding</div>
+     <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-2">Golden Elegance</h3>
+     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Timeless golds, champagnes, and romantic florals.</p>
+    </div>
+   </a>
+
+   <a href="themes.html" class="card !p-0 overflow-hidden group">
+    <div class="relative h-56 sm:h-64 overflow-hidden">
+     <img src="asserts/home7.avif" alt="Neon Nights" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    </div>
+    <div class="p-5">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-1">Party</div>
+     <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-2">Neon Nights</h3>
+     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Bold neons, LED balloons, and energetic lighting.</p>
+    </div>
+   </a>
+
+   <a href="themes.html" class="card !p-0 overflow-hidden group">
+    <div class="relative h-56 sm:h-64 overflow-hidden">
+     <img src="asserts/home8.avif" alt="Botanical Garden" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    </div>
+    <div class="p-5">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-1">Wedding</div>
+     <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-2">Botanical Garden</h3>
+     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Lush greens, earthy tones, and hanging florals.</p>
+    </div>
+   </a>
+
+   <a href="themes.html" class="card !p-0 overflow-hidden group">
+    <div class="relative h-56 sm:h-64 overflow-hidden">
+     <img src="asserts/home9.avif" alt="Corporate Chic" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+    </div>
+    <div class="p-5">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-1">Corporate</div>
+     <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-2">Corporate Chic</h3>
+     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Clean lines, brand colors, and minimal luxury.</p>
+    </div>
+   </a>
+
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 6 — TESTIMONIAL TRIO + CONTACT CTA -->
+<!-- Layout: 3 stacked testimonial cards on top, coral CTA banner below -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 bg-cream-2 dark:bg-dk-surface border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <div class="text-center mb-14 reveal">
+   <div class="rule mb-4 justify-center">
+    <i class="fas fa-quote-left text-xs"></i>
+   </div>
+   <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Client Stories</span>
+   <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.1]">
+    Trusted by <span class="italic text-coral">Beautiful People.</span>
+   </h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+
+   <div class="card p-7 sm:p-8 reveal flex flex-col h-full">
+    <div class="flex text-coral mb-4 text-sm">
+     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    </div>
+    <p class="testi-quote text-ink/75 dark:text-cream/80 mb-6 flex-grow">
+     "The team understood our vision instantly. The balloon walls and floral blends were beyond anything we imagined — our guests still talk about it."
+    </p>
+    <div class="flex items-center gap-3 pt-5 border-t border-ink/10 dark:border-cream/10 mt-auto">
+     <div class="w-11 h-11 shrink-0 rounded-full bg-coral text-white flex items-center justify-center font-display font-bold text-sm">SA</div>
+     <div class="min-w-0">
+      <div class="font-display font-bold text-ink dark:text-cream text-sm">Sofia Anderson</div>
+      <div class="text-xs text-ink/50 dark:text-cream/50">Birthday Client</div>
+     </div>
+    </div>
+   </div>
+
+   <div class="card p-7 sm:p-8 reveal flex flex-col h-full">
+    <div class="flex text-coral mb-4 text-sm">
+     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    </div>
+    <p class="testi-quote text-ink/75 dark:text-cream/80 mb-6 flex-grow">
+     "Perfect execution for our brand launch. On-time, on-brand, and completely stress-free. We've already booked them for our next two events."
+    </p>
+    <div class="flex items-center gap-3 pt-5 border-t border-ink/10 dark:border-cream/10 mt-auto">
+     <div class="w-11 h-11 shrink-0 rounded-full bg-coral text-white flex items-center justify-center font-display font-bold text-sm">MR</div>
+     <div class="min-w-0">
+      <div class="font-display font-bold text-ink dark:text-cream text-sm">Maya Rodriguez</div>
+      <div class="text-xs text-ink/50 dark:text-cream/50">Corporate Client</div>
+     </div>
+    </div>
+   </div>
+
+   <div class="card p-7 sm:p-8 reveal flex flex-col h-full">
+    <div class="flex text-coral mb-4 text-sm">
+     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    </div>
+    <p class="testi-quote text-ink/75 dark:text-cream/80 mb-6 flex-grow">
+     "Our wedding felt like a magazine shoot. Every detail was considered — the balloons, the lighting, the props. Pure magic."
+    </p>
+    <div class="flex items-center gap-3 pt-5 border-t border-ink/10 dark:border-cream/10 mt-auto">
+     <div class="w-11 h-11 shrink-0 rounded-full bg-coral text-white flex items-center justify-center font-display font-bold text-sm">LT</div>
+     <div class="min-w-0">
+      <div class="font-display font-bold text-ink dark:text-cream text-sm">Lena Thompson</div>
+      <div class="text-xs text-ink/50 dark:text-cream/50">Wedding Client</div>
+     </div>
+    </div>
+   </div>
+
+  </div>
+
+ </div>
+
+ <!-- Coral CTA -->
+ <div class="bg-coral">
+  <div class="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center reveal">
+   <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 px-4 py-1.5 rounded-full mb-5">
+    <i class="fas fa-calendar text-white text-xs"></i>
+    <span class="text-white text-[10px] uppercase tracking-[0.3em] font-semibold">Free 30-min Consultation</span>
+   </div>
+   <h2 class="font-display font-black text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.05]">
+    Let's Design Your<br>
+    <span class="italic">Next Celebration.</span>
+   </h2>
+   <p class="text-white/90 text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+    Tell us about your event. We'll send you a moodboard within 48 hours — completely free, no obligation.
+   </p>
+   <div class="flex flex-col sm:flex-row gap-3 justify-center">
+    <a href="contact.html" class="inline-flex items-center justify-center gap-2 bg-white text-coral hover:bg-ink hover:text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300">
+     <i class="fas fa-wand-magic-sparkles"></i> Start Your Project
+    </a>
+    <a href="contact.html" class="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-coral px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300">
+     <i class="fas fa-comments"></i> Get a Quote
+    </a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- FOOTER (same as Home 1) -->
+<!-- ═══════════════════════════════════════════ -->
+<footer class="site-footer pt-16 md:pt-20 pb-8 relative overflow-hidden">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-14">
+
+   <div class="lg:col-span-4">
+    <div class="flex items-center gap-3 mb-5">
+     <div class="relative w-12 h-12 md:w-14 md:h-14 shrink-0">
+      <div class="absolute inset-0 rounded-full border-2 border-coral"></div>
+      <div class="absolute inset-1 rounded-full bg-coral flex items-center justify-center">
+       <i class="fas fa-gift text-white text-xs"></i>
+      </div>
+     </div>
+     <div class="leading-none">
+      <div class="text-xl md:text-2xl font-display font-black nav-text tracking-tight">
+       Balloon<span class="text-coral italic">Aura</span>
+      </div>
+      <div class="text-[8px] md:text-[9px] uppercase tracking-[0.35em] nav-text opacity-50 font-semibold mt-1">
+       Party Studio · Est. 2019
+      </div>
+     </div>
+    </div>
+    <p class="foot-text text-sm leading-relaxed mb-6 max-w-sm">
+     Crafting magical balloon installations and event décor for birthdays, weddings, corporate events, and every celebration worth remembering.
+    </p>
+    <div class="flex flex-wrap gap-2">
+     <a href="#" aria-label="Instagram" class="social-tag"><i class="fab fa-instagram text-lg"></i></a>
+     <a href="#" aria-label="Facebook" class="social-tag"><i class="fab fa-facebook-f text-lg"></i></a>
+     <a href="#" aria-label="Pinterest" class="social-tag"><i class="fab fa-pinterest-p text-lg"></i></a>
+     <a href="#" aria-label="TikTok" class="social-tag"><i class="fab fa-tiktok text-lg"></i></a>
+    </div>
+   </div>
+
+   <div class="lg:col-span-2">
+    <h4 class="foot-heading"><span class="foot-heading-num">01</span> Explore</h4>
+    <ul class="space-y-3 text-sm">
+     <li><a href="about.html" class="foot-text hover:text-coral transition">About Us</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Services</a></li>
+     <li><a href="themes.html" class="foot-text hover:text-coral transition">Themes</a></li>
+     <li><a href="packages.html" class="foot-text hover:text-coral transition">Packages</a></li>
+     <li><a href="gallery.html" class="foot-text hover:text-coral transition">Gallery</a></li>
+     <li><a href="blog.html" class="foot-text hover:text-coral transition">Blog</a></li>
+    </ul>
+   </div>
+
+   <div class="lg:col-span-2">
+    <h4 class="foot-heading"><span class="foot-heading-num">02</span> Occasions</h4>
+    <ul class="space-y-3 text-sm">
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Birthdays</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Weddings</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Corporate Events</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Baby Showers</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Anniversaries</a></li>
+    </ul>
+   </div>
+
+   <div class="lg:col-span-4">
+    <h4 class="foot-heading"><span class="foot-heading-num">03</span> Get in Touch</h4>
+    <div class="foot-contact-card">
+     <ul class="space-y-3.5 text-sm">
+      <li class="flex items-start gap-3">
+       <i class="fas fa-map-marker-alt text-coral mt-1 text-sm"></i>
+       <span class="foot-text">42 Celebration Lane, Studio 8<br>New York, NY 10012</span>
+      </li>
+      <li class="flex items-center gap-3">
+       <i class="fas fa-phone text-coral text-sm"></i>
+       <a href="tel:+12125550199" class="foot-text hover:text-coral transition">+1 (212) 555-0199</a>
+      </li>
+      <li class="flex items-center gap-3">
+       <i class="fas fa-envelope text-coral text-sm"></i>
+       <a href="mailto:hello@balloonaura.com" class="foot-text hover:text-coral transition">hello@balloonaura.com</a>
+      </li>
+      <li class="flex items-start gap-3">
+       <i class="fas fa-clock text-coral mt-1 text-sm"></i>
+       <span class="foot-text">Mon–Sat: 9am – 8pm<br>Sun: By appointment</span>
+      </li>
+     </ul>
+    </div>
+   </div>
+
+  </div>
+
+  <div class="border-t border-ink/10 dark:border-cream/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+   <p class="foot-text text-[10px] uppercase tracking-[0.2em] text-center md:text-left">
+    © 2026 BalloonAura Party Studio. All rights reserved.
+   </p>
+   <div class="flex flex-wrap justify-center gap-5 md:gap-6 text-[10px] uppercase tracking-[0.2em] foot-text">
+    <a href="#" class="hover:text-coral transition">Privacy</a>
+    <a href="#" class="hover:text-coral transition">Terms</a>
+    <a href="contact.html" class="hover:text-coral transition">Contact</a>
+   </div>
+  </div>
+
+  <div class="foot-display mt-10 md:mt-14">Style On.</div>
+
+ </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCRIPTS -->
+<!-- ═══════════════════════════════════════════ -->
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#theme-toggle, #mobile-theme-toggle').forEach(btn => {
+   btn?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+   });
+  });
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+  const setRTL = (isRTL) => {
+   const html = document.documentElement;
+   if (isRTL) { html.setAttribute('dir', 'rtl'); localStorage.setItem('dir', 'rtl'); }
+   else { html.setAttribute('dir', 'ltr'); localStorage.setItem('dir', 'ltr'); }
+  };
+  if (localStorage.getItem('dir') === 'rtl') document.documentElement.setAttribute('dir', 'rtl');
+  document.getElementById('rtl-toggle')?.addEventListener('click', () =>
+   setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+  document.getElementById('mobile-rtl-toggle')?.addEventListener('click', () =>
+   setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+   toggle.addEventListener('click', () => {
+    menu.classList.toggle('open'); document.body.classList.toggle('overflow-hidden');
+    const i = toggle.querySelector('i');
+    i.classList.toggle('fa-bars');
+    i.classList.toggle('fa-times');
+   });
+   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open'); document.body.classList.remove('overflow-hidden');
+    const i = toggle.querySelector('i');
+    i.classList.add('fa-bars'); i.classList.remove('fa-times');
+   }));
+  }
+
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+   entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+   });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+ });
+</script>
+
+</div>
+</body>
+</html>

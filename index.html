@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+ <!-- Global Error Handler: Redirects to 404.html on JS errors -->
+ <script>
+  function handleError() {
+   if (!window.location.pathname.endsWith('404.html')) {
+    window.location.href = '404.html';
+   }
+  }
+  window.addEventListener('error', handleError);
+  window.addEventListener('unhandledrejection', handleError);
+ </script>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>BalloonAura &middot; Balloon Decoration &amp; Event Styling Studio</title>
+ <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E63946'%3E%3Cellipse cx='12' cy='9' rx='7' ry='8'/%3E%3C/svg%3E" />
+ <meta name="description" content="BalloonAura — Balloon decoration and event styling for birthdays, weddings, and corporate events.">
+
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+ <script>
+  tailwind.config = {
+   darkMode: 'class',
+   theme: {
+    extend: {
+     colors: {
+      'coral':   '#E63946',
+      'coral-dk':  '#C42A37',
+      'coral-soft': '#FADADD',
+      'ink':    '#1D1D2C',
+      'cream':   '#FAF7F2',
+      'cream-2':  '#F0EAE0',
+      'dk-bg':   '#12121C',
+      'dk-surface': '#1D1D2C',
+      'dk-line':  '#2E2E42',
+     },
+     fontFamily: {
+      display: ['"Fraunces"', 'serif'],
+      sans: ['"Outfit"', 'sans-serif'],
+     },
+    }
+   }
+  }
+ </script>
+
+ <style>
+  * { -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; font-size: 18px; }
+  html.dark { color-scheme: dark; }
+
+  body {
+   font-family: 'Outfit', sans-serif;
+   background: #FAF7F2;
+   color: #1D1D2C;
+   overflow-x: hidden;
+  }
+  body::-webkit-scrollbar { width: 10px; }
+  body::-webkit-scrollbar-track { background: #F0EAE0; }
+  body::-webkit-scrollbar-thumb { background: #E63946; border-radius: 10px; }
+  .dark body { background: #12121C; color: #FAF7F2; }
+  .dark body::-webkit-scrollbar-track { background: #1D1D2C; }
+
+  .font-display {
+   font-family: 'Fraunces', serif;
+   font-variation-settings: "SOFT" 50, "WONK" 1;
+  }
+
+  /* ═══════════════════════════════════════════
+    NAV + FOOTER — same color in each theme
+    ═══════════════════════════════════════════ */
+  .site-nav {
+   background: #FFFFFF;
+   color: #1D1D2C;
+   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  .dark .site-nav {
+   background: #1D1D2C;
+   color: #FAF7F2;
+  }
+
+  /* Thin coral top border for both themes */
+  .site-nav::before {
+   content: '';
+   position: absolute;
+   top: 0; left: 0; right: 0;
+   height: 3px;
+   background: linear-gradient(90deg, #E63946 0%, #E63946 33%, transparent 33%, transparent 66%, #E63946 66%, #E63946 100%);
+   opacity: 0.9;
+  }
+
+  .site-footer {
+   background: #FFFFFF;
+   color: #1D1D2C;
+   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  .dark .site-footer {
+   background: #1D1D2C;
+   color: #FAF7F2;
+  }
+
+  .nav-text { color: #1D1D2C; }
+  .dark .nav-text { color: #FAF7F2; }
+  .foot-text { color: rgba(29, 29, 44, 0.65); }
+  .dark .foot-text { color: rgba(250, 247, 242, 0.65); }
+
+  /* ═══════════════════════════════════════════
+    NEW NAV — Centered layout with dot indicators
+    ═══════════════════════════════════════════ */
+  .nav-pill-link {
+   position: relative;
+   display: inline-flex;
+   align-items: center;
+   gap: 0.45rem;
+   padding: 0.55rem 0.9rem;
+   border-radius: 999px;
+   color: #1D1D2C;
+   font-size: 0.8rem;
+   font-weight: 500;
+   letter-spacing: 0.02em;
+   text-transform: capitalize;
+   transition: all 0.25s ease;
+  }
+  .dark .nav-pill-link { color: #FAF7F2; }
+  .nav-pill-link::before {
+   content: '';
+   width: 5px;
+   height: 5px;
+   border-radius: 999px;
+   background: currentColor;
+   opacity: 0.25;
+   transition: all 0.25s ease;
+  }
+  .nav-pill-link:hover {
+   color: #E63946;
+   background: rgba(230, 57, 70, 0.06);
+  }
+  .dark .nav-pill-link:hover {
+   background: rgba(230, 57, 70, 0.12);
+  }
+  .nav-pill-link:hover::before {
+   opacity: 1;
+   background: #E63946;
+   transform: scale(1.4);
+  }
+  .nav-pill-link.active {
+   color: #E63946 !important;
+   background: rgba(230, 57, 70, 0.08);
+   font-weight: 600;
+  }
+  .dark .nav-pill-link.active {
+   background: rgba(230, 57, 70, 0.18);
+  }
+  .nav-pill-link.active::before {
+   opacity: 1;
+   background: #E63946;
+   transform: scale(1.4);
+  }
+
+  /* Dropdown — dark card with corner accent */
+  .dropdown { position: relative; }
+  .dropdown-menu {
+   position: absolute;
+   top: calc(100% + 14px); left: 50%;
+   transform: translateX(-50%) translateY(8px);
+   min-width: 240px;
+   background: #1D1D2C;
+   border-radius: 16px;
+   padding: 0.5rem;
+   box-shadow: 0 24px 48px -16px rgba(29, 29, 44, 0.35);
+   opacity: 0; visibility: hidden;
+   transition: all 0.25s ease;
+   z-index: 1000;
+   border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .dropdown-menu::before {
+   content: '';
+   position: absolute;
+   top: -6px; left: 50%;
+   transform: translateX(-50%) rotate(45deg);
+   width: 12px; height: 12px;
+   background: #1D1D2C;
+   border-top: 1px solid rgba(255, 255, 255, 0.06);
+   border-left: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .dropdown:hover .dropdown-menu {
+   opacity: 1; visibility: visible;
+   transform: translateX(-50%) translateY(0);
+  }
+  .dropdown-item {
+   display: flex;
+   align-items: center;
+   gap: 0.65rem;
+   padding: 0.7rem 1rem;
+   color: rgba(255, 255, 255, 0.85);
+   font-size: 0.8rem;
+   font-weight: 500;
+   border-radius: 10px;
+   transition: all 0.2s;
+  }
+  .dropdown-item:hover {
+   background: rgba(230, 57, 70, 0.15);
+   color: #FFFFFF;
+  }
+  .dropdown-item.active {
+   background: rgba(230, 57, 70, 0.22);
+   color: #FFFFFF;
+   font-weight: 600;
+  }
+  .dropdown-item i { color: #E63946; }
+
+  /* ═══════════════════════════════════════════
+    BOOK EVENT — Split CTA button
+    ═══════════════════════════════════════════ */
+  .btn-split {
+   display: inline-flex;
+   align-items: center;
+   gap: 0;
+   border-radius: 999px;
+   overflow: hidden;
+   background: #E63946;
+   transition: all 0.3s ease;
+   box-shadow: 0 10px 22px -10px rgba(230, 57, 70, 0.6);
+  }
+  .btn-split:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 16px 28px -10px rgba(230, 57, 70, 0.7);
+  }
+  .btn-split .btn-split-text {
+   color: #FFFFFF;
+   font-size: 0.72rem;
+   font-weight: 700;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   padding: 0.75rem 1.25rem 0.75rem 1.5rem;
+   white-space: nowrap;
+  }
+  .btn-split .btn-split-arrow {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 32px;
+   height: 32px;
+   border-radius: 999px;
+   background: rgba(255, 255, 255, 0.2);
+   color: #FFFFFF;
+   margin-right: 4px;
+   transition: all 0.3s ease;
+  }
+  .btn-split:hover .btn-split-arrow {
+   background: #FFFFFF;
+   color: #E63946;
+   transform: rotate(-45deg);
+  }
+
+  /* ═══════════════════════════════════════════
+    Icon toggles (theme / rtl)
+    ═══════════════════════════════════════════ */
+  .icon-toggle {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 38px; height: 38px;
+   border-radius: 12px;
+   color: #1D1D2C;
+   transition: all 0.25s ease;
+  }
+  .dark .icon-toggle { color: #FAF7F2; }
+  .icon-toggle:hover {
+   background: rgba(230, 57, 70, 0.1);
+   color: #E63946;
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+   background: #FFFFFF;
+   max-height: 0;
+   overflow: hidden;
+   transition: max-height 0.4s ease;
+  }
+  .dark .mobile-menu { background: #1D1D2C; }
+  .mobile-menu.open { max-height: 90vh; overflow-y: auto; }
+
+  /* ═══════════════════════════════════════════
+    FOOTER — Asymmetric with numbered headings
+    ═══════════════════════════════════════════ */
+  .foot-heading {
+   display: flex;
+   align-items: center;
+   gap: 0.6rem;
+   font-family: 'Fraunces', serif;
+   font-style: italic;
+   font-size: 1.05rem;
+   font-weight: 600;
+   color: #1D1D2C;
+   margin-bottom: 1.25rem;
+  }
+  .dark .foot-heading { color: #FAF7F2; }
+  .foot-heading-num {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 26px; height: 26px;
+   border-radius: 8px;
+   background: rgba(230, 57, 70, 0.12);
+   color: #E63946;
+   font-family: 'Outfit', sans-serif;
+   font-style: normal;
+   font-size: 0.65rem;
+   font-weight: 700;
+   letter-spacing: 0.05em;
+  }
+  .dark .foot-heading-num {
+   background: rgba(230, 57, 70, 0.25);
+  }
+
+  /* Social rotated tags */
+  .social-tag {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0; width: 40px; height: 40px; justify-content: center;
+   border-radius: 10px;
+   border: 1px solid rgba(29,29,44,0.15);
+   color: #1D1D2C;
+   font-size: 0.7rem;
+   font-weight: 600;
+   letter-spacing: 0.1em;
+   text-transform: uppercase;
+   transition: all 0.25s ease;
+  }
+  .dark .social-tag {
+   border-color: rgba(250,247,242,0.18);
+   color: #FAF7F2;
+  }
+  .social-tag:hover {
+   background: #E63946;
+   border-color: #E63946;
+   color: #FFFFFF;
+   transform: translateY(-2px);
+  }
+  .social-tag i { font-size: 1.15rem; }
+
+  /* Footer contact card */
+  .foot-contact-card {
+   background: rgba(230, 57, 70, 0.06);
+   border: 1px solid rgba(230, 57, 70, 0.2);
+   border-radius: 20px;
+   padding: 1.5rem;
+  }
+  .dark .foot-contact-card {
+   background: rgba(230, 57, 70, 0.12);
+   border-color: rgba(230, 57, 70, 0.3);
+  }
+
+  /* Big italic display at footer bottom */
+  .foot-display {
+   font-family: 'Fraunces', serif;
+   font-style: italic;
+   font-weight: 900;
+   font-size: clamp(3rem, 10vw, 8rem);
+   line-height: 0.85;
+   letter-spacing: -0.03em;
+   color: rgba(29, 29, 44, 0.06);
+   text-align: center;
+   user-select: none;
+   pointer-events: none;
+  }
+  .dark .foot-display {
+   color: rgba(250, 247, 242, 0.05);
+  }
+
+  /* ═══════════════════════════════════════════
+    Base buttons
+    ═══════════════════════════════════════════ */
+  .btn-primary {
+   background: #E63946;
+   color: #FFFFFF;
+   font-weight: 600;
+   border-radius: 999px;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   font-size: 0.72rem;
+   padding: 0.95rem 1.2rem;
+   transition: all 0.3s ease;
+   display: inline-flex; align-items: center; gap: 0.5rem;
+   box-shadow: 0 8px 20px -8px rgba(230,57,70,0.5);
+   white-space: nowrap;
+  }
+  .btn-primary:hover {
+   background: #C42A37;
+   transform: translateY(-2px);
+   box-shadow: 0 14px 28px -8px rgba(230,57,70,0.6);
+  }
+  .btn-outline {
+   border: 1.5px solid #1D1D2C;
+   color: #1D1D2C;
+   background: transparent;
+   border-radius: 999px;
+   font-weight: 600;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   font-size: 0.72rem;
+   padding: 0.95rem 1.2rem;
+   transition: all 0.3s ease;
+   display: inline-flex; align-items: center; gap: 0.5rem;
+   white-space: nowrap;
+  }
+  .btn-outline:hover { background: #1D1D2C; color: #FAF7F2; transform: translateY(-2px); }
+  .dark .btn-outline { border-color: #FAF7F2; color: #FAF7F2; }
+  .dark .btn-outline:hover { background: #FAF7F2; color: #1D1D2C; }
+
+  .btn-hero-primary {
+   background: #E63946;
+   color: #FFFFFF;
+   font-weight: 600;
+   border-radius: 999px;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   font-size: 0.72rem;
+   padding: 1rem 2.1rem;
+   transition: all 0.3s ease;
+   display: inline-flex; align-items: center; gap: 0.5rem;
+   box-shadow: 0 10px 24px -8px rgba(230,57,70,0.6);
+   white-space: nowrap;
+  }
+  .btn-hero-primary:hover { background: #C42A37; transform: translateY(-2px); }
+  .btn-hero-outline {
+   border: 1.5px solid rgba(255,255,255,0.8);
+   color: #FFFFFF;
+   background: rgba(255,255,255,0.08);
+   backdrop-filter: blur(6px);
+   border-radius: 999px;
+   font-weight: 600;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   font-size: 0.72rem;
+   padding: 1rem 2.1rem;
+   transition: all 0.3s ease;
+   display: inline-flex; align-items: center; gap: 0.5rem;
+   white-space: nowrap;
+  }
+  .btn-hero-outline:hover {
+   background: #FFFFFF; color: #1D1D2C; border-color: #FFFFFF;
+   transform: translateY(-2px);
+  }
+
+  [dir="rtl"] .dropdown-menu { left: auto; right: 50%; transform: translateX(50%) translateY(8px); }
+  [dir="rtl"] .dropdown:hover .dropdown-menu { transform: translateX(50%) translateY(0); }
+
+  /* Rule */
+  .rule {
+   display: flex; align-items: center; justify-content: center;
+   gap: 1rem; color: #E63946;
+  }
+  .rule::before, .rule::after {
+   content: ''; width: 36px; height: 1px;
+   background: currentColor; opacity: 0.5;
+  }
+  .rule-left::before { display: none; }
+
+  /* Reveal */
+  .reveal {
+   opacity: 0; transform: translateY(28px);
+   transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Card */
+  .card {
+   background: #FFFFFF;
+   border: 1px solid rgba(29,29,44,0.06);
+   border-radius: 20px;
+   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .dark .card { background: #1D1D2C; border-color: rgba(250,247,242,0.08); }
+  .card:hover {
+   transform: translateY(-6px);
+   box-shadow: 0 24px 48px -20px rgba(29,29,44,0.24);
+   border-color: rgba(230,57,70,0.3);
+  }
+
+  img { display: block; max-width: 100%; }
+
+  .feature-row {
+   display: flex;
+   align-items: flex-start;
+   gap: 1rem;
+   padding: 1.25rem 1.25rem;
+   border-bottom: 1px dashed rgba(29,29,44,0.15);
+   transition: background 0.25s;
+  }
+  .dark .feature-row { border-bottom-color: rgba(250,247,242,0.15); }
+  .feature-row:last-child { border-bottom: none; }
+  .feature-row:hover { background: rgba(230,57,70,0.04); }
+
+  .ribbon {
+   position: absolute;
+   top: -14px; left: 50%;
+   transform: translateX(-50%);
+   background: #E63946;
+   color: #FFFFFF;
+   padding: 6px 18px;
+   border-radius: 999px;
+   font-size: 9px;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 0.2em;
+   white-space: nowrap;
+  }
+
+  .hero-strip {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 1rem;
+   border-radius: 32px;
+   overflow: hidden;
+  }
+  .hero-strip img {
+   width: 100%;
+   height: 320px;
+   object-fit: cover;
+   transition: transform 0.6s ease;
+  }
+  .hero-strip img:hover {
+   transform: scale(1.05);
+  }
+  @media (max-width: 768px) {
+   .hero-strip { grid-template-columns: 1fr; border-radius: 20px; }
+   .hero-strip img { height: 240px; }
+  }
+ </style>
+</head>
+
+<body>
+<div class="overflow-x-hidden w-full">
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- NAVIGATION — New Design -->
+<!-- ═══════════════════════════════════════════ -->
+<nav class="site-nav fixed top-0 left-0 right-0 z-50">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="flex items-center justify-between h-[84px] md:h-[96px] gap-4">
+
+   <!-- Logo: ring icon + two-line brand -->
+   <a href="index.html" class="flex items-center gap-3 shrink-0 group">
+    <div class="relative w-12 h-12 md:w-14 md:h-14 shrink-0">
+     <div class="absolute inset-0 rounded-full border-2 border-coral"></div>
+     <div class="absolute inset-1 rounded-full bg-coral flex items-center justify-center">
+      <i class="fas fa-gift text-white text-xs"></i>
+     </div>
+     
+    </div>
+    <div class="leading-none">
+     <div class="text-xl md:text-2xl font-display font-black nav-text tracking-tight">
+      Balloon<span class="text-coral italic">Aura</span>
+     </div>
+     <div class="text-[8px] md:text-[9px] uppercase tracking-[0.35em] nav-text opacity-50 font-semibold mt-1">
+      Party Studio · Est. 2019
+     </div>
+    </div>
+   </a>
+
+   <!-- Center nav links -->
+   <div class="hidden 2xl:flex items-center gap-1">
+    <div class="dropdown">
+     <button class="nav-pill-link active">
+      Home <i class="fas fa-chevron-down text-[9px] opacity-60"></i>
+     </button>
+     <div class="dropdown-menu">
+      <a href="index.html" class="dropdown-item active">
+       Home 1
+      </a>
+      <a href="home2.html" class="dropdown-item">
+       Home 2
+      </a>
+     </div>
+    </div>
+    <a href="about.html" class="nav-pill-link">About</a>
+    <a href="services.html" class="nav-pill-link">Services</a>
+    <a href="themes.html" class="nav-pill-link">Themes</a>
+    <a href="packages.html" class="nav-pill-link">Packages</a>
+    <a href="gallery.html" class="nav-pill-link">Gallery</a>
+    <a href="blog.html" class="nav-pill-link">Blog</a>
+    <a href="contact.html" class="nav-pill-link">Contact</a>
+   </div>
+
+   <!-- Right: toggles + split CTA -->
+   <div class="flex items-center gap-1">
+    <button id="rtl-toggle" aria-label="Toggle RTL" class="hidden 2xl:inline-flex icon-toggle">
+     <span class="text-[10px] font-bold">RTL</span>
+    </button>
+    <button id="theme-toggle" aria-label="Toggle theme" class="hidden 2xl:inline-flex icon-toggle">
+     <i class="fas fa-moon dark:hidden text-sm"></i>
+     <i class="fas fa-sun hidden dark:inline text-sm"></i>
+    </button>
+
+    <div class="hidden 2xl:block w-px h-6 bg-ink/15 dark:bg-cream/20 mx-2"></div>
+
+    <a href="contact.html" class="hidden 2xl:inline-flex btn-split">
+     <span class="btn-split-text">Book Event</span>
+     <span class="btn-split-arrow">
+      <i class="fas fa-arrow-right text-xs rtl:rotate-180"></i>
+     </span>
+    </a>
+
+    <button id="mobile-toggle" aria-label="Open menu"
+     class="2xl:hidden w-10 h-10 rounded-xl bg-ink dark:bg-cream text-cream dark:text-ink flex items-center justify-center">
+     <i class="fas fa-bars text-base"></i>
+    </button>
+   </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="mobile-menu 2xl:hidden -mx-4 sm:-mx-6">
+   <div class="py-5 px-4 space-y-1">
+    <div>
+     <button onclick="document.getElementById('home-drop').classList.toggle('hidden'); document.getElementById('home-icon').classList.toggle('rotate-180')"
+      class="w-full flex items-center justify-between py-3 px-4 font-semibold text-coral bg-coral-soft/40 dark:bg-coral/15 rounded-xl text-sm">
+      <span>Home</span>
+      <i id="home-icon" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+     </button>
+     <div id="home-drop" class="hidden pl-3 space-y-1 mt-1.5">
+      <a href="index.html" class="block py-2.5 px-4 font-semibold text-white bg-coral rounded-lg text-sm uppercase tracking-wider">
+       Home 1
+      </a>
+      <a href="home2.html" class="block py-2.5 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-lg text-sm uppercase tracking-wider transition">
+       Home 2
+      </a>
+     </div>
+    </div>
+
+    <a href="about.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">About</a>
+    <a href="services.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Services</a>
+    <a href="themes.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Themes</a>
+    <a href="packages.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Packages</a>
+    <a href="gallery.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Gallery</a>
+    <a href="blog.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Blog</a>
+    <a href="contact.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Contact</a>
+
+    <div class="flex flex-col gap-3 pt-4 mt-3 border-t border-ink/10 dark:border-cream/15">
+     <a href="contact.html" class="btn-primary justify-center">Book Event</a>
+     <div class="flex gap-3">
+      <button id="mobile-theme-toggle" class="flex-1 py-3 rounded-full bg-cream-2 dark:bg-dk-line nav-text text-xs font-semibold uppercase tracking-wider">
+       <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:inline"></i> Theme
+      </button>
+      <button id="mobile-rtl-toggle" class="flex-1 py-3 rounded-full bg-cream-2 dark:bg-dk-line nav-text text-xs font-semibold uppercase tracking-wider">
+       <i class="fas fa-exchange-alt"></i> RTL
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 1 — HERO -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="pt-[140px] md:pt-[160px] pb-16 md:pb-24 bg-cream dark:bg-dk-bg border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <!-- Centered content -->
+  <div class="text-center max-w-4xl mx-auto mb-12 md:mb-16">
+   <div class="inline-flex items-center gap-2 bg-coral-soft/60 dark:bg-coral/15 border border-coral/25 px-4 py-1.5 rounded-full mb-6">
+    <span class="w-1.5 h-1.5 rounded-full bg-coral"></span>
+    <span class="text-coral text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.24em]">Balloon Decoration Studio</span>
+   </div>
+
+   <h1 class="font-display font-black text-ink dark:text-cream text-[36px] leading-[1.05] sm:text-5xl md:text-6xl lg:text-[72px] mb-6">
+    We Make <span class="italic text-coral">Celebrations</span><br>
+    Float With Joy.
+   </h1>
+
+   <p class="text-ink/60 dark:text-cream/65 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+    Hand-crafted balloon installations, backdrops, and party styling for birthdays, weddings, and every moment worth celebrating.
+   </p>
+
+   <div class="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+    <a href="contact.html" class="btn-primary justify-center">
+     <i class="fas fa-wand-magic-sparkles"></i> Book Your Setup
+    </a>
+    <a href="services.html" class="btn-outline justify-center">
+     <i class="fas fa-images"></i> See Our Work
+    </a>
+   </div>
+
+   <!-- Stats Grid (centered) -->
+   <div class="flex items-center justify-center gap-8 md:gap-16 pt-8 border-t border-ink/10 dark:border-cream/10 max-w-3xl mx-auto">
+    <div>
+     <div class="font-display font-black text-3xl sm:text-4xl text-ink dark:text-cream">500+</div>
+     <div class="text-[10px] uppercase tracking-widest text-ink/50 dark:text-cream/50 font-semibold mt-1">Events</div>
+    <div>
+     <div class="font-display font-black text-3xl sm:text-4xl text-ink dark:text-cream">4.9★</div>
+     <div class="text-[10px] uppercase tracking-widest text-ink/50 dark:text-cream/50 font-semibold mt-1">Rating</div>
+    </div>
+    <div>
+     <div class="font-display font-black text-3xl sm:text-4xl text-ink dark:text-cream">7yr</div>
+     <div class="text-[10px] uppercase tracking-widest text-ink/50 dark:text-cream/50 font-semibold mt-1">Experience</div>
+    </div>
+   </div>
+  </div>
+
+  <!-- Image strip -->
+  <div class="hero-strip reveal">
+   <img src="asserts/index1.avif" alt="Balloon styling setup 1" loading="lazy">
+   <img src="asserts/index2.avif" alt="Balloon styling setup 2" loading="lazy">
+   <img src="asserts/index3.avif" alt="Balloon styling setup 3" loading="lazy">
+  </div>
+
+ </div>
+</section>
+
+<!-- SECTION 2 — ICON MARQUEE BAR -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="bg-cream-2 dark:bg-dk-surface border-y border-ink/5 dark:border-cream/10 border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+   <div class="flex items-center justify-center gap-2 py-2">
+    <i class="fas fa-birthday-cake text-coral text-sm"></i>
+    <span class="text-[11px] md:text-xs uppercase tracking-widest font-semibold text-ink/70 dark:text-cream/70">Birthdays</span>
+   </div>
+   <div class="flex items-center justify-center gap-2 py-2">
+    <i class="fas fa-ring text-coral text-sm"></i>
+    <span class="text-[11px] md:text-xs uppercase tracking-widest font-semibold text-ink/70 dark:text-cream/70">Weddings</span>
+   </div>
+   <div class="flex items-center justify-center gap-2 py-2">
+    <i class="fas fa-building text-coral text-sm"></i>
+    <span class="text-[11px] md:text-xs uppercase tracking-widest font-semibold text-ink/70 dark:text-cream/70">Corporate</span>
+   </div>
+   <div class="flex items-center justify-center gap-2 py-2">
+    <i class="fas fa-baby text-coral text-sm"></i>
+    <span class="text-[11px] md:text-xs uppercase tracking-widest font-semibold text-ink/70 dark:text-cream/70">Baby Showers</span>
+   </div>
+   <div class="flex items-center justify-center gap-2 py-2 col-span-2 md:col-span-1">
+    <i class="fas fa-heart text-coral text-sm"></i>
+    <span class="text-[11px] md:text-xs uppercase tracking-widest font-semibold text-ink/70 dark:text-cream/70">Anniversaries</span>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 3 — ZIGZAG SERVICE CARDS -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <div class="text-center mb-12 md:mb-16 reveal">
+   <div class="rule mb-4 justify-center">
+    <i class="fas fa-sparkles text-xs"></i>
+   </div>
+   <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Our Services</span>
+   <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.1]">
+    Party Magic,<br class="sm:hidden">
+    <span class="italic text-coral"> Made to Order.</span>
+   </h2>
+   <p class="text-ink/60 dark:text-cream/65 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+    Every celebration is unique — so is our styling. Choose from signature services or design your own custom setup.
+   </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+   <div class="card p-7 sm:p-8 reveal flex flex-col">
+    <div class="w-14 h-14 rounded-2xl bg-coral-soft dark:bg-coral/15 flex items-center justify-center mb-6">
+     <i class="fas fa-birthday-cake text-coral text-xl"></i>
+    </div>
+     <h3 class="font-display font-bold text-2xl text-ink dark:text-cream mb-3 md:min-h-[4.5rem] lg:min-h-[4rem]">Birthday Décor</h3>
+     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed mb-2">
+     Balloon arches, garlands, cake table setups, and personalized name installations for all ages.
+    </p>
+    </div>
+    <div class="mt-auto flex items-center justify-between pt-5 border-t border-ink/10 dark:border-cream/10">
+     <span class="font-display font-bold text-coral text-lg">From $199</span>
+     <a href="services.html" class="w-9 h-9 rounded-full bg-coral text-white flex items-center justify-center hover:bg-coral-dk transition">
+      <i class="fas fa-arrow-right text-xs rtl:rotate-180"></i>
+     </a>
+    </div>
+   </div>
+
+   <div class="card p-7 sm:p-8 reveal bg-ink dark:bg-dk-surface border-2 border-coral flex flex-col">
+    <div class="w-14 h-14 rounded-2xl bg-coral/20 flex items-center justify-center mb-6">
+     <i class="fas fa-building text-coral text-xl"></i>
+    </div>
+    <h3 class="font-display font-bold text-2xl text-cream mb-3 md:min-h-[4.5rem] lg:min-h-[4rem]">Corporate Events</h3>
+    <p class="text-sm text-cream/65 leading-relaxed mb-6">
+     Branded balloon walls, stage backdrops, and elegant conference styling that reflect your identity.
+    </p>
+    <div class="mt-auto flex items-center justify-between pt-5 border-t border-cream/10">
+     <span class="font-display font-bold text-coral text-lg">From $499</span>
+     <a href="services.html" class="w-9 h-9 rounded-full bg-coral text-white flex items-center justify-center hover:bg-coral-dk transition">
+      <i class="fas fa-arrow-right text-xs rtl:rotate-180"></i>
+     </a>
+    </div>
+   </div>
+
+   <div class="card p-7 sm:p-8 reveal flex flex-col">
+    <div class="w-14 h-14 rounded-2xl bg-coral-soft dark:bg-coral/15 flex items-center justify-center mb-6">
+     <i class="fas fa-ring text-coral text-xl"></i>
+    </div>
+    <h3 class="font-display font-bold text-2xl text-ink dark:text-cream mb-3 md:min-h-[4.5rem] lg:min-h-[4rem]">Wedding Décor</h3>
+    <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed mb-6">
+     Romantic balloon installations, floral blends, and elegant ceremony styling for your big day.
+    </p>
+    <div class="mt-auto flex items-center justify-between pt-5 border-t border-ink/10 dark:border-cream/10">
+     <span class="font-display font-bold text-coral text-lg">From $799</span>
+     <a href="services.html" class="w-9 h-9 rounded-full bg-coral text-white flex items-center justify-center hover:bg-coral-dk transition">
+      <i class="fas fa-arrow-right text-xs rtl:rotate-180"></i>
+     </a>
+    </div>
+   </div>
+  </div>
+
+  <div class="text-center mt-12 reveal">
+   <a href="services.html" class="btn-outline">
+    <i class="fas fa-list"></i> Browse All Services
+   </a>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 4 — ASYMMETRIC IMAGE + BORDERED FEATURE BOX -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 bg-cream-2 dark:bg-dk-surface border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+   <div class="reveal">
+    <div class="rounded-[24px] md:rounded-[32px] overflow-hidden shadow-2xl border-4 border-white dark:border-dk-bg">
+     <img src="asserts/index1.avif"
+        alt="Beautiful balloon setup"
+        class="w-full h-[320px] sm:h-[420px] md:h-[520px] object-cover"
+        loading="lazy">
+    </div>
+   </div>
+
+   <div class="reveal">
+    <div class="rule rule-left mb-4 justify-start">
+     <i class="fas fa-heart text-xs"></i>
+    </div>
+    <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Why BalloonAura</span>
+    <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl mb-5 leading-[1.1]">
+     Punctual, Playful,<br>
+     <span class="italic text-coral">Perfectly Yours.</span>
+    </h2>
+    <p class="text-ink/60 dark:text-cream/65 text-sm sm:text-base leading-relaxed mb-8">
+     From the first moodboard to the final ribbon, every detail is intentional.
+    </p>
+
+    <div class="card !p-0 overflow-hidden mb-8">
+     <div class="feature-row">
+      <div class="w-11 h-11 rounded-xl bg-coral-soft dark:bg-coral/15 flex items-center justify-center shrink-0">
+       <i class="fas fa-palette text-coral text-base"></i>
+      </div>
+      <div>
+       <h4 class="font-display font-bold text-base text-ink dark:text-cream mb-1">Custom Color Palettes</h4>
+       <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Matched to your theme, invitation, or brand identity.</p>
+      </div>
+     </div>
+     <div class="feature-row">
+      <div class="w-11 h-11 rounded-xl bg-coral-soft dark:bg-coral/15 flex items-center justify-center shrink-0">
+       <i class="fas fa-truck-fast text-coral text-base"></i>
+      </div>
+      <div>
+       <h4 class="font-display font-bold text-base text-ink dark:text-cream mb-1">On-Time Delivery</h4>
+       <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Setup before guests arrive — teardown after they leave.</p>
+      </div>
+     </div>
+     <div class="feature-row">
+      <div class="w-11 h-11 rounded-xl bg-coral-soft dark:bg-coral/15 flex items-center justify-center shrink-0">
+       <i class="fas fa-gem text-coral text-base"></i>
+      </div>
+      <div>
+       <h4 class="font-display font-bold text-base text-ink dark:text-cream mb-1">Premium Materials</h4>
+       <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Only top-grade latex, foil, and organic balloons.</p>
+      </div>
+     </div>
+    </div>
+
+    <a href="about.html" class="btn-primary">
+     <i class="fas fa-arrow-right"></i> Learn More
+    </a>
+   </div>
+
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 5 — FEATURED PRICING STAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <div class="text-center mb-14 md:mb-20 reveal">
+   <div class="rule mb-4 justify-center">
+    <i class="fas fa-tag text-xs"></i>
+   </div>
+   <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Transparent Pricing</span>
+   <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.1]">
+    Simple Party <span class="italic text-coral">Packages.</span>
+   </h2>
+   <p class="text-ink/60 dark:text-cream/65 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+    Pick a package or customize your own. Every setup includes delivery, installation, and teardown.
+   </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-5 max-w-5xl mx-auto items-stretch">
+
+   <div class="card p-7 sm:p-8 reveal flex flex-col">
+    <div class="min-h-[170px] md:min-h-[190px] flex flex-col justify-start">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50 dark:text-cream/50 mb-3">Mini</div>
+     <h3 class="font-display font-bold text-2xl text-ink dark:text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Small Party</h3>
+     <p class="text-sm text-ink/55 dark:text-cream/55 mb-2">Perfect for intimate home celebrations.</p>
+    </div>
+    <div class="flex items-end gap-1 mb-7">
+     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$199</span>
+     <span class="text-ink/50 dark:text-cream/50 text-sm mb-1.5">/ event</span>
+    </div>
+    <ul class="space-y-3 mb-8 text-sm text-ink/75 dark:text-cream/75 flex-1">
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Balloon arch (5 ft)</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Table centerpiece</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 2-hr setup window</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Standard colors</li>
+    </ul>
+    <a href="packages.html" class="btn-outline justify-center w-full mt-auto !px-2 lg:!px-6 !text-[10px] lg:!text-xs">Choose Mini</a>
+   </div>
+
+   <div class="card p-7 sm:p-8 reveal flex flex-col bg-ink dark:bg-dk-surface border-2 border-coral relative shadow-2xl">
+    <div class="ribbon">⭐ Most Loved</div>
+    <div class="min-h-[170px] md:min-h-[190px] flex flex-col justify-start">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-3">Deluxe</div>
+     <h3 class="font-display font-bold text-2xl text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Party Deluxe</h3>
+     <p class="text-sm text-cream/60 mb-2">The full styling experience.</p>
+    </div>
+    <div class="flex items-end gap-1 mb-7">
+     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$499</span>
+     <span class="text-cream/50 text-sm mb-1.5">/ event</span>
+    </div>
+    <ul class="space-y-3 mb-8 text-sm text-cream/90 flex-1">
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Balloon garland (10 ft)</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Cake &amp; gift table styling</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Name installation</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 3-hr setup + teardown</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Premium color palette</li>
+    </ul>
+    <a href="packages.html" class="btn-primary justify-center w-full mt-auto !px-2 lg:!px-6 !text-[10px] lg:!text-xs">Book Deluxe</a>
+   </div>
+
+   <div class="card p-7 sm:p-8 reveal flex flex-col">
+    <div class="min-h-[170px] md:min-h-[190px] flex flex-col justify-start">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50 dark:text-cream/50 mb-3">Luxury</div>
+     <h3 class="font-display font-bold text-2xl text-ink dark:text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Grand Event</h3>
+     <p class="text-sm text-ink/55 dark:text-cream/55 mb-2">Full venue styling, no limits.</p>
+    </div>
+    <div class="flex items-end gap-1 mb-7">
+     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$999</span>
+     <span class="text-ink/50 dark:text-cream/50 text-sm mb-1.5">+ up</span>
+    </div>
+    <ul class="space-y-3 mb-8 text-sm text-ink/75 dark:text-cream/75 flex-1">
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Full venue styling</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Custom installations</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Floral + balloon blends</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Dedicated stylist</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Premium backdrop</li>
+    </ul>
+    <a href="packages.html" class="btn-outline justify-center w-full mt-auto !px-2 lg:!px-6 !text-[10px] lg:!text-xs">Enquire Now</a>
+   </div>
+
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 6 — BENTO GALLERY + CTA -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 bg-cream-2 dark:bg-dk-surface border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 reveal">
+   <div>
+    <div class="rule rule-left mb-4 justify-start">
+     <i class="fas fa-camera text-xs"></i>
+    </div>
+    <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Our Portfolio</span>
+    <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl leading-[1.1]">
+     Recent <span class="italic text-coral">Celebrations.</span>
+    </h2>
+   </div>
+   <a href="gallery.html" class="btn-outline self-start md:self-end">
+    <i class="fas fa-images"></i> Full Gallery
+   </a>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mb-4">
+   <a href="gallery.html" class="group relative overflow-hidden rounded-2xl col-span-2 row-span-2 aspect-square reveal">
+    <img src="asserts/index2.avif" alt="Featured Birthday"
+       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent"></div>
+    <div class="absolute bottom-5 left-5 text-cream">
+     <div class="text-[10px] uppercase tracking-widest font-bold mb-1">Birthday · Featured</div>
+     <div class="font-display font-bold text-xl">Pastel Dream Set</div>
+    </div>
+   </a>
+   <a href="gallery.html" class="group relative overflow-hidden rounded-2xl aspect-square reveal">
+    <img src="asserts/index4.jpeg" alt="Wedding setup"
+       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+   </a>
+   <a href="gallery.html" class="group relative overflow-hidden rounded-2xl aspect-square reveal">
+    <img src="asserts/index5.jpeg" alt="Anniversary"
+       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+   </a>
+   <a href="gallery.html" class="group relative overflow-hidden rounded-2xl aspect-square reveal">
+    <img src="asserts/index6.jpeg" alt="Party"
+       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+   </a>
+   <a href="gallery.html" class="group relative overflow-hidden rounded-2xl aspect-square reveal">
+    <img src="asserts/index7.jpeg" alt="Corporate"
+       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+   </a>
+  </div>
+ </div>
+
+ <div class="mt-16 bg-coral">
+  <div class="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center reveal">
+   <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 px-4 py-1.5 rounded-full mb-5">
+    <i class="fas fa-fire text-white text-xs"></i>
+    <span class="text-white text-[10px] uppercase tracking-[0.3em] font-semibold">Limited Dates for 2026</span>
+   </div>
+   <h2 class="font-display font-black text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.05]">
+    Ready to Make<br>
+    <span class="italic">It Unforgettable?</span>
+   </h2>
+   <p class="text-white/90 text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+    Book your event today and enjoy <strong>15% off</strong> your first styling. Free consultation.
+   </p>
+   <div class="flex flex-col sm:flex-row gap-3 justify-center">
+    <a href="contact.html" class="inline-flex items-center justify-center gap-2 bg-white text-coral hover:bg-ink hover:text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300">
+     <i class="fas fa-wand-magic-sparkles"></i> Book Now
+    </a>
+    <a href="contact.html" class="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-coral px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300">
+     <i class="fas fa-comments"></i> Get a Quote
+    </a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- FOOTER — New Asymmetric Design -->
+<!-- ═══════════════════════════════════════════ -->
+<footer class="site-footer pt-16 md:pt-20 pb-8 relative overflow-hidden">
+
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+  <!-- Top grid: brand + 2 link groups + contact card -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-14">
+
+   <!-- Brand block (4 cols) -->
+   <div class="lg:col-span-4">
+    <div class="flex items-center gap-3 mb-5">
+     <div class="relative w-12 h-12 md:w-14 md:h-14 shrink-0">
+      <div class="absolute inset-0 rounded-full border-2 border-coral"></div>
+      <div class="absolute inset-1 rounded-full bg-coral flex items-center justify-center">
+       <i class="fas fa-gift text-white text-xs"></i>
+      </div>
+     </div>
+     <div class="leading-none">
+      <div class="text-xl md:text-2xl font-display font-black nav-text tracking-tight">
+       Balloon<span class="text-coral italic">Aura</span>
+      </div>
+      <div class="text-[8px] md:text-[9px] uppercase tracking-[0.35em] nav-text opacity-50 font-semibold mt-1">
+       Party Studio · Est. 2019
+      </div>
+     </div>
+    </div>
+
+    <p class="foot-text text-sm leading-relaxed mb-6 max-w-sm">
+     Crafting magical balloon installations and event décor for birthdays, weddings, corporate events, and every celebration worth remembering.
+    </p>
+
+    <!-- Social tags (rotated style) -->
+    <div class="flex flex-wrap gap-2">
+     <a href="#" aria-label="Instagram" class="social-tag">
+      <i class="fab fa-instagram text-lg"></i>
+     </a>
+     <a href="#" aria-label="Facebook" class="social-tag">
+      <i class="fab fa-facebook-f text-lg"></i>
+     </a>
+     <a href="#" aria-label="Pinterest" class="social-tag">
+      <i class="fab fa-pinterest-p text-lg"></i>
+     </a>
+     <a href="#" aria-label="TikTok" class="social-tag">
+      <i class="fab fa-tiktok text-lg"></i>
+     </a>
+    </div>
+   </div>
+
+   <!-- Explore (2 cols) -->
+   <div class="lg:col-span-2">
+    <h4 class="foot-heading">
+     <span class="foot-heading-num">01</span> Explore
+    </h4>
+    <ul class="space-y-3 text-sm">
+     <li><a href="about.html" class="foot-text hover:text-coral transition">About Us</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Services</a></li>
+     <li><a href="themes.html" class="foot-text hover:text-coral transition">Themes</a></li>
+     <li><a href="packages.html" class="foot-text hover:text-coral transition">Packages</a></li>
+     <li><a href="gallery.html" class="foot-text hover:text-coral transition">Gallery</a></li>
+     <li><a href="blog.html" class="foot-text hover:text-coral transition">Blog</a></li>
+    </ul>
+   </div>
+
+   <!-- Occasions (2 cols) -->
+   <div class="lg:col-span-2">
+    <h4 class="foot-heading">
+     <span class="foot-heading-num">02</span> Occasions
+    </h4>
+    <ul class="space-y-3 text-sm">
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Birthdays</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Weddings</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Corporate Events</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Baby Showers</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Anniversaries</a></li>
+    </ul>
+   </div>
+
+   <!-- Contact card (4 cols) -->
+   <div class="lg:col-span-4">
+    <h4 class="foot-heading">
+     <span class="foot-heading-num">03</span> Get in Touch
+    </h4>
+    <div class="foot-contact-card">
+     <ul class="space-y-3.5 text-sm">
+      <li class="flex items-start gap-3">
+       <i class="fas fa-map-marker-alt text-coral mt-1 text-sm"></i>
+       <span class="foot-text">42 Celebration Lane, Studio 8<br>New York, NY 10012</span>
+      </li>
+      <li class="flex items-center gap-3">
+       <i class="fas fa-phone text-coral text-sm"></i>
+       <a href="tel:+12125550199" class="foot-text hover:text-coral transition">+1 (212) 555-0199</a>
+      </li>
+      <li class="flex items-center gap-3">
+       <i class="fas fa-envelope text-coral text-sm"></i>
+       <a href="mailto:hello@balloonaura.com" class="foot-text hover:text-coral transition">hello@balloonaura.com</a>
+      </li>
+      <li class="flex items-start gap-3">
+       <i class="fas fa-clock text-coral mt-1 text-sm"></i>
+       <span class="foot-text">Mon–Sat: 9am – 8pm<br>Sun: By appointment</span>
+      </li>
+     </ul>
+    </div>
+   </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t border-ink/10 dark:border-cream/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+   <p class="foot-text text-[10px] uppercase tracking-[0.2em] text-center md:text-left">
+    © 2026 BalloonAura Party Studio. All rights reserved.
+   </p>
+   <div class="flex flex-wrap justify-center gap-5 md:gap-6 text-[10px] uppercase tracking-[0.2em] foot-text">
+    <a href="#" class="hover:text-coral transition">Privacy</a>
+    <a href="#" class="hover:text-coral transition">Terms</a>
+    <a href="contact.html" class="hover:text-coral transition">Contact</a>
+   </div>
+  </div>
+
+  <!-- Big italic display -->
+  <div class="foot-display mt-10 md:mt-14">Party On.</div>
+
+ </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCRIPTS -->
+<!-- ═══════════════════════════════════════════ -->
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#theme-toggle, #mobile-theme-toggle').forEach(btn => {
+   btn?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+   });
+  });
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+  const setRTL = (isRTL) => {
+   const html = document.documentElement;
+   if (isRTL) { html.setAttribute('dir', 'rtl'); localStorage.setItem('dir', 'rtl'); }
+   else { html.setAttribute('dir', 'ltr'); localStorage.setItem('dir', 'ltr'); }
+  };
+  if (localStorage.getItem('dir') === 'rtl') document.documentElement.setAttribute('dir', 'rtl');
+  document.getElementById('rtl-toggle')?.addEventListener('click', () =>
+   setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+  document.getElementById('mobile-rtl-toggle')?.addEventListener('click', () =>
+   setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+   toggle.addEventListener('click', () => {
+    menu.classList.toggle('open'); document.body.classList.toggle('overflow-hidden');
+    const i = toggle.querySelector('i');
+    i.classList.toggle('fa-bars');
+    i.classList.toggle('fa-times');
+   });
+   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open'); document.body.classList.remove('overflow-hidden');
+    const i = toggle.querySelector('i');
+    i.classList.add('fa-bars'); i.classList.remove('fa-times');
+   }));
+  }
+
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+   entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+   });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+ });
+</script>
+
+</div>
+</body>
+</html>

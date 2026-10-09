@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+ <!-- Global Error Handler: Redirects to 404.html on JS errors -->
+ <script>
+  function handleError() {
+   if (!window.location.pathname.endsWith('404.html')) {
+    window.location.href = '404.html';
+   }
+  }
+  window.addEventListener('error', handleError);
+  window.addEventListener('unhandledrejection', handleError);
+ </script>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Services &middot; BalloonAura Event Styling</title>
+ <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E63946'%3E%3Cellipse cx='12' cy='9' rx='7' ry='8'/%3E%3C/svg%3E" />
+ <meta name="description" content="Explore BalloonAura's full-service event styling — birthdays, weddings, corporate events, baby showers, and more.">
+
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+ <script>
+  tailwind.config = {
+   darkMode: 'class',
+   theme: {
+    extend: {
+     colors: {
+      'coral':   '#E63946',
+      'coral-dk':  '#C42A37',
+      'coral-soft': '#FADADD',
+      'ink':    '#1D1D2C',
+      'cream':   '#FAF7F2',
+      'cream-2':  '#F0EAE0',
+      'dk-bg':   '#12121C',
+      'dk-surface': '#1D1D2C',
+      'dk-line':  '#2E2E42',
+     },
+     fontFamily: {
+      display: ['"Fraunces"', 'serif'],
+      sans: ['"Outfit"', 'sans-serif'],
+     },
+    }
+   }
+  }
+ </script>
+
+ <style>
+  * { -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; font-size: 18px; }
+  html.dark { color-scheme: dark; }
+
+  body {
+   font-family: 'Outfit', sans-serif;
+   background: #FAF7F2;
+   color: #1D1D2C;
+   overflow-x: hidden;
+  }
+  body::-webkit-scrollbar { width: 10px; }
+  body::-webkit-scrollbar-track { background: #F0EAE0; }
+  body::-webkit-scrollbar-thumb { background: #E63946; border-radius: 10px; }
+  .dark body { background: #12121C; color: #FAF7F2; }
+  .dark body::-webkit-scrollbar-track { background: #1D1D2C; }
+
+  .font-display {
+   font-family: 'Fraunces', serif;
+   font-variation-settings: "SOFT" 50, "WONK" 1;
+  }
+
+  /* ═══ Nav + Footer ═══ */
+  .site-nav {
+   background: #FFFFFF;
+   color: #1D1D2C;
+   transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .dark .site-nav {
+   background: #1D1D2C;
+   color: #FAF7F2;
+  }
+  .site-nav::before {
+   content: '';
+   position: absolute;
+   top: 0; left: 0; right: 0;
+   height: 3px;
+   background: linear-gradient(90deg, #E63946 0%, #E63946 33%, transparent 33%, transparent 66%, #E63946 66%, #E63946 100%);
+   opacity: 0.9;
+  }
+
+  .site-footer {
+   background: #FFFFFF;
+   color: #1D1D2C;
+   transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .dark .site-footer { background: #1D1D2C; color: #FAF7F2; }
+
+  .nav-text { color: #1D1D2C; }
+  .dark .nav-text { color: #FAF7F2; }
+  .foot-text { color: rgba(29, 29, 44, 0.65); }
+  .dark .foot-text { color: rgba(250, 247, 242, 0.65); }
+
+  .nav-pill-link {
+   position: relative;
+   display: inline-flex;
+   align-items: center;
+   gap: 0.45rem;
+   padding: 0.55rem 0.9rem;
+   border-radius: 999px;
+   color: #1D1D2C;
+   font-size: 0.8rem;
+   font-weight: 500;
+   transition: all 0.25s ease;
+  }
+  .dark .nav-pill-link { color: #FAF7F2; }
+  .nav-pill-link::before {
+   content: '';
+   width: 5px; height: 5px;
+   border-radius: 999px;
+   background: currentColor;
+   opacity: 0.25;
+   transition: all 0.25s ease;
+  }
+  .nav-pill-link:hover { color: #E63946; background: rgba(230, 57, 70, 0.06); }
+  .dark .nav-pill-link:hover { background: rgba(230, 57, 70, 0.12); }
+  .nav-pill-link:hover::before { opacity: 1; background: #E63946; transform: scale(1.4); }
+  .nav-pill-link.active { color: #E63946 !important; background: rgba(230, 57, 70, 0.08); font-weight: 600; }
+  .dark .nav-pill-link.active { background: rgba(230, 57, 70, 0.18); }
+  .nav-pill-link.active::before { opacity: 1; background: #E63946; transform: scale(1.4); }
+
+  .dropdown { position: relative; }
+  .dropdown-menu {
+   position: absolute;
+   top: calc(100% + 14px); left: 50%;
+   transform: translateX(-50%) translateY(8px);
+   min-width: 240px;
+   background: #1D1D2C;
+   border-radius: 16px;
+   padding: 0.5rem;
+   box-shadow: 0 24px 48px -16px rgba(29, 29, 44, 0.35);
+   opacity: 0; visibility: hidden;
+   transition: all 0.25s ease;
+   z-index: 1000;
+   border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .dropdown-menu::before {
+   content: '';
+   position: absolute;
+   top: -6px; left: 50%;
+   transform: translateX(-50%) rotate(45deg);
+   width: 12px; height: 12px;
+   background: #1D1D2C;
+   border-top: 1px solid rgba(255, 255, 255, 0.06);
+   border-left: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .dropdown-item {
+   display: flex; align-items: center; gap: 0.65rem;
+   padding: 0.7rem 1rem;
+   color: rgba(255, 255, 255, 0.85);
+   font-size: 0.8rem; font-weight: 500;
+   border-radius: 10px;
+   transition: all 0.2s;
+  }
+  .dropdown-item:hover { background: rgba(230, 57, 70, 0.15); color: #FFFFFF; }
+  .dropdown-item.active { background: rgba(230, 57, 70, 0.22); color: #FFFFFF; font-weight: 600; }
+  .dropdown-item i { color: #E63946; }
+
+  .btn-split {
+   display: inline-flex;
+   align-items: center;
+   border-radius: 999px;
+   overflow: hidden;
+   background: #E63946;
+   transition: all 0.3s ease;
+   box-shadow: 0 10px 22px -10px rgba(230, 57, 70, 0.6);
+  }
+  .btn-split:hover { transform: translateY(-2px); box-shadow: 0 16px 28px -10px rgba(230, 57, 70, 0.7); }
+  .btn-split .btn-split-text {
+   color: #FFFFFF;
+   font-size: 0.72rem;
+   font-weight: 700;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   padding: 0.75rem 1.25rem 0.75rem 1.5rem;
+   white-space: nowrap;
+  }
+  .btn-split .btn-split-arrow {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 32px; height: 32px;
+   border-radius: 999px;
+   background: rgba(255, 255, 255, 0.2);
+   color: #FFFFFF;
+   margin-right: 4px;
+   transition: all 0.3s ease;
+  }
+  .btn-split:hover .btn-split-arrow {
+   background: #FFFFFF; color: #E63946;
+   transform: rotate(-45deg);
+  }
+
+  .icon-toggle {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 38px; height: 38px;
+   border-radius: 12px;
+   color: #1D1D2C;
+   transition: all 0.25s ease;
+  }
+  .dark .icon-toggle { color: #FAF7F2; }
+  .icon-toggle:hover { background: rgba(230, 57, 70, 0.1); color: #E63946; }
+
+  .mobile-menu {
+   background: #FFFFFF;
+   max-height: 0;
+   overflow: hidden;
+   transition: max-height 0.4s ease;
+  }
+  .dark .mobile-menu { background: #1D1D2C; }
+  .mobile-menu.open { max-height: 90vh; overflow-y: auto; }
+
+  .foot-heading {
+   display: flex; align-items: center; gap: 0.6rem;
+   font-family: 'Fraunces', serif;
+   font-style: italic;
+   font-size: 1.05rem;
+   font-weight: 600;
+   color: #1D1D2C;
+   margin-bottom: 1.25rem;
+  }
+  .dark .foot-heading { color: #FAF7F2; }
+  .foot-heading-num {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 26px; height: 26px;
+   border-radius: 8px;
+   background: rgba(230, 57, 70, 0.12);
+   color: #E63946;
+   font-family: 'Outfit', sans-serif;
+   font-style: normal;
+   font-size: 0.65rem;
+   font-weight: 700;
+  }
+  .dark .foot-heading-num { background: rgba(230, 57, 70, 0.25); }
+
+  .social-tag {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0; width: 40px; height: 40px; justify-content: center;
+   border-radius: 10px;
+   border: 1px solid rgba(29,29,44,0.15);
+   color: #1D1D2C;
+   font-size: 0.7rem; font-weight: 600;
+   letter-spacing: 0.1em;
+   text-transform: uppercase;
+   transition: all 0.25s ease;
+  }
+  .dark .social-tag { border-color: rgba(250,247,242,0.18); color: #FAF7F2; }
+  .social-tag:hover {
+   background: #E63946; border-color: #E63946;
+   color: #FFFFFF; transform: translateY(-2px);
+  }
+
+  .foot-contact-card {
+   background: rgba(230, 57, 70, 0.06);
+   border: 1px solid rgba(230, 57, 70, 0.2);
+   border-radius: 20px;
+   padding: 1.5rem;
+  }
+  .dark .foot-contact-card {
+   background: rgba(230, 57, 70, 0.12);
+   border-color: rgba(230, 57, 70, 0.3);
+  }
+
+  .foot-display {
+   font-family: 'Fraunces', serif;
+   font-style: italic;
+   font-weight: 900;
+   font-size: clamp(3rem, 10vw, 8rem);
+   line-height: 0.85;
+   letter-spacing: -0.03em;
+   color: rgba(29, 29, 44, 0.06);
+   text-align: center;
+   user-select: none;
+   pointer-events: none;
+  }
+  .dark .foot-display { color: rgba(250, 247, 242, 0.05); }
+
+  .btn-primary {
+   background: #E63946; color: #FFFFFF;
+   font-weight: 600;
+   border-radius: 999px;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   font-size: 0.72rem;
+   padding: 0.95rem 1.2rem;
+   transition: all 0.3s ease;
+   display: inline-flex; align-items: center; gap: 0.5rem;
+   box-shadow: 0 8px 20px -8px rgba(230,57,70,0.5);
+   white-space: nowrap;
+  }
+  .btn-primary:hover { background: #C42A37; transform: translateY(-2px); box-shadow: 0 14px 28px -8px rgba(230,57,70,0.6); }
+  .btn-outline {
+   border: 1.5px solid #1D1D2C; color: #1D1D2C;
+   background: transparent;
+   border-radius: 999px;
+   font-weight: 600;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   font-size: 0.72rem;
+   padding: 0.95rem 1.2rem;
+   transition: all 0.3s ease;
+   display: inline-flex; align-items: center; gap: 0.5rem;
+   white-space: nowrap;
+  }
+  .btn-outline:hover { background: #1D1D2C; color: #FAF7F2; transform: translateY(-2px); }
+  .dark .btn-outline { border-color: #FAF7F2; color: #FAF7F2; }
+  .dark .btn-outline:hover { background: #FAF7F2; color: #1D1D2C; }
+
+  [dir="rtl"] .dropdown-menu { left: auto; right: 50%; transform: translateX(50%) translateY(8px); }
+  [dir="rtl"] .dropdown:hover .dropdown-menu { transform: translateX(50%) translateY(0); }
+
+  .rule {
+   display: flex; align-items: center; justify-content: center;
+   gap: 1rem; color: #E63946;
+  }
+  .rule::before, .rule::after { content: ''; width: 36px; height: 1px; background: currentColor; opacity: 0.5; }
+  .rule-left::before { display: none; }
+
+  .reveal {
+   opacity: 0; transform: translateY(28px);
+   transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .card {
+   background: #FFFFFF;
+   border: 1px solid rgba(29,29,44,0.06);
+   border-radius: 20px;
+   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .dark .card { background: #1D1D2C; border-color: rgba(250,247,242,0.08); }
+  .card:hover {
+   transform: translateY(-6px);
+   box-shadow: 0 24px 48px -20px rgba(29,29,44,0.24);
+   border-color: rgba(230,57,70,0.3);
+  }
+
+  img { display: block; max-width: 100%; }
+
+  /* ═══ SERVICES PAGE SPECIFIC ═══ */
+
+  /* Page hero */
+  .page-hero {
+   background: linear-gradient(180deg, rgba(230, 57, 70, 0.08) 0%, transparent 100%);
+   border-bottom: 1px solid rgba(230, 57, 70, 0.12);
+  }
+  .dark .page-hero {
+   background: linear-gradient(180deg, rgba(230, 57, 70, 0.15) 0%, transparent 100%);
+   border-bottom-color: rgba(230, 57, 70, 0.2);
+  }
+
+  .breadcrumb-pill {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0.5rem 1rem;
+   border-radius: 999px;
+   border: 1px solid rgba(230, 57, 70, 0.25);
+   background: rgba(230, 57, 70, 0.06);
+   font-size: 0.72rem;
+   font-weight: 600;
+   color: #E63946;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+  }
+  .breadcrumb-pill .sep { color: rgba(29,29,44,0.3); }
+  .dark .breadcrumb-pill .sep { color: rgba(250,247,242,0.3); }
+  .breadcrumb-pill .current { color: #1D1D2C; }
+  .dark .breadcrumb-pill .current { color: #FAF7F2; }
+
+  /* Stat pill in hero */
+  .stat-pill {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.6rem;
+   padding: 0.65rem 1.15rem;
+   border-radius: 999px;
+   background: #FFFFFF;
+   border: 1px solid rgba(29,29,44,0.08);
+   box-shadow: 0 4px 12px -4px rgba(29,29,44,0.08);
+  }
+  .dark .stat-pill {
+   background: #1D1D2C;
+   border-color: rgba(250,247,242,0.1);
+  }
+  .stat-pill i { color: #E63946; font-size: 0.85rem; }
+  .stat-pill span {
+   font-size: 0.72rem;
+   font-weight: 600;
+   letter-spacing: 0.06em;
+   text-transform: uppercase;
+   color: #1D1D2C;
+  }
+  .dark .stat-pill span { color: #FAF7F2; }
+
+  /* Category vertical list */
+  .cat-list {
+   display: flex;
+   flex-direction: column;
+   gap: 0.75rem;
+  }
+  .cat-item {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+   padding: 1rem 1.25rem;
+   border-radius: 14px;
+   background: #FFFFFF;
+   border: 1px solid rgba(29,29,44,0.06);
+   transition: all 0.3s ease;
+   text-decoration: none;
+  }
+  .dark .cat-item {
+   background: #1D1D2C;
+   border-color: rgba(250,247,242,0.08);
+  }
+  .cat-item:hover {
+   border-color: rgba(230, 57, 70, 0.35);
+   transform: translateX(6px);
+  }
+  .cat-item .cat-num {
+   width: 36px; height: 36px;
+   border-radius: 10px;
+   background: rgba(230, 57, 70, 0.12);
+   color: #E63946;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   font-family: 'Fraunces', serif;
+   font-weight: 900;
+   font-size: 0.85rem;
+   flex-shrink: 0;
+  }
+  .cat-item .cat-title {
+   font-family: 'Fraunces', serif;
+   font-weight: 700;
+   font-size: 1rem;
+   color: #1D1D2C;
+  }
+  .dark .cat-item .cat-title { color: #FAF7F2; }
+  .cat-item .cat-desc {
+   font-size: 0.8rem;
+   color: rgba(29,29,44,0.55);
+   margin-top: 2px;
+  }
+  .dark .cat-item .cat-desc { color: rgba(250,247,242,0.55); }
+  .cat-item .cat-arrow {
+   margin-left: auto;
+   color: #E63946;
+   font-size: 0.85rem;
+   transition: transform 0.3s ease;
+  }
+  .cat-item:hover .cat-arrow { transform: translateX(4px); }
+  [dir="rtl"] .cat-item:hover .cat-arrow { transform: translateX(-4px); }
+
+  /* Service detail row */
+  .service-row {
+   display: grid;
+   grid-template-columns: 1fr;
+   gap: 2rem;
+   align-items: center;
+  }
+  @media (min-width: 1024px) {
+   .service-row { grid-template-columns: 1fr 1fr; gap: 4rem; }
+   .service-row.reverse .sr-img { order: 2; }
+   .service-row.reverse .sr-content { order: 1; }
+  }
+  .sr-img img {
+   border-radius: 24px;
+   width: 100%;
+   height: 320px;
+   object-fit: cover;
+   box-shadow: 0 24px 48px -20px rgba(29,29,44,0.28);
+   border: 4px solid #FFFFFF;
+  }
+  .dark .sr-img img { border-color: #1D1D2C; }
+  @media (min-width: 768px) {
+   .sr-img img { height: 420px; }
+  }
+
+  /* Feature mini list */
+  .feat-mini {
+   display: flex;
+   align-items: flex-start;
+   gap: 0.75rem;
+   padding: 0.65rem 0;
+  }
+  .feat-mini i {
+   color: #E63946;
+   font-size: 0.8rem;
+   margin-top: 4px;
+   flex-shrink: 0;
+  }
+  .feat-mini span {
+   font-size: 0.85rem;
+   color: rgba(29,29,44,0.7);
+   line-height: 1.5;
+  }
+  .dark .feat-mini span { color: rgba(250,247,242,0.7); }
+
+  /* Pricing ribbon */
+  .ribbon {
+   position: absolute;
+   top: -14px; left: 50%;
+   transform: translateX(-50%);
+   background: #E63946;
+   color: #FFFFFF;
+   padding: 6px 18px;
+   border-radius: 999px;
+   font-size: 9px;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 0.2em;
+   white-space: nowrap;
+  }
+
+  /* Newsletter inline */
+  .form-inline {
+   display: flex;
+   align-items: stretch;
+   background: rgba(255, 255, 255, 0.15);
+   border: 1.5px solid rgba(255, 255, 255, 0.3);
+   border-radius: 999px;
+   padding: 4px;
+   backdrop-filter: blur(6px);
+  }
+  .form-inline input {
+   flex: 1;
+   background: transparent;
+   border: none;
+   outline: none;
+   color: #FFFFFF;
+   padding: 0.85rem 1.25rem;
+   font-size: 0.85rem;
+   min-width: 0; width: 100%;
+  }
+  .form-inline input::placeholder { color: rgba(255, 255, 255, 0.6); }
+  .form-inline button {
+   background: #FFFFFF;
+   color: #E63946;
+   border-radius: 999px;
+   padding: 0.7rem 1rem;
+   font-size: 0.72rem;
+   font-weight: 700;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   white-space: nowrap;
+   transition: all 0.3s ease;
+  }
+  .form-inline button:hover { background: #1D1D2C; color: #FFFFFF; }
+ </style>
+</head>
+
+<body>
+<div class="overflow-x-hidden w-full">
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- NAVIGATION -->
+<!-- ═══════════════════════════════════════════ -->
+<nav class="site-nav fixed top-0 left-0 right-0 z-50">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="flex items-center justify-between h-[84px] md:h-[96px] gap-4">
+
+   <a href="index.html" class="flex items-center gap-3 shrink-0 group">
+    <div class="relative w-12 h-12 md:w-14 md:h-14 shrink-0">
+     <div class="absolute inset-0 rounded-full border-2 border-coral"></div>
+     <div class="absolute inset-1 rounded-full bg-coral flex items-center justify-center">
+      <i class="fas fa-gift text-white text-xs"></i>
+     </div>
+     
+    </div>
+    <div class="leading-none">
+     <div class="text-xl md:text-2xl font-display font-black nav-text tracking-tight">
+      Balloon<span class="text-coral italic">Aura</span>
+     </div>
+     <div class="text-[8px] md:text-[9px] uppercase tracking-[0.35em] nav-text opacity-50 font-semibold mt-1">
+      Party Studio · Est. 2019
+     </div>
+    </div>
+   </a>
+
+   <div class="hidden 2xl:flex items-center gap-1">
+    <div class="dropdown">
+     <button class="nav-pill-link">
+      Home <i class="fas fa-chevron-down text-[9px] opacity-60"></i>
+     </button>
+     <div class="dropdown-menu">
+      <a href="index.html" class="dropdown-item">
+       Home 1
+      </a>
+      <a href="home2.html" class="dropdown-item">
+       Home 2
+      </a>
+     </div>
+    </div>
+    <a href="about.html" class="nav-pill-link">About</a>
+    <a href="services.html" class="nav-pill-link active">Services</a>
+    <a href="themes.html" class="nav-pill-link">Themes</a>
+    <a href="packages.html" class="nav-pill-link">Packages</a>
+    <a href="gallery.html" class="nav-pill-link">Gallery</a>
+    <a href="blog.html" class="nav-pill-link">Blog</a>
+    <a href="contact.html" class="nav-pill-link">Contact</a>
+   </div>
+
+   <div class="flex items-center gap-1">
+    <button id="rtl-toggle" aria-label="Toggle RTL" class="hidden 2xl:inline-flex icon-toggle">
+     <span class="text-[10px] font-bold">RTL</span>
+    </button>
+    <button id="theme-toggle" aria-label="Toggle theme" class="hidden 2xl:inline-flex icon-toggle">
+     <i class="fas fa-moon dark:hidden text-sm"></i>
+     <i class="fas fa-sun hidden dark:inline text-sm"></i>
+    </button>
+
+    <div class="hidden 2xl:block w-px h-6 bg-ink/15 dark:bg-cream/20 mx-2"></div>
+
+    <a href="contact.html" class="hidden 2xl:inline-flex btn-split">
+     <span class="btn-split-text">Book Event</span>
+     <span class="btn-split-arrow">
+      <i class="fas fa-arrow-right text-xs rtl:rotate-180"></i>
+     </span>
+    </a>
+
+    <button id="mobile-toggle" aria-label="Open menu"
+     class="2xl:hidden w-10 h-10 rounded-xl bg-ink dark:bg-cream text-cream dark:text-ink flex items-center justify-center">
+     <i class="fas fa-bars text-base"></i>
+    </button>
+   </div>
+  </div>
+
+  <div id="mobile-menu" class="mobile-menu 2xl:hidden -mx-4 sm:-mx-6">
+   <div class="py-5 px-4 space-y-1">
+    <div>
+     <button onclick="document.getElementById('home-drop').classList.toggle('hidden'); document.getElementById('home-icon').classList.toggle('rotate-180')"
+      class="w-full flex items-center justify-between py-3 px-4 font-semibold text-coral bg-coral-soft/40 dark:bg-coral/15 rounded-xl text-sm">
+      <span>Home</span>
+      <i id="home-icon" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+     </button>
+     <div id="home-drop" class="hidden pl-3 space-y-1 mt-1.5">
+      <a href="index.html" class="block py-2.5 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-lg text-sm uppercase tracking-wider transition">
+       Home 1
+      </a>
+      <a href="home2.html" class="block py-2.5 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-lg text-sm uppercase tracking-wider transition">
+       Home 2
+      </a>
+     </div>
+    </div>
+
+    <a href="about.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">About</a>
+    <a href="services.html" class="block py-3 px-4 font-bold text-coral bg-coral-soft/40 dark:bg-coral/15 rounded-xl text-sm uppercase tracking-wider">Services</a>
+    <a href="themes.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Themes</a>
+    <a href="packages.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Packages</a>
+    <a href="gallery.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Gallery</a>
+    <a href="blog.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Blog</a>
+    <a href="contact.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Contact</a>
+
+    <div class="flex flex-col gap-3 pt-4 mt-3 border-t border-ink/10 dark:border-cream/15">
+     <a href="contact.html" class="btn-primary justify-center">Book Event</a>
+     <div class="flex gap-3">
+      <button id="mobile-theme-toggle" class="flex-1 py-3 rounded-full bg-cream-2 dark:bg-dk-line nav-text text-xs font-semibold uppercase tracking-wider">
+       <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:inline"></i> Theme
+      </button>
+      <button id="mobile-rtl-toggle" class="flex-1 py-3 rounded-full bg-cream-2 dark:bg-dk-line nav-text text-xs font-semibold uppercase tracking-wider">
+       <i class="fas fa-exchange-alt"></i> RTL
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 1 — COMPACT PAGE HERO -->
+<!-- Layout: Coral-tinted band · breadcrumb + title + 3 stat pills -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="page-hero pt-[110px] md:pt-[140px] pb-12 md:pb-16 border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+  <div class="breadcrumb-pill mb-6">
+   <i class="fas fa-house text-[10px]"></i>
+   <a href="index.html" class="hover:opacity-70">Home</a>
+   <span class="sep">/</span>
+   <span class="current">Services</span>
+  </div>
+
+  <h1 class="font-display font-black text-ink dark:text-cream text-4xl leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl mb-5">
+   Every Service,<br>
+   <span class="italic text-coral">One Studio.</span>
+  </h1>
+
+  <p class="text-ink/60 dark:text-cream/65 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed mb-8">
+   From balloon artistry and florals to props and lighting — explore the full menu of event styling services we offer under one roof.
+  </p>
+
+  <!-- Stat pills -->
+  <div class="flex flex-wrap justify-center gap-3">
+   <div class="stat-pill">
+    <i class="fas fa-star"></i>
+    <span>4.9 / 5.0 Rating</span>
+   </div>
+   <div class="stat-pill">
+    <i class="fas fa-heart"></i>
+    <span>500+ Events</span>
+   </div>
+   <div class="stat-pill">
+    <i class="fas fa-shield-alt"></i>
+    <span>Fully Insured</span>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 2 — TWO-COLUMN INTRO + CATEGORY LIST -->
+<!-- Layout: Left heading + text (5 cols) · Right vertical category list (7 cols) -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+   <!-- Left: heading -->
+   <div class="lg:col-span-5 lg:sticky lg:top-28 reveal">
+    <div class="rule rule-left mb-4 justify-start">
+     <i class="fas fa-layer-group text-xs"></i>
+    </div>
+    <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">What We Offer</span>
+    <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl mb-5 leading-[1.1]">
+     Six Categories,<br>
+     <span class="italic text-coral">Endless Options.</span>
+    </h2>
+    <p class="text-ink/60 dark:text-cream/65 text-sm sm:text-base leading-relaxed mb-6">
+     Every event is unique — so we offer a full palette of styling services you can mix and match. Start with a category below or bundle a few together for a custom package.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3">
+     <a href="contact.html" class="btn-primary justify-center">
+      <i class="fas fa-wand-magic-sparkles"></i> Get a Quote
+     </a>
+     <a href="packages.html" class="btn-outline justify-center">
+      <i class="fas fa-tag"></i> See Packages
+     </a>
+    </div>
+   </div>
+
+   <!-- Right: category list -->
+   <div class="lg:col-span-7 reveal">
+    <div class="cat-list">
+
+     <a href="#birthdays" class="cat-item">
+      <span class="cat-num">01</span>
+      <div class="flex-1">
+       <div class="cat-title">Birthday Décor</div>
+       <div class="cat-desc">Balloon arches, garlands, cake tables, and name installations</div>
+      </div>
+      <i class="fas fa-arrow-right cat-arrow rtl:rotate-180"></i>
+     </a>
+
+     <a href="#weddings" class="cat-item">
+      <span class="cat-num">02</span>
+      <div class="flex-1">
+       <div class="cat-title">Wedding &amp; Engagement</div>
+       <div class="cat-desc">Romantic installs, floral blends, ceremony styling</div>
+      </div>
+      <i class="fas fa-arrow-right cat-arrow rtl:rotate-180"></i>
+     </a>
+
+     <a href="#corporate" class="cat-item">
+      <span class="cat-num">03</span>
+      <div class="flex-1">
+       <div class="cat-title">Corporate Events</div>
+       <div class="cat-desc">Branded balloon walls, stage backdrops, conference décor</div>
+      </div>
+      <i class="fas fa-arrow-right cat-arrow rtl:rotate-180"></i>
+     </a>
+
+     <a href="#baby" class="cat-item">
+      <span class="cat-num">04</span>
+      <div class="flex-1">
+       <div class="cat-title">Baby Showers</div>
+       <div class="cat-desc">Pastel clouds, gender reveals, welcome displays</div>
+      </div>
+      <i class="fas fa-arrow-right cat-arrow rtl:rotate-180"></i>
+     </a>
+
+     <a href="#anniversaries" class="cat-item">
+      <span class="cat-num">05</span>
+      <div class="flex-1">
+       <div class="cat-title">Anniversaries</div>
+       <div class="cat-desc">Milestone celebrations, romantic setups, custom signage</div>
+      </div>
+      <i class="fas fa-arrow-right cat-arrow rtl:rotate-180"></i>
+     </a>
+
+     <a href="#custom" class="cat-item">
+      <span class="cat-num">06</span>
+      <div class="flex-1">
+       <div class="cat-title">Custom Styling</div>
+       <div class="cat-desc">Something else in mind? Tell us your vision — we'll design it</div>
+      </div>
+      <i class="fas fa-arrow-right cat-arrow rtl:rotate-180"></i>
+     </a>
+
+    </div>
+   </div>
+
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 3 — ALTERNATING SERVICE DETAIL ROWS -->
+<!-- Layout: Zigzag rows — image/text · text/image · image/text -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 bg-cream-2 dark:bg-dk-surface border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <div class="text-center mb-14 md:mb-20 reveal">
+   <div class="rule mb-4 justify-center">
+    <i class="fas fa-list-check text-xs"></i>
+   </div>
+   <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Service Details</span>
+   <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.1]">
+    A Closer Look at<br>
+    <span class="italic text-coral">What We Deliver.</span>
+   </h2>
+  </div>
+
+  <div class="space-y-16 md:space-y-24">
+
+   <!-- Row 1 — image left, text right -->
+   <div id="birthdays" class="service-row reveal">
+    <div class="sr-img">
+     <img src="asserts/sr1.avif" alt="Birthday decor" loading="lazy">
+    </div>
+    <div class="sr-content">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-3">01 · Birthdays</div>
+     <h3 class="font-display font-black text-ink dark:text-cream text-2xl sm:text-3xl md:text-4xl mb-4 leading-tight">
+      Birthday Décor<br>
+      <span class="italic text-coral">Built Around Your Theme.</span>
+     </h3>
+     <p class="text-ink/60 dark:text-cream/65 text-sm sm:text-base leading-relaxed mb-5">
+      From toddler pastel clouds to milestone Sweet 16s, we design custom balloon installations that match your child's (or your!) personality perfectly.
+     </p>
+     <div class="mb-6">
+      <div class="feat-mini"><i class="fas fa-check"></i><span>Balloon arches, garlands, and standalone columns</span></div>
+      <div class="feat-mini"><i class="fas fa-check"></i><span>Personalized name and number installations</span></div>
+      <div class="feat-mini"><i class="fas fa-check"></i><span>Cake and gift table styling included</span></div>
+      <div class="feat-mini"><i class="fas fa-check"></i><span>Standard installs 2–4 hours, teardown included</span></div>
+     </div>
+     <div class="flex flex-wrap gap-3">
+      <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Birthday</a>
+      <a href="packages.html" class="btn-outline">From $199</a>
+     </div>
+    </div>
+   </div>
+
+   <!-- Row 2 — text left, image right (reverse) -->
+   <div id="weddings" class="service-row reverse reveal">
+    <div class="sr-img">
+     <img src="asserts/sr2.avif" alt="Wedding decor" loading="lazy">
+    </div>
+    <div class="sr-content">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-3">02 · Weddings</div>
+     <h3 class="font-display font-black text-ink dark:text-cream text-2xl sm:text-3xl md:text-4xl mb-4 leading-tight">
+      Weddings &amp; Engagements<br>
+      <span class="italic text-coral">Styled With Intention.</span>
+     </h3>
+     <p class="text-ink/60 dark:text-cream/65 text-sm sm:text-base leading-relaxed mb-5">
+      We design cohesive wedding styling — from bridal shower décor to full ceremony and reception setups — with color palettes matched to your invitation suite.
+     </p>
+     <div class="mb-6">
+      <div class="feat-mini"><i class="fas fa-check"></i><span>Floral + balloon blends for ceremonies and receptions</span></div>
+      <div class="feat-mini"><i class="fas fa-check"></i><span>Aisle and arch installations</span></div>
+      <div class="feat-mini"><i class="fas fa-check"></i><span>Custom table centerpieces and place cards</span></div>
+      <div class="feat-mini"><i class="fas fa-check"></i><span>Dedicated event stylist from consultation to install</span></div>
+     </div>
+     <div class="flex flex-wrap gap-3">
+      <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Wedding</a>
+      <a href="packages.html" class="btn-outline">From $799</a>
+     </div>
+    </div>
+   </div>
+
+   <!-- Row 3 — image left, text right -->
+   <div id="corporate" class="service-row reveal">
+    <div class="sr-img">
+     <img src="asserts/sr3.avif" alt="Corporate event" loading="lazy">
+    </div>
+    <div class="sr-content">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-3">03 · Corporate</div>
+     <h3 class="font-display font-black text-ink dark:text-cream text-2xl sm:text-3xl md:text-4xl mb-4 leading-tight">
+      Corporate Events<br>
+      <span class="italic text-coral">On Brand, Every Time.</span>
+     </h3>
+     <p class="text-ink/60 dark:text-cream/65 text-sm sm:text-base leading-relaxed mb-5">
+      Product launches, award galas, holiday parties — we deliver polished, on-brand décor that reflects your company's identity to a T.
+     </p>
+     <div class="mb-6">
+      <div class="feat-mini"><i class="fas fa-check"></i><span>Brand-colored balloon walls and stage backdrops</span></div>
+      <div class="feat-mini"><i class="fas fa-check"></i><span>Step-and-repeat photo backdrops</span></div>
+      <div class="feat-mini"><i class="fas fa-check"></i><span>Table centerpieces, signage, and lighting</span></div>
+      <div class="feat-mini"><i class="fas fa-check"></i><span>Early morning or late-night install slots available</span></div>
+     </div>
+     <div class="flex flex-wrap gap-3">
+      <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Corporate</a>
+      <a href="packages.html" class="btn-outline">From $499</a>
+     </div>
+    </div>
+   </div>
+
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 3.5 — HOW IT WORKS (OUR PROCESS) -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <div class="text-center mb-14 md:mb-20 reveal">
+   <div class="rule mb-4 justify-center">
+    <i class="fas fa-route text-xs"></i>
+   </div>
+   <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Our Process</span>
+   <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.1]">
+    From Concept to<br>
+    <span class="italic text-coral">Celebration.</span>
+   </h2>
+   <p class="text-ink/60 dark:text-cream/65 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+    We make booking event decor entirely stress-free. Here is exactly what you can expect when you work with BalloonAura.
+   </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 relative z-10">
+   
+   <!-- Step 1 -->
+   <div class="card p-8 reveal text-center flex flex-col items-center">
+    <div class="w-16 h-16 rounded-full bg-coral-soft dark:bg-coral/15 text-coral flex items-center justify-center mb-2 text-xl">
+     <i class="fas fa-comments"></i>
+    </div>
+    <div class="text-[10px] font-bold tracking-widest uppercase text-ink/40 dark:text-cream/40 mb-2">Step 01</div>
+    <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-3 min-h-[3rem] md:min-h-[3.5rem] flex items-start justify-center">Consultation</h3>
+     <p class="text-sm text-ink/60 dark:text-cream/60 leading-relaxed">
+     We start with a quick chat or form to understand your venue, theme, and overall vision.
+    </p>
+   </div>
+
+   <!-- Step 2 -->
+   <div class="card p-8 reveal text-center flex flex-col items-center">
+    <div class="w-16 h-16 rounded-full bg-coral-soft dark:bg-coral/15 text-coral flex items-center justify-center mb-2 text-xl">
+     <i class="fas fa-pen-ruler"></i>
+    </div>
+    <div class="text-[10px] font-bold tracking-widest uppercase text-ink/40 dark:text-cream/40 mb-2">Step 02</div>
+    <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-3 min-h-[3rem] md:min-h-[3.5rem] flex items-start justify-center">Design & Quote</h3>
+    <p class="text-sm text-ink/60 dark:text-cream/60 leading-relaxed">
+     You receive a custom mood board and a transparent quote tailored exactly to your budget.
+    </p>
+   </div>
+
+   <!-- Step 3 -->
+   <div class="card p-8 reveal text-center flex flex-col items-center">
+    <div class="w-16 h-16 rounded-full bg-coral-soft dark:bg-coral/15 text-coral flex items-center justify-center mb-2 text-xl">
+     <i class="fas fa-box-open"></i>
+    </div>
+    <div class="text-[10px] font-bold tracking-widest uppercase text-ink/40 dark:text-cream/40 mb-2">Step 03</div>
+    <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-3 min-h-[3rem] md:min-h-[3.5rem] flex items-start justify-center">Prep & Build</h3>
+    <p class="text-sm text-ink/60 dark:text-cream/60 leading-relaxed">
+     We construct the framework and prep the balloons in our studio to minimize on-site time.
+    </p>
+   </div>
+
+   <!-- Step 4 -->
+   <div class="card p-8 reveal text-center flex flex-col items-center">
+    <div class="w-16 h-16 rounded-full bg-coral-soft dark:bg-coral/15 text-coral flex items-center justify-center mb-2 text-xl">
+     <i class="fas fa-champagne-glasses"></i>
+    </div>
+    <div class="text-[10px] font-bold tracking-widest uppercase text-ink/40 dark:text-cream/40 mb-2">Step 04</div>
+    <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-3 min-h-[3rem] md:min-h-[3.5rem] flex items-start justify-center">Install & Party</h3>
+    <p class="text-sm text-ink/60 dark:text-cream/60 leading-relaxed">
+     We arrive, set up flawlessly, and leave you to enjoy the magic. We return later for teardown.
+    </p>
+   </div>
+
+  </div>
+
+ </div>
+</section>
+
+<!-- SECTION 4 — PRICING TIERS -->
+<!-- Layout: 3 cards · middle elevated with ribbon badge -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <div class="text-center mb-14 md:mb-20 reveal">
+   <div class="rule mb-4 justify-center">
+    <i class="fas fa-tag text-xs"></i>
+   </div>
+   <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Transparent Pricing</span>
+   <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.1]">
+    Services Starting From<br>
+    <span class="italic text-coral">Simple, Honest Rates.</span>
+   </h2>
+   <p class="text-ink/60 dark:text-cream/65 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+    No hidden fees. Every service includes delivery, install, and teardown.
+   </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-5 max-w-5xl mx-auto items-stretch">
+
+   <div class="card p-7 sm:p-8 reveal flex flex-col">
+    <div class="min-h-[170px] md:min-h-[190px] flex flex-col justify-start">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50 dark:text-cream/50 mb-3">Basic</div>
+     <h3 class="font-display font-bold text-2xl text-ink dark:text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Entry Services</h3>
+     <p class="text-sm text-ink/55 dark:text-cream/55 mb-2">Ideal for small birthdays and showers.</p>
+    </div>
+    <div class="flex items-end gap-1 mb-7">
+     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$199</span>
+     <span class="text-ink/50 dark:text-cream/50 text-sm mb-1.5">+ up</span>
+    </div>
+    <ul class="space-y-3 mb-8 text-sm text-ink/75 dark:text-cream/75 flex-1">
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 5-ft balloon arch</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Table centerpiece</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 2-hr install window</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Standard color palette</li>
+    </ul>
+    <a href="packages.html" class="btn-outline justify-center w-full mt-auto !px-2 lg:!px-6 !text-[10px] lg:!text-xs">Choose Basic</a>
+   </div>
+
+   <div class="card p-7 sm:p-8 reveal flex flex-col bg-ink dark:bg-dk-surface border-2 border-coral relative shadow-2xl">
+    <div class="ribbon">⭐ Most Popular</div>
+    <div class="min-h-[170px] md:min-h-[190px] flex flex-col justify-start">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-3">Signature</div>
+     <h3 class="font-display font-bold text-2xl text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Full Styling</h3>
+     <p class="text-sm text-cream/60 mb-2">Our most-loved package for every occasion.</p>
+    </div>
+    <div class="flex items-end gap-1 mb-7">
+     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$499</span>
+     <span class="text-cream/50 text-sm mb-1.5">+ up</span>
+    </div>
+    <ul class="space-y-3 mb-8 text-sm text-cream/90 flex-1">
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 10-ft balloon garland</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Cake &amp; gift table styling</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Name installation</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 3-hr install + teardown</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Premium color palette</li>
+    </ul>
+    <a href="packages.html" class="btn-primary justify-center w-full mt-auto !px-2 lg:!px-6 !text-[10px] lg:!text-xs">Choose Signature</a>
+   </div>
+
+   <div class="card p-7 sm:p-8 reveal flex flex-col">
+    <div class="min-h-[170px] md:min-h-[190px] flex flex-col justify-start">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50 dark:text-cream/50 mb-3">Luxury</div>
+     <h3 class="font-display font-bold text-2xl text-ink dark:text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Full Venue</h3>
+     <p class="text-sm text-ink/55 dark:text-cream/55 mb-2">Complete styling for large-scale events.</p>
+    </div>
+    <div class="flex items-end gap-1 mb-7">
+     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$999</span>
+     <span class="text-ink/50 dark:text-cream/50 text-sm mb-1.5">+ up</span>
+    </div>
+    <ul class="space-y-3 mb-8 text-sm text-ink/75 dark:text-cream/75 flex-1">
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Full venue styling</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Custom installations</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Floral + balloon blends</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Dedicated stylist</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Premium photo backdrop</li>
+    </ul>
+    <a href="packages.html" class="btn-outline justify-center w-full mt-auto !px-2 lg:!px-6 !text-[10px] lg:!text-xs">Choose Luxury</a>
+   </div>
+
+  </div>
+
+  <div class="text-center mt-12 reveal">
+   <a href="packages.html" class="btn-outline">
+    <i class="fas fa-list"></i> Compare Full Packages
+   </a>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 5 — CTA + NEWSLETTER SPLIT -->
+<!-- Layout: 50/50 split on coral · CTAs left · Newsletter form right -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="bg-coral border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+
+  <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+   <div class="reveal text-center lg:text-left">
+    <div class="inline-flex items-center gap-2 bg-white/15 border border-white/25 px-4 py-1.5 rounded-full mb-5">
+     <i class="fas fa-wand-magic-sparkles text-white text-xs"></i>
+     <span class="text-white text-[10px] uppercase tracking-[0.3em] font-semibold">Custom Packages Available</span>
+    </div>
+    <h2 class="font-display font-black text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.05]">
+     Don't See What<br>
+     <span class="italic">You're Looking For?</span>
+    </h2>
+    <p class="text-white/90 text-sm sm:text-base max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed">
+     Tell us about your event and we'll build a custom quote — free, no obligation.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+     <a href="contact.html" class="inline-flex items-center justify-center gap-2 bg-white text-coral hover:bg-ink hover:text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300">
+      <i class="fas fa-comments"></i> Get Custom Quote
+     </a>
+     <a href="tel:+12125550199" class="inline-flex items-center justify-center gap-2 border-2 border-white text-white hover:bg-white hover:text-coral px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300">
+      <i class="fas fa-phone"></i> Call Us
+     </a>
+    </div>
+   </div>
+
+   <div class="reveal">
+    <div class="bg-white/10 backdrop-blur-xl border border-white/25 rounded-3xl p-5 sm:p-8">
+     <div class="flex items-center gap-3 mb-5">
+      <div class="w-11 h-11 rounded-xl bg-white/20 flex items-center justify-center">
+       <i class="fas fa-envelope-open-text text-white text-base"></i>
+      </div>
+      <div>
+       <h3 class="font-display font-bold text-lg text-white leading-tight">Party Inspiration Weekly</h3>
+       <p class="text-white/70 text-xs">One email a week. No spam.</p>
+      </div>
+     </div>
+
+     <p class="text-white/85 text-sm leading-relaxed mb-6">
+      Get moodboards, seasonal color palettes, and behind-the-scenes looks from our latest installs delivered every Thursday.
+     </p>
+
+     <form class="form-inline" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed ✓'; setTimeout(()=>this.querySelector('button').textContent='Subscribe', 2200); this.reset();">
+      <input type="email" placeholder="your@email.com" required aria-label="Email address">
+      <button type="submit">Subscribe</button>
+     </form>
+
+     <div class="flex flex-wrap items-center gap-y-2 gap-x-4 mt-5 text-white/60 text-[10px] uppercase tracking-widest font-semibold">
+      <span class="flex items-center gap-1.5"><i class="fas fa-users"></i> 2,400+ readers</span>
+      <span class="w-px h-3 bg-white/30"></span>
+      <span class="flex items-center gap-1.5"><i class="fas fa-lock"></i> No spam ever</span>
+     </div>
+    </div>
+   </div>
+
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════ -->
+<footer class="site-footer pt-16 md:pt-20 pb-8 relative overflow-hidden">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-14">
+
+   <div class="lg:col-span-4">
+    <div class="flex items-center gap-3 mb-5">
+     <div class="relative w-12 h-12 md:w-14 md:h-14 shrink-0">
+      <div class="absolute inset-0 rounded-full border-2 border-coral"></div>
+      <div class="absolute inset-1 rounded-full bg-coral flex items-center justify-center">
+       <i class="fas fa-gift text-white text-xs"></i>
+      </div>
+     </div>
+     <div class="leading-none">
+      <div class="text-xl md:text-2xl font-display font-black nav-text tracking-tight">
+       Balloon<span class="text-coral italic">Aura</span>
+      </div>
+      <div class="text-[8px] md:text-[9px] uppercase tracking-[0.35em] nav-text opacity-50 font-semibold mt-1">
+       Party Studio · Est. 2019
+      </div>
+     </div>
+    </div>
+    <p class="foot-text text-sm leading-relaxed mb-6 max-w-sm">
+     Crafting magical balloon installations and event décor for birthdays, weddings, corporate events, and every celebration worth remembering.
+    </p>
+    <div class="flex flex-wrap gap-2">
+     <a href="#" aria-label="Instagram" class="social-tag"><i class="fab fa-instagram text-lg"></i></a>
+     <a href="#" aria-label="Facebook" class="social-tag"><i class="fab fa-facebook-f text-lg"></i></a>
+     <a href="#" aria-label="Pinterest" class="social-tag"><i class="fab fa-pinterest-p text-lg"></i></a>
+     <a href="#" aria-label="TikTok" class="social-tag"><i class="fab fa-tiktok text-lg"></i></a>
+    </div>
+   </div>
+
+   <div class="lg:col-span-2">
+    <h4 class="foot-heading"><span class="foot-heading-num">01</span> Explore</h4>
+    <ul class="space-y-3 text-sm">
+     <li><a href="about.html" class="foot-text hover:text-coral transition">About Us</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Services</a></li>
+     <li><a href="themes.html" class="foot-text hover:text-coral transition">Themes</a></li>
+     <li><a href="packages.html" class="foot-text hover:text-coral transition">Packages</a></li>
+     <li><a href="gallery.html" class="foot-text hover:text-coral transition">Gallery</a></li>
+     <li><a href="blog.html" class="foot-text hover:text-coral transition">Blog</a></li>
+    </ul>
+   </div>
+
+   <div class="lg:col-span-2">
+    <h4 class="foot-heading"><span class="foot-heading-num">02</span> Occasions</h4>
+    <ul class="space-y-3 text-sm">
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Birthdays</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Weddings</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Corporate Events</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Baby Showers</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Anniversaries</a></li>
+    </ul>
+   </div>
+
+   <div class="lg:col-span-4">
+    <h4 class="foot-heading"><span class="foot-heading-num">03</span> Get in Touch</h4>
+    <div class="foot-contact-card">
+     <ul class="space-y-3.5 text-sm">
+      <li class="flex items-start gap-3">
+       <i class="fas fa-map-marker-alt text-coral mt-1 text-sm"></i>
+       <span class="foot-text">42 Celebration Lane, Studio 8<br>New York, NY 10012</span>
+      </li>
+      <li class="flex items-center gap-3">
+       <i class="fas fa-phone text-coral text-sm"></i>
+       <a href="tel:+12125550199" class="foot-text hover:text-coral transition">+1 (212) 555-0199</a>
+      </li>
+      <li class="flex items-center gap-3">
+       <i class="fas fa-envelope text-coral text-sm"></i>
+       <a href="mailto:hello@balloonaura.com" class="foot-text hover:text-coral transition">hello@balloonaura.com</a>
+      </li>
+      <li class="flex items-start gap-3">
+       <i class="fas fa-clock text-coral mt-1 text-sm"></i>
+       <span class="foot-text">Mon–Sat: 9am – 8pm<br>Sun: By appointment</span>
+      </li>
+     </ul>
+    </div>
+   </div>
+
+  </div>
+
+  <div class="border-t border-ink/10 dark:border-cream/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+   <p class="foot-text text-[10px] uppercase tracking-[0.2em] text-center md:text-left">
+    © 2026 BalloonAura Party Studio. All rights reserved.
+   </p>
+   <div class="flex flex-wrap justify-center gap-5 md:gap-6 text-[10px] uppercase tracking-[0.2em] foot-text">
+    <a href="#" class="hover:text-coral transition">Privacy</a>
+    <a href="#" class="hover:text-coral transition">Terms</a>
+    <a href="contact.html" class="hover:text-coral transition">Contact</a>
+   </div>
+  </div>
+
+  <div class="foot-display mt-10 md:mt-14">Our Services.</div>
+
+ </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCRIPTS -->
+<!-- ═══════════════════════════════════════════ -->
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#theme-toggle, #mobile-theme-toggle').forEach(btn => {
+   btn?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+   });
+  });
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+  const setRTL = (isRTL) => {
+   const html = document.documentElement;
+   if (isRTL) { html.setAttribute('dir', 'rtl'); localStorage.setItem('dir', 'rtl'); }
+   else { html.setAttribute('dir', 'ltr'); localStorage.setItem('dir', 'ltr'); }
+  };
+  if (localStorage.getItem('dir') === 'rtl') document.documentElement.setAttribute('dir', 'rtl');
+  document.getElementById('rtl-toggle')?.addEventListener('click', () =>
+   setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+  document.getElementById('mobile-rtl-toggle')?.addEventListener('click', () =>
+   setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+   toggle.addEventListener('click', () => {
+    menu.classList.toggle('open'); document.body.classList.toggle('overflow-hidden');
+    const i = toggle.querySelector('i');
+    i.classList.toggle('fa-bars');
+    i.classList.toggle('fa-times');
+   });
+   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open'); document.body.classList.remove('overflow-hidden');
+    const i = toggle.querySelector('i');
+    i.classList.add('fa-bars'); i.classList.remove('fa-times');
+   }));
+  }
+
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+   entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+   });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+ });
+</script>
+
+</div>
+</body>
+</html>

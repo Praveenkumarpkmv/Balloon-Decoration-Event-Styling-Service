@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+ <!-- Global Error Handler: Redirects to 404.html on JS errors -->
+ <script>
+  function handleError() {
+   if (!window.location.pathname.endsWith('404.html')) {
+    window.location.href = '404.html';
+   }
+  }
+  window.addEventListener('error', handleError);
+  window.addEventListener('unhandledrejection', handleError);
+ </script>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Packages &middot; BalloonAura Event Styling</title>
+ <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E63946'%3E%3Cellipse cx='12' cy='9' rx='7' ry='8'/%3E%3C/svg%3E" />
+ <meta name="description" content="Transparent pricing for BalloonAura event styling. Compare packages and pick the perfect fit for your celebration.">
+
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+ <script>
+  tailwind.config = {
+   darkMode: 'class',
+   theme: {
+    extend: {
+     colors: {
+      'coral':   '#E63946',
+      'coral-dk':  '#C42A37',
+      'coral-soft': '#FADADD',
+      'ink':    '#1D1D2C',
+      'cream':   '#FAF7F2',
+      'cream-2':  '#F0EAE0',
+      'dk-bg':   '#12121C',
+      'dk-surface': '#1D1D2C',
+      'dk-line':  '#2E2E42',
+     },
+     fontFamily: {
+      display: ['"Fraunces"', 'serif'],
+      sans: ['"Outfit"', 'sans-serif'],
+     },
+    }
+   }
+  }
+ </script>
+
+ <style>
+  * { -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; font-size: 18px; }
+  html.dark { color-scheme: dark; }
+
+  body {
+   font-family: 'Outfit', sans-serif;
+   background: #FAF7F2;
+   color: #1D1D2C;
+   overflow-x: hidden;
+  }
+  body::-webkit-scrollbar { width: 10px; }
+  body::-webkit-scrollbar-track { background: #F0EAE0; }
+  body::-webkit-scrollbar-thumb { background: #E63946; border-radius: 10px; }
+  .dark body { background: #12121C; color: #FAF7F2; }
+  .dark body::-webkit-scrollbar-track { background: #1D1D2C; }
+
+  .font-display {
+   font-family: 'Fraunces', serif;
+   font-variation-settings: "SOFT" 50, "WONK" 1;
+  }
+
+  /* ═══ Nav + Footer ═══ */
+  .site-nav {
+   background: #FFFFFF;
+   color: #1D1D2C;
+   transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .dark .site-nav {
+   background: #1D1D2C;
+   color: #FAF7F2;
+  }
+  .site-nav::before {
+   content: '';
+   position: absolute;
+   top: 0; left: 0; right: 0;
+   height: 3px;
+   background: linear-gradient(90deg, #E63946 0%, #E63946 33%, transparent 33%, transparent 66%, #E63946 66%, #E63946 100%);
+   opacity: 0.9;
+  }
+
+  .site-footer {
+   background: #FFFFFF;
+   color: #1D1D2C;
+   transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .dark .site-footer { background: #1D1D2C; color: #FAF7F2; }
+
+  .nav-text { color: #1D1D2C; }
+  .dark .nav-text { color: #FAF7F2; }
+  .foot-text { color: rgba(29, 29, 44, 0.65); }
+  .dark .foot-text { color: rgba(250, 247, 242, 0.65); }
+
+  .nav-pill-link {
+   position: relative;
+   display: inline-flex;
+   align-items: center;
+   gap: 0.45rem;
+   padding: 0.55rem 0.9rem;
+   border-radius: 999px;
+   color: #1D1D2C;
+   font-size: 0.8rem;
+   font-weight: 500;
+   transition: all 0.25s ease;
+  }
+  .dark .nav-pill-link { color: #FAF7F2; }
+  .nav-pill-link::before {
+   content: '';
+   width: 5px; height: 5px;
+   border-radius: 999px;
+   background: currentColor;
+   opacity: 0.25;
+   transition: all 0.25s ease;
+  }
+  .nav-pill-link:hover { color: #E63946; background: rgba(230, 57, 70, 0.06); }
+  .dark .nav-pill-link:hover { background: rgba(230, 57, 70, 0.12); }
+  .nav-pill-link:hover::before { opacity: 1; background: #E63946; transform: scale(1.4); }
+  .nav-pill-link.active { color: #E63946 !important; background: rgba(230, 57, 70, 0.08); font-weight: 600; }
+  .dark .nav-pill-link.active { background: rgba(230, 57, 70, 0.18); }
+  .nav-pill-link.active::before { opacity: 1; background: #E63946; transform: scale(1.4); }
+
+  .dropdown { position: relative; }
+  .dropdown-menu {
+   position: absolute;
+   top: calc(100% + 14px); left: 50%;
+   transform: translateX(-50%) translateY(8px);
+   min-width: 240px;
+   background: #1D1D2C;
+   border-radius: 16px;
+   padding: 0.5rem;
+   box-shadow: 0 24px 48px -16px rgba(29, 29, 44, 0.35);
+   opacity: 0; visibility: hidden;
+   transition: all 0.25s ease;
+   z-index: 1000;
+   border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .dropdown-menu::before {
+   content: '';
+   position: absolute;
+   top: -6px; left: 50%;
+   transform: translateX(-50%) rotate(45deg);
+   width: 12px; height: 12px;
+   background: #1D1D2C;
+   border-top: 1px solid rgba(255, 255, 255, 0.06);
+   border-left: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .dropdown-item {
+   display: flex; align-items: center; gap: 0.65rem;
+   padding: 0.7rem 1rem;
+   color: rgba(255, 255, 255, 0.85);
+   font-size: 0.8rem; font-weight: 500;
+   border-radius: 10px;
+   transition: all 0.2s;
+  }
+  .dropdown-item:hover { background: rgba(230, 57, 70, 0.15); color: #FFFFFF; }
+  .dropdown-item.active { background: rgba(230, 57, 70, 0.22); color: #FFFFFF; font-weight: 600; }
+  .dropdown-item i { color: #E63946; }
+
+  .btn-split {
+   display: inline-flex;
+   align-items: center;
+   border-radius: 999px;
+   overflow: hidden;
+   background: #E63946;
+   transition: all 0.3s ease;
+   box-shadow: 0 10px 22px -10px rgba(230, 57, 70, 0.6);
+  }
+  .btn-split:hover { transform: translateY(-2px); box-shadow: 0 16px 28px -10px rgba(230, 57, 70, 0.7); }
+  .btn-split .btn-split-text {
+   color: #FFFFFF;
+   font-size: 0.72rem;
+   font-weight: 700;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   padding: 0.75rem 1.25rem 0.75rem 1.5rem;
+   white-space: nowrap;
+  }
+  .btn-split .btn-split-arrow {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 32px; height: 32px;
+   border-radius: 999px;
+   background: rgba(255, 255, 255, 0.2);
+   color: #FFFFFF;
+   margin-right: 4px;
+   transition: all 0.3s ease;
+  }
+  .btn-split:hover .btn-split-arrow {
+   background: #FFFFFF; color: #E63946;
+   transform: rotate(-45deg);
+  }
+
+  .icon-toggle {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 38px; height: 38px;
+   border-radius: 12px;
+   color: #1D1D2C;
+   transition: all 0.25s ease;
+  }
+  .dark .icon-toggle { color: #FAF7F2; }
+  .icon-toggle:hover { background: rgba(230, 57, 70, 0.1); color: #E63946; }
+
+  .mobile-menu {
+   background: #FFFFFF;
+   max-height: 0;
+   overflow: hidden;
+   transition: max-height 0.4s ease;
+  }
+  .dark .mobile-menu { background: #1D1D2C; }
+  .mobile-menu.open { max-height: 90vh; overflow-y: auto; }
+
+  .foot-heading {
+   display: flex; align-items: center; gap: 0.6rem;
+   font-family: 'Fraunces', serif;
+   font-style: italic;
+   font-size: 1.05rem;
+   font-weight: 600;
+   color: #1D1D2C;
+   margin-bottom: 1.25rem;
+  }
+  .dark .foot-heading { color: #FAF7F2; }
+  .foot-heading-num {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 26px; height: 26px;
+   border-radius: 8px;
+   background: rgba(230, 57, 70, 0.12);
+   color: #E63946;
+   font-family: 'Outfit', sans-serif;
+   font-style: normal;
+   font-size: 0.65rem;
+   font-weight: 700;
+  }
+  .dark .foot-heading-num { background: rgba(230, 57, 70, 0.25); }
+
+  .social-tag {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0; width: 40px; height: 40px; justify-content: center;
+   border-radius: 10px;
+   border: 1px solid rgba(29,29,44,0.15);
+   color: #1D1D2C;
+   font-size: 0.7rem; font-weight: 600;
+   letter-spacing: 0.1em;
+   text-transform: uppercase;
+   transition: all 0.25s ease;
+  }
+  .dark .social-tag { border-color: rgba(250,247,242,0.18); color: #FAF7F2; }
+  .social-tag:hover {
+   background: #E63946; border-color: #E63946;
+   color: #FFFFFF; transform: translateY(-2px);
+  }
+
+  .foot-contact-card {
+   background: rgba(230, 57, 70, 0.06);
+   border: 1px solid rgba(230, 57, 70, 0.2);
+   border-radius: 20px;
+   padding: 1.5rem;
+  }
+  .dark .foot-contact-card {
+   background: rgba(230, 57, 70, 0.12);
+   border-color: rgba(230, 57, 70, 0.3);
+  }
+
+  .foot-display {
+   font-family: 'Fraunces', serif;
+   font-style: italic;
+   font-weight: 900;
+   font-size: clamp(3rem, 10vw, 8rem);
+   line-height: 0.85;
+   letter-spacing: -0.03em;
+   color: rgba(29, 29, 44, 0.06);
+   text-align: center;
+   user-select: none;
+   pointer-events: none;
+  }
+  .dark .foot-display { color: rgba(250, 247, 242, 0.05); }
+
+  .btn-primary {
+   background: #E63946; color: #FFFFFF;
+   font-weight: 600;
+   border-radius: 999px;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   font-size: 0.72rem;
+   padding: 0.95rem 1.2rem;
+   transition: all 0.3s ease;
+   display: inline-flex; align-items: center; gap: 0.5rem;
+   box-shadow: 0 8px 20px -8px rgba(230,57,70,0.5);
+   white-space: nowrap;
+  }
+  .btn-primary:hover { background: #C42A37; transform: translateY(-2px); box-shadow: 0 14px 28px -8px rgba(230,57,70,0.6); }
+  .btn-outline {
+   border: 1.5px solid #1D1D2C; color: #1D1D2C;
+   background: transparent;
+   border-radius: 999px;
+   font-weight: 600;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   font-size: 0.72rem;
+   padding: 0.95rem 1.2rem;
+   transition: all 0.3s ease;
+   display: inline-flex; align-items: center; gap: 0.5rem;
+   white-space: nowrap;
+  }
+  .btn-outline:hover { background: #1D1D2C; color: #FAF7F2; transform: translateY(-2px); }
+  .dark .btn-outline { border-color: #FAF7F2; color: #FAF7F2; }
+  .dark .btn-outline:hover { background: #FAF7F2; color: #1D1D2C; }
+
+  [dir="rtl"] .dropdown-menu { left: auto; right: 50%; transform: translateX(50%) translateY(8px); }
+  [dir="rtl"] .dropdown:hover .dropdown-menu { transform: translateX(50%) translateY(0); }
+
+  .rule {
+   display: flex; align-items: center; justify-content: center;
+   gap: 1rem; color: #E63946;
+  }
+  .rule::before, .rule::after { content: ''; width: 36px; height: 1px; background: currentColor; opacity: 0.5; }
+  .rule-left::before { display: none; }
+
+  .reveal {
+   opacity: 0; transform: translateY(28px);
+   transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .card {
+   background: #FFFFFF;
+   border: 1px solid rgba(29,29,44,0.06);
+   border-radius: 20px;
+   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .dark .card { background: #1D1D2C; border-color: rgba(250,247,242,0.08); }
+
+  img { display: block; max-width: 100%; }
+
+  /* ═══ PACKAGES PAGE ═══ */
+  .page-hero {
+   background: linear-gradient(180deg, rgba(230, 57, 70, 0.08) 0%, transparent 100%);
+   border-bottom: 1px solid rgba(230, 57, 70, 0.12);
+  }
+  .dark .page-hero {
+   background: linear-gradient(180deg, rgba(230, 57, 70, 0.15) 0%, transparent 100%);
+   border-bottom-color: rgba(230, 57, 70, 0.2);
+  }
+
+  .breadcrumb-pill {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.5rem;
+   padding: 0.5rem 1rem;
+   border-radius: 999px;
+   border: 1px solid rgba(230, 57, 70, 0.25);
+   background: rgba(230, 57, 70, 0.06);
+   font-size: 0.72rem;
+   font-weight: 600;
+   color: #E63946;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+  }
+  .breadcrumb-pill .sep { color: rgba(29,29,44,0.3); }
+  .dark .breadcrumb-pill .sep { color: rgba(250,247,242,0.3); }
+  .breadcrumb-pill .current { color: #1D1D2C; }
+  .dark .breadcrumb-pill .current { color: #FAF7F2; }
+
+  .stat-pill {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.6rem;
+   padding: 0.65rem 1.15rem;
+   border-radius: 999px;
+   background: #FFFFFF;
+   border: 1px solid rgba(29,29,44,0.08);
+   box-shadow: 0 4px 12px -4px rgba(29,29,44,0.08);
+  }
+  .dark .stat-pill {
+   background: #1D1D2C;
+   border-color: rgba(250,247,242,0.1);
+  }
+  .stat-pill i { color: #E63946; font-size: 0.85rem; }
+  .stat-pill span {
+   font-size: 0.72rem;
+   font-weight: 600;
+   letter-spacing: 0.06em;
+   text-transform: uppercase;
+   color: #1D1D2C;
+  }
+  .dark .stat-pill span { color: #FAF7F2; }
+
+  /* Pricing card */
+  .price-card {
+   background: #FFFFFF;
+   border: 1px solid rgba(29,29,44,0.06);
+   border-radius: 24px;
+   padding: 2rem 1.75rem;
+   transition: all 0.4s ease;
+   display: flex;
+   flex-direction: column;
+   position: relative;
+  }
+  .dark .price-card {
+   background: #1D1D2C;
+   border-color: rgba(250,247,242,0.08);
+  }
+  .price-card:hover {
+   transform: translateY(-6px);
+   box-shadow: 0 28px 56px -22px rgba(29,29,44,0.28);
+   border-color: rgba(230,57,70,0.3);
+  }
+  .price-card.featured {
+   background: #1D1D2C;
+   border: 2px solid #E63946;
+   box-shadow: 0 30px 60px -20px rgba(230,57,70,0.4);
+  }
+  .ribbon {
+   position: absolute;
+   top: -14px; left: 50%;
+   transform: translateX(-50%);
+   background: #E63946;
+   color: #FFFFFF;
+   padding: 6px 18px;
+   border-radius: 999px;
+   font-size: 9px;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 0.2em;
+   white-space: nowrap;
+  }
+
+  /* Comparison table */
+  .compare-wrap {
+   background: #FFFFFF;
+   border: 1px solid rgba(29,29,44,0.08);
+   border-radius: 24px;
+   overflow: hidden;
+  }
+  .dark .compare-wrap {
+   background: #1D1D2C;
+   border-color: rgba(250,247,242,0.1);
+  }
+  .compare-table {
+   width: 100%;
+   border-collapse: collapse;
+  }
+  .compare-table th,
+  .compare-table td {
+   padding: 1rem 1.25rem;
+   text-align: left;
+   border-bottom: 1px solid rgba(29,29,44,0.06);
+   font-size: 0.875rem;
+  }
+  .dark .compare-table th,
+  .dark .compare-table td {
+   border-bottom-color: rgba(250,247,242,0.08);
+  }
+  .compare-table th {
+   font-family: 'Fraunces', serif;
+   font-weight: 700;
+   font-size: 1rem;
+   color: #1D1D2C;
+   background: #FAF7F2;
+   position: sticky;
+   top: 0;
+  }
+  .dark .compare-table th {
+   color: #FAF7F2;
+   background: #12121C;
+  }
+  .compare-table th.col-featured {
+   background: #E63946;
+   color: #FFFFFF;
+  }
+  .compare-table td.col-featured {
+   background: rgba(230, 57, 70, 0.06);
+   font-weight: 600;
+  }
+  .dark .compare-table td.col-featured {
+   background: rgba(230, 57, 70, 0.12);
+  }
+  .compare-table td:first-child {
+   font-weight: 500;
+   color: #1D1D2C;
+  }
+  .dark .compare-table td:first-child { color: #FAF7F2; }
+  .compare-table td:not(:first-child) {
+   color: rgba(29,29,44,0.7);
+  }
+  .dark .compare-table td:not(:first-child) { color: rgba(250,247,242,0.7); }
+  .check-icon { color: #E63946; font-size: 0.95rem; }
+  .cross-icon { color: rgba(29,29,44,0.2); font-size: 0.95rem; }
+  .dark .cross-icon { color: rgba(250,247,242,0.2); }
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  @media (max-width: 640px) {
+   .compare-table th,
+   .compare-table td {
+    padding: 0.75rem 0.65rem;
+    font-size: 0.75rem;
+   }
+   .compare-table th { font-size: 0.85rem; }
+  }
+
+  /* FAQ Accordion */
+  .faq-item {
+   background: #FFFFFF;
+   border: 1px solid rgba(29,29,44,0.08);
+   border-radius: 16px;
+   overflow: hidden;
+   transition: all 0.3s ease;
+  }
+  .dark .faq-item {
+   background: #1D1D2C;
+   border-color: rgba(250,247,242,0.1);
+  }
+  .faq-item[open] {
+   border-color: rgba(230, 57, 70, 0.35);
+   box-shadow: 0 12px 32px -16px rgba(230,57,70,0.15);
+  }
+  .faq-item summary {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 1rem;
+   padding: 1.25rem 1.5rem;
+   cursor: pointer;
+   font-family: 'Fraunces', serif;
+   font-weight: 700;
+   font-size: 1.05rem;
+   color: #1D1D2C;
+   list-style: none;
+   transition: color 0.25s ease;
+  }
+  .dark .faq-item summary { color: #FAF7F2; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary:hover { color: #E63946; }
+  .faq-item summary::after {
+   content: '\f067';
+   font-family: 'Font Awesome 6 Free';
+   font-weight: 900;
+   font-size: 0.75rem;
+   color: #E63946;
+   transition: transform 0.3s ease;
+   flex-shrink: 0;
+  }
+  .faq-item[open] summary::after {
+   transform: rotate(45deg);
+  }
+  .faq-body {
+   padding: 0 1.5rem 1.5rem;
+   font-size: 0.9rem;
+   line-height: 1.65;
+   color: rgba(29,29,44,0.65);
+  }
+  .dark .faq-body { color: rgba(250,247,242,0.65); }
+
+  /* Newsletter */
+  .form-inline {
+   display: flex;
+   align-items: stretch;
+   background: rgba(255, 255, 255, 0.15);
+   border: 1.5px solid rgba(255, 255, 255, 0.3);
+   border-radius: 999px;
+   padding: 4px;
+   backdrop-filter: blur(6px);
+  }
+  .form-inline input {
+   flex: 1;
+   background: transparent;
+   border: none;
+   outline: none;
+   color: #FFFFFF;
+   padding: 0.85rem 1.25rem;
+   font-size: 0.85rem;
+   min-width: 0; width: 100%;
+  }
+  .form-inline input::placeholder { color: rgba(255, 255, 255, 0.6); }
+  .form-inline button {
+   background: #FFFFFF;
+   color: #E63946;
+   border-radius: 999px;
+   padding: 0.7rem 1rem;
+   font-size: 0.72rem;
+   font-weight: 700;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   white-space: nowrap;
+   transition: all 0.3s ease;
+  }
+  .form-inline button:hover { background: #1D1D2C; color: #FFFFFF; }
+ </style>
+</head>
+
+<body>
+<div class="overflow-x-hidden w-full">
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- NAVIGATION -->
+<!-- ═══════════════════════════════════════════ -->
+<nav class="site-nav fixed top-0 left-0 right-0 z-50">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="flex items-center justify-between h-[84px] md:h-[96px] gap-4">
+
+   <a href="index.html" class="flex items-center gap-3 shrink-0 group">
+    <div class="relative w-12 h-12 md:w-14 md:h-14 shrink-0">
+     <div class="absolute inset-0 rounded-full border-2 border-coral"></div>
+     <div class="absolute inset-1 rounded-full bg-coral flex items-center justify-center">
+      <i class="fas fa-gift text-white text-xs"></i>
+     </div>
+     
+    </div>
+    <div class="leading-none">
+     <div class="text-xl md:text-2xl font-display font-black nav-text tracking-tight">
+      Balloon<span class="text-coral italic">Aura</span>
+     </div>
+     <div class="text-[8px] md:text-[9px] uppercase tracking-[0.35em] nav-text opacity-50 font-semibold mt-1">
+      Party Studio · Est. 2019
+     </div>
+    </div>
+   </a>
+
+   <div class="hidden 2xl:flex items-center gap-1">
+    <div class="dropdown">
+     <button class="nav-pill-link">
+      Home <i class="fas fa-chevron-down text-[9px] opacity-60"></i>
+     </button>
+     <div class="dropdown-menu">
+      <a href="index.html" class="dropdown-item">
+       Home 1
+      </a>
+      <a href="home2.html" class="dropdown-item">
+       Home 2
+      </a>
+     </div>
+    </div>
+    <a href="about.html" class="nav-pill-link">About</a>
+    <a href="services.html" class="nav-pill-link">Services</a>
+    <a href="themes.html" class="nav-pill-link">Themes</a>
+    <a href="packages.html" class="nav-pill-link active">Packages</a>
+    <a href="gallery.html" class="nav-pill-link">Gallery</a>
+    <a href="blog.html" class="nav-pill-link">Blog</a>
+    <a href="contact.html" class="nav-pill-link">Contact</a>
+   </div>
+
+   <div class="flex items-center gap-1">
+    <button id="rtl-toggle" aria-label="Toggle RTL" class="hidden 2xl:inline-flex icon-toggle">
+     <span class="text-[10px] font-bold">RTL</span>
+    </button>
+    <button id="theme-toggle" aria-label="Toggle theme" class="hidden 2xl:inline-flex icon-toggle">
+     <i class="fas fa-moon dark:hidden text-sm"></i>
+     <i class="fas fa-sun hidden dark:inline text-sm"></i>
+    </button>
+
+    <div class="hidden 2xl:block w-px h-6 bg-ink/15 dark:bg-cream/20 mx-2"></div>
+
+    <a href="contact.html" class="hidden 2xl:inline-flex btn-split">
+     <span class="btn-split-text">Book Event</span>
+     <span class="btn-split-arrow">
+      <i class="fas fa-arrow-right text-xs rtl:rotate-180"></i>
+     </span>
+    </a>
+
+    <button id="mobile-toggle" aria-label="Open menu"
+     class="2xl:hidden w-10 h-10 rounded-xl bg-ink dark:bg-cream text-cream dark:text-ink flex items-center justify-center">
+     <i class="fas fa-bars text-base"></i>
+    </button>
+   </div>
+  </div>
+
+  <div id="mobile-menu" class="mobile-menu 2xl:hidden -mx-4 sm:-mx-6">
+   <div class="py-5 px-4 space-y-1">
+    <div>
+     <button onclick="document.getElementById('home-drop').classList.toggle('hidden'); document.getElementById('home-icon').classList.toggle('rotate-180')"
+      class="w-full flex items-center justify-between py-3 px-4 font-semibold text-coral bg-coral-soft/40 dark:bg-coral/15 rounded-xl text-sm">
+      <span>Home</span>
+      <i id="home-icon" class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+     </button>
+     <div id="home-drop" class="hidden pl-3 space-y-1 mt-1.5">
+      <a href="index.html" class="block py-2.5 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-lg text-sm uppercase tracking-wider transition">
+       Home 1
+      </a>
+      <a href="home2.html" class="block py-2.5 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-lg text-sm uppercase tracking-wider transition">
+       Home 2
+      </a>
+     </div>
+    </div>
+
+    <a href="about.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">About</a>
+    <a href="services.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Services</a>
+    <a href="themes.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Themes</a>
+    <a href="packages.html" class="block py-3 px-4 font-bold text-coral bg-coral-soft/40 dark:bg-coral/15 rounded-xl text-sm uppercase tracking-wider">Packages</a>
+    <a href="gallery.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Gallery</a>
+    <a href="blog.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Blog</a>
+    <a href="contact.html" class="block py-3 px-4 font-medium nav-text hover:bg-cream-2 dark:hover:bg-dk-line rounded-xl text-sm uppercase tracking-wider transition">Contact</a>
+
+    <div class="flex flex-col gap-3 pt-4 mt-3 border-t border-ink/10 dark:border-cream/15">
+     <a href="contact.html" class="btn-primary justify-center">Book Event</a>
+     <div class="flex gap-3">
+      <button id="mobile-theme-toggle" class="flex-1 py-3 rounded-full bg-cream-2 dark:bg-dk-line nav-text text-xs font-semibold uppercase tracking-wider">
+       <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:inline"></i> Theme
+      </button>
+      <button id="mobile-rtl-toggle" class="flex-1 py-3 rounded-full bg-cream-2 dark:bg-dk-line nav-text text-xs font-semibold uppercase tracking-wider">
+       <i class="fas fa-exchange-alt"></i> RTL
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 1 — COMPACT PAGE HERO -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="page-hero pt-[110px] md:pt-[140px] pb-12 md:pb-16 border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+  <div class="breadcrumb-pill mb-6">
+   <i class="fas fa-house text-[10px]"></i>
+   <a href="index.html" class="hover:opacity-70">Home</a>
+   <span class="sep">/</span>
+   <span class="current">Packages</span>
+  </div>
+
+  <h1 class="font-display font-black text-ink dark:text-cream text-4xl leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl mb-5">
+   Honest Pricing,<br>
+   <span class="italic text-coral">Beautiful Results.</span>
+  </h1>
+
+  <p class="text-ink/60 dark:text-cream/65 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed mb-8">
+   No hidden fees. No surprises. Every package includes delivery, install, and teardown — so you can focus on the celebration, not the logistics.
+  </p>
+
+  <div class="flex flex-wrap justify-center gap-3">
+   <div class="stat-pill">
+    <i class="fas fa-truck"></i>
+    <span>Free Delivery</span>
+   </div>
+   <div class="stat-pill">
+    <i class="fas fa-tools"></i>
+    <span>Install + Teardown</span>
+   </div>
+   <div class="stat-pill">
+    <i class="fas fa-shield-alt"></i>
+    <span>Fully Insured</span>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 2 — PRICING CARDS -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <div class="text-center mb-14 md:mb-20 reveal">
+   <div class="rule mb-4 justify-center">
+    <i class="fas fa-tag text-xs"></i>
+   </div>
+   <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Our Packages</span>
+   <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.1]">
+    Pick Your <span class="italic text-coral">Party Package.</span>
+   </h2>
+   <p class="text-ink/60 dark:text-cream/65 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+    Three tiers, endless possibilities. Every package is fully customizable — just tell us your vision.
+   </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-5 max-w-5xl mx-auto items-stretch">
+
+   <!-- Mini -->
+   <div class="price-card reveal">
+    <div class="min-h-[170px] md:min-h-[190px] flex flex-col justify-start">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50 dark:text-cream/50 mb-3">Mini</div>
+     <h3 class="font-display font-bold text-2xl text-ink dark:text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Small Party</h3>
+     <p class="text-sm text-ink/55 dark:text-cream/55 mb-2">Perfect for intimate home celebrations.</p>
+    </div>
+    <div class="flex items-end gap-1 mb-7">
+     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$199</span>
+     <span class="text-ink/50 dark:text-cream/50 text-sm mb-1.5">/ event</span>
+    </div>
+    <ul class="space-y-3 mb-8 text-sm text-ink/75 dark:text-cream/75 flex-1">
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 5-ft balloon arch</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Table centerpiece</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 2-hr install window</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Standard color palette</li>
+    </ul>
+    <a href="contact.html" class="btn-outline justify-center w-full mt-auto !px-2 lg:!px-6 !text-[10px] lg:!text-xs">Choose Mini</a>
+   </div>
+
+   <!-- Deluxe (Featured) -->
+   <div class="price-card featured reveal">
+    <div class="ribbon">⭐ Most Popular</div>
+    <div class="min-h-[170px] md:min-h-[190px] flex flex-col justify-start">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-3">Deluxe</div>
+     <h3 class="font-display font-bold text-2xl text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Party Deluxe</h3>
+     <p class="text-sm text-cream/60 mb-2">The full styling experience.</p>
+    </div>
+    <div class="flex items-end gap-1 mb-7">
+     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$499</span>
+     <span class="text-cream/50 text-sm mb-1.5">/ event</span>
+    </div>
+    <ul class="space-y-3 mb-8 text-sm text-cream/90 flex-1">
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 10-ft balloon garland</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Cake &amp; gift table styling</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Custom name installation</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 3-hr install + teardown</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Premium color palette</li>
+    </ul>
+    <a href="contact.html" class="btn-primary justify-center w-full mt-auto !px-2 lg:!px-6 !text-[10px] lg:!text-xs">Book Deluxe</a>
+   </div>
+
+   <!-- Grand -->
+   <div class="price-card reveal">
+    <div class="min-h-[170px] md:min-h-[190px] flex flex-col justify-start">
+     <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50 dark:text-cream/50 mb-3">Luxury</div>
+     <h3 class="font-display font-bold text-2xl text-ink dark:text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Grand Event</h3>
+     <p class="text-sm text-ink/55 dark:text-cream/55 mb-2">Full venue styling, no limits.</p>
+    </div>
+    <div class="flex items-end gap-1 mb-7">
+     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$999</span>
+     <span class="text-ink/50 dark:text-cream/50 text-sm mb-1.5">+ up</span>
+    </div>
+    <ul class="space-y-3 mb-8 text-sm text-ink/75 dark:text-cream/75 flex-1">
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Full venue styling</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Custom installations</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Floral + balloon blends</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Dedicated event stylist</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Premium photo backdrop</li>
+    </ul>
+    <a href="contact.html" class="btn-outline justify-center w-full mt-auto !px-2 lg:!px-6 !text-[10px] lg:!text-xs">Enquire Now</a>
+   </div>
+
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 3 — DETAILED COMPARISON TABLE -->
+<!-- Layout: Full-width feature matrix across all 3 tiers -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 bg-cream-2 dark:bg-dk-surface border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+
+  <div class="text-center mb-12 md:mb-16 reveal">
+   <div class="rule mb-4 justify-center">
+    <i class="fas fa-table-columns text-xs"></i>
+   </div>
+   <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Compare In Detail</span>
+   <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-5 leading-[1.1]">
+    Every Feature,<br>
+    <span class="italic text-coral">Side by Side.</span>
+   </h2>
+   <p class="text-ink/60 dark:text-cream/65 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+    See exactly what's included in each package — no fine print, no surprises.
+   </p>
+  </div>
+
+  <!-- Comparison table -->
+    <!-- Mobile Scroll Hint -->
+  <div class="md:hidden flex items-center justify-end text-[10px] uppercase tracking-widest font-bold text-ink/40 dark:text-cream/40 mb-3 gap-2 reveal">
+    <span>Swipe to compare</span>
+    <i class="fas fa-arrow-right-long"></i>
+  </div>
+
+  <div class="compare-wrap reveal">
+   <div class="overflow-x-auto w-full pb-1">
+    <table class="compare-table min-w-[640px]">
+    <thead>
+     <tr>
+      <th>Feature</th>
+      <th class="text-center">Mini</th>
+      <th class="text-center col-featured">
+       <div class="flex flex-col items-center">
+        <span>Deluxe</span>
+        <span class="text-[9px] font-semibold tracking-widest opacity-90 mt-1">⭐ POPULAR</span>
+       </div>
+      </th>
+      <th class="text-center">Grand</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>Balloon Arch / Garland</td>
+      <td class="text-center">5 ft</td>
+      <td class="text-center col-featured">10 ft</td>
+      <td class="text-center">Custom (12+ ft)</td>
+     </tr>
+     <tr>
+      <td>Table Centerpieces</td>
+      <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+      <td class="text-center col-featured"><i class="fas fa-check check-icon"></i></td>
+      <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+     </tr>
+     <tr>
+      <td>Custom Name Installation</td>
+      <td class="text-center"><i class="fas fa-times cross-icon"></i></td>
+      <td class="text-center col-featured"><i class="fas fa-check check-icon"></i></td>
+      <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+     </tr>
+     <tr>
+      <td>Cake &amp; Gift Table Styling</td>
+      <td class="text-center"><i class="fas fa-times cross-icon"></i></td>
+      <td class="text-center col-featured"><i class="fas fa-check check-icon"></i></td>
+      <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+     </tr>
+     <tr>
+      <td>Floral Integration</td>
+      <td class="text-center"><i class="fas fa-times cross-icon"></i></td>
+      <td class="text-center col-featured">Optional (+$99)</td>
+      <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+     </tr>
+     <tr>
+      <td>Photo Backdrop</td>
+      <td class="text-center"><i class="fas fa-times cross-icon"></i></td>
+      <td class="text-center col-featured">Compact backdrop</td>
+      <td class="text-center">Premium backdrop</td>
+     </tr>
+     <tr>
+      <td>Lighting &amp; Special Effects</td>
+      <td class="text-center"><i class="fas fa-times cross-icon"></i></td>
+      <td class="text-center col-featured"><i class="fas fa-times cross-icon"></i></td>
+      <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+     </tr>
+     <tr>
+      <td>Dedicated Event Stylist</td>
+      <td class="text-center"><i class="fas fa-times cross-icon"></i></td>
+      <td class="text-center col-featured"><i class="fas fa-times cross-icon"></i></td>
+      <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+     </tr>
+     <tr>
+      <td>Install + Teardown Included</td>
+      <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+      <td class="text-center col-featured"><i class="fas fa-check check-icon"></i></td>
+      <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+     </tr>
+     <tr>
+      <td>Setup Duration</td>
+      <td class="text-center">2 hours</td>
+      <td class="text-center col-featured">3 hours</td>
+      <td class="text-center">4–6 hours</td>
+     </tr>
+     <tr>
+      <td>Custom Color Palette</td>
+      <td class="text-center">Standard</td>
+      <td class="text-center col-featured">Premium</td>
+      <td class="text-center">Fully bespoke</td>
+     </tr>
+     <tr>
+      <td>Booking Lead Time</td>
+      <td class="text-center">5 days</td>
+      <td class="text-center col-featured">7 days</td>
+      <td class="text-center">14+ days</td>
+     </tr>
+     <tr class="border-t-2 border-coral/30 dark:border-coral/40">
+      <td class="!font-bold">Price</td>
+      <td class="text-center !font-bold">$199+</td>
+      <td class="text-center col-featured !font-bold !text-coral !text-base">$499+</td>
+      <td class="text-center !font-bold">$999+</td>
+     </tr>
+    </tbody>
+   </table>
+   </div>
+  </div>
+
+  <!-- Table CTA row -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6 max-w-4xl mx-auto">
+   <a href="contact.html" class="btn-outline justify-center !text-xs !py-3">Choose Mini</a>
+   <a href="contact.html" class="btn-primary justify-center !text-xs !py-3">Choose Deluxe</a>
+   <a href="contact.html" class="btn-outline justify-center !text-xs !py-3">Choose Grand</a>
+  </div>
+
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 4 — FAQ ACCORDION -->
+<!-- Layout: 2-column with heading left + FAQ list right -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="py-16 md:py-24 border-b border-coral/15 dark:border-white/5">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+   <!-- Left: heading (sticky on desktop) -->
+   <div class="lg:col-span-4 lg:sticky lg:top-28 reveal">
+    <div class="rule rule-left mb-4 justify-start">
+     <i class="fas fa-circle-question text-xs"></i>
+    </div>
+    <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Common Questions</span>
+    <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl mb-5 leading-[1.1]">
+     Answers to<br>
+     <span class="italic text-coral">What You're Wondering.</span>
+    </h2>
+    <p class="text-ink/60 dark:text-cream/65 text-sm sm:text-base leading-relaxed mb-6">
+     Can't find what you're looking for? Reach out and we'll reply within a few hours.
+    </p>
+    <a href="contact.html" class="btn-outline">
+     <i class="fas fa-comments"></i> Ask a Question
+    </a>
+   </div>
+
+   <!-- Right: FAQ items -->
+   <div class="lg:col-span-8 space-y-4 reveal">
+
+    <details class="faq-item" open>
+     <summary>How far in advance should I book?</summary>
+     <div class="faq-body">
+      We recommend booking at least <strong>2–3 weeks ahead</strong> for standard packages, and <strong>6–8 weeks ahead</strong> for weddings and large corporate events. Popular dates (weekends, holidays, milestone birthdays) fill quickly — the earlier you book, the more options you'll have.
+     </div>
+    </details>
+
+    <details class="faq-item">
+     <summary>Do you deliver and install, or do I pick up?</summary>
+     <div class="faq-body">
+      Every package includes <strong>delivery, installation, and teardown</strong>. Our team arrives 1–2 hours before your event, sets everything up beautifully, and returns after to clean up. You don't lift a finger.
+     </div>
+    </details>
+
+    <details class="faq-item">
+     <summary>Can I customize a package?</summary>
+     <div class="faq-body">
+      Absolutely — that's our favorite part. Every package is a starting point. We can add florals, swap color palettes, extend the balloon garland, or blend two packages together. Just tell us your vision and we'll send a custom quote within 48 hours.
+     </div>
+    </details>
+
+    <details class="faq-item">
+     <summary>What if I need to cancel or reschedule?</summary>
+     <div class="faq-body">
+      We offer <strong>free rescheduling</strong> up to 7 days before your event. Cancellations 7+ days out receive a full refund minus the deposit. Within 7 days, we can typically apply your deposit toward a future booking within 6 months.
+     </div>
+    </details>
+
+    <details class="faq-item">
+     <summary>How do you handle outdoor setups?</summary>
+     <div class="faq-body">
+      Outdoor events are our specialty — we use <strong>UV-resistant balloons</strong>, weighted bases, and weather-safe adhesives. In case of extreme wind or rain on the day, we'll coordinate a backup plan or move the setup to an indoor location at no extra charge.
+     </div>
+    </details>
+
+    <details class="faq-item">
+     <summary>Do you travel outside the city?</summary>
+     <div class="faq-body">
+      Yes — we serve 12 cities across the East Coast. Deliveries within a 30-mile radius of our studio are free. Beyond that, we add a small travel fee based on distance. Get in touch with your venue address for an exact quote.
+     </div>
+    </details>
+
+   </div>
+
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SECTION 5 — CTA + NEWSLETTER SPLIT -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="relative bg-ink overflow-hidden py-20 md:py-32 z-10 border-b border-coral/15 dark:border-white/5">
+ <!-- Dynamic Background Effects -->
+ <div class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-coral/10 blur-[120px] pointer-events-none"></div>
+ <div class="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-coral/15 blur-[100px] pointer-events-none"></div>
+ 
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+  <div class="grid lg:grid-cols-12 gap-12 lg:gap-0 items-center">
+   
+   <!-- Left: Massive Typography CTA (spans 7 cols) -->
+   <div class="reveal lg:col-span-7 pr-0 lg:pr-12 text-center lg:text-left">
+    <div class="inline-flex items-center gap-2 bg-coral/10 border border-coral/20 text-coral px-5 py-2 rounded-full mb-8">
+     <i class="fas fa-ticket-alt"></i>
+     <span class="text-[10px] uppercase tracking-[0.3em] font-bold">15% Off First Booking</span>
+    </div>
+    
+    <h2 class="font-display font-black text-white text-5xl sm:text-6xl lg:text-7xl mb-6 leading-[1.05] tracking-tight">
+     Ready to Book<br>
+     <span class="text-coral italic font-light">Your Package?</span>
+    </h2>
+    
+    <p class="text-white/60 text-lg max-w-lg mx-auto lg:mx-0 mb-10 leading-relaxed font-light">
+     New clients save 15% on their first booking. Free consultation included — let's design something beautiful together.
+    </p>
+    
+    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+     <a href="contact.html" class="inline-flex items-center justify-center gap-3 bg-coral text-white hover:bg-white hover:text-coral px-10 py-5 rounded-full text-sm font-bold uppercase tracking-widest transition-all duration-500 hover:scale-105 shadow-[0_0_40px_rgba(230,57,70,0.4)]">
+      <i class="fas fa-calendar-check"></i> Secure Your Date
+     </a>
+    </div>
+   </div>
+
+   <!-- Right: Floating Newsletter Ticket (spans 5 cols) -->
+   <div class="reveal lg:col-span-5 relative z-20 lg:-ml-12 mt-12 lg:mt-0">
+    <!-- Floating shapes behind card -->
+    <div class="absolute -top-6 right-0 w-32 h-32 bg-coral rounded-full opacity-40 blur-3xl animate-pulse"></div>
+    <div class="absolute -bottom-10 -left-10 w-40 h-40 border border-white/10 rounded-full animate-[spin_12s_linear_infinite]"></div>
+    
+    <!-- The Card -->
+    <div class="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-3xl border border-white/20 p-8 sm:p-12 rounded-[2.5rem] shadow-2xl">
+     
+     <div class="w-16 h-16 rounded-2xl bg-coral flex items-center justify-center shadow-lg mb-8 mx-auto lg:mx-0 transform -rotate-6">
+      <i class="fas fa-envelope-open-text text-white text-xl"></i>
+     </div>
+     
+     <h3 class="font-display font-bold text-3xl text-white leading-tight mb-2 text-center lg:text-left">Party Deals First</h3>
+     <p class="text-white/60 text-sm mb-8 text-center lg:text-left">Seasonal offers every Thursday.</p>
+
+     <p class="text-white/80 text-sm leading-relaxed mb-8 text-center lg:text-left">
+      Subscribe to receive exclusive discounts, new package launches, and secret seasonal offers before they go public.
+     </p>
+
+     <form class="flex flex-col gap-4" onsubmit="event.preventDefault(); this.querySelector('button').innerHTML='<i class=\'fas fa-check\'></i> Subscribed'; setTimeout(()=>this.querySelector('button').innerHTML='Subscribe <i class=\'fas fa-arrow-right\'></i>', 2500); this.reset();">
+      <input type="email" placeholder="your@email.com" required aria-label="Email address" class="w-full bg-ink/60 border border-white/10 text-white placeholder-white/30 px-6 py-4 rounded-2xl outline-none focus:border-coral focus:ring-1 focus:ring-coral transition-all text-center lg:text-left">
+      <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-coral text-white hover:bg-white hover:text-ink px-8 py-4 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-lg">
+       Subscribe <i class="fas fa-arrow-right"></i>
+      </button>
+     </form>
+
+     <div class="flex items-center justify-center lg:justify-start gap-4 mt-8 text-white/40 text-[10px] uppercase tracking-widest font-bold">
+      <span class="flex items-center gap-1.5"><i class="fas fa-users"></i> 2,400+ readers</span>
+      <span class="w-1 h-1 rounded-full bg-white/20"></span>
+      <span class="flex items-center gap-1.5"><i class="fas fa-lock"></i> No spam</span>
+     </div>
+    </div>
+   </div>
+   
+  </div>
+ </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════ -->
+<footer class="site-footer pt-16 md:pt-20 pb-8 relative overflow-hidden">
+ <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-14">
+
+   <div class="lg:col-span-4">
+    <div class="flex items-center gap-3 mb-5">
+     <div class="relative w-12 h-12 md:w-14 md:h-14 shrink-0">
+      <div class="absolute inset-0 rounded-full border-2 border-coral"></div>
+      <div class="absolute inset-1 rounded-full bg-coral flex items-center justify-center">
+       <i class="fas fa-gift text-white text-xs"></i>
+      </div>
+     </div>
+     <div class="leading-none">
+      <div class="text-xl md:text-2xl font-display font-black nav-text tracking-tight">
+       Balloon<span class="text-coral italic">Aura</span>
+      </div>
+      <div class="text-[8px] md:text-[9px] uppercase tracking-[0.35em] nav-text opacity-50 font-semibold mt-1">
+       Party Studio · Est. 2019
+      </div>
+     </div>
+    </div>
+    <p class="foot-text text-sm leading-relaxed mb-6 max-w-sm">
+     Crafting magical balloon installations and event décor for birthdays, weddings, corporate events, and every celebration worth remembering.
+    </p>
+    <div class="flex flex-wrap gap-2">
+     <a href="#" aria-label="Instagram" class="social-tag"><i class="fab fa-instagram text-lg"></i></a>
+     <a href="#" aria-label="Facebook" class="social-tag"><i class="fab fa-facebook-f text-lg"></i></a>
+     <a href="#" aria-label="Pinterest" class="social-tag"><i class="fab fa-pinterest-p text-lg"></i></a>
+     <a href="#" aria-label="TikTok" class="social-tag"><i class="fab fa-tiktok text-lg"></i></a>
+    </div>
+   </div>
+
+   <div class="lg:col-span-2">
+    <h4 class="foot-heading"><span class="foot-heading-num">01</span> Explore</h4>
+    <ul class="space-y-3 text-sm">
+     <li><a href="about.html" class="foot-text hover:text-coral transition">About Us</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Services</a></li>
+     <li><a href="themes.html" class="foot-text hover:text-coral transition">Themes</a></li>
+     <li><a href="packages.html" class="foot-text hover:text-coral transition">Packages</a></li>
+     <li><a href="gallery.html" class="foot-text hover:text-coral transition">Gallery</a></li>
+     <li><a href="blog.html" class="foot-text hover:text-coral transition">Blog</a></li>
+    </ul>
+   </div>
+
+   <div class="lg:col-span-2">
+    <h4 class="foot-heading"><span class="foot-heading-num">02</span> Occasions</h4>
+    <ul class="space-y-3 text-sm">
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Birthdays</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Weddings</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Corporate Events</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Baby Showers</a></li>
+     <li><a href="services.html" class="foot-text hover:text-coral transition">Anniversaries</a></li>
+    </ul>
+   </div>
+
+   <div class="lg:col-span-4">
+    <h4 class="foot-heading"><span class="foot-heading-num">03</span> Get in Touch</h4>
+    <div class="foot-contact-card">
+     <ul class="space-y-3.5 text-sm">
+      <li class="flex items-start gap-3">
+       <i class="fas fa-map-marker-alt text-coral mt-1 text-sm"></i>
+       <span class="foot-text">42 Celebration Lane, Studio 8<br>New York, NY 10012</span>
+      </li>
+      <li class="flex items-center gap-3">
+       <i class="fas fa-phone text-coral text-sm"></i>
+       <a href="tel:+12125550199" class="foot-text hover:text-coral transition">+1 (212) 555-0199</a>
+      </li>
+      <li class="flex items-center gap-3">
+       <i class="fas fa-envelope text-coral text-sm"></i>
+       <a href="mailto:hello@balloonaura.com" class="foot-text hover:text-coral transition">hello@balloonaura.com</a>
+      </li>
+      <li class="flex items-start gap-3">
+       <i class="fas fa-clock text-coral mt-1 text-sm"></i>
+       <span class="foot-text">Mon–Sat: 9am – 8pm<br>Sun: By appointment</span>
+      </li>
+     </ul>
+    </div>
+   </div>
+
+  </div>
+
+  <div class="border-t border-ink/10 dark:border-cream/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+   <p class="foot-text text-[10px] uppercase tracking-[0.2em] text-center md:text-left">
+    © 2026 BalloonAura Party Studio. All rights reserved.
+   </p>
+   <div class="flex flex-wrap justify-center gap-5 md:gap-6 text-[10px] uppercase tracking-[0.2em] foot-text">
+    <a href="#" class="hover:text-coral transition">Privacy</a>
+    <a href="#" class="hover:text-coral transition">Terms</a>
+    <a href="contact.html" class="hover:text-coral transition">Contact</a>
+   </div>
+  </div>
+
+  <div class="foot-display mt-10 md:mt-14">Book A Package.</div>
+
+ </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCRIPTS -->
+<!-- ═══════════════════════════════════════════ -->
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#theme-toggle, #mobile-theme-toggle').forEach(btn => {
+   btn?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+   });
+  });
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+  const setRTL = (isRTL) => {
+   const html = document.documentElement;
+   if (isRTL) { html.setAttribute('dir', 'rtl'); localStorage.setItem('dir', 'rtl'); }
+   else { html.setAttribute('dir', 'ltr'); localStorage.setItem('dir', 'ltr'); }
+  };
+  if (localStorage.getItem('dir') === 'rtl') document.documentElement.setAttribute('dir', 'rtl');
+  document.getElementById('rtl-toggle')?.addEventListener('click', () =>
+   setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+  document.getElementById('mobile-rtl-toggle')?.addEventListener('click', () =>
+   setRTL(document.documentElement.getAttribute('dir') !== 'rtl'));
+
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+   toggle.addEventListener('click', () => {
+    menu.classList.toggle('open'); document.body.classList.toggle('overflow-hidden');
+    const i = toggle.querySelector('i');
+    i.classList.toggle('fa-bars');
+    i.classList.toggle('fa-times');
+   });
+   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open'); document.body.classList.remove('overflow-hidden');
+    const i = toggle.querySelector('i');
+    i.classList.add('fa-bars'); i.classList.remove('fa-times');
+   }));
+  }
+
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+   entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+   });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+ });
+</script>
+
+</div>
+</body>
+</html>
