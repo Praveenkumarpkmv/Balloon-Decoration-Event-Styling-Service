@@ -13,9 +13,9 @@
  </script>
  <meta charset="UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>Contact &middot; BalloonAura Event Styling</title>
+ <title>Book a Consultation &middot; Luxury Event Styling &amp; Balloon Art &middot; BalloonAura</title>
  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E63946'%3E%3Cellipse cx='12' cy='9' rx='7' ry='8'/%3E%3C/svg%3E" />
- <meta name="description" content="Get in touch with BalloonAura. Book a free consultation, request a quote, or ask us anything about your upcoming event.">
+ <meta name="description" content="Inquire about custom balloon installations, backdrop rentals, plinths, and luxury event styling for your upcoming celebration. Fast response.">
 
  <script src="https://cdn.tailwindcss.com"></script>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -202,17 +202,35 @@
    transform: rotate(-45deg);
   }
 
-  .icon-toggle {
+    .icon-toggle {
    display: inline-flex;
    align-items: center;
    justify-content: center;
-   width: 38px; height: 38px;
+   width: 40px; height: 40px;
    border-radius: 12px;
+   background: #F4F1EA;
+   border: 1px solid rgba(29, 29, 44, 0.1);
    color: #1D1D2C;
    transition: all 0.25s ease;
+   cursor: pointer;
   }
-  .dark .icon-toggle { color: #FAF7F2; }
-  .icon-toggle:hover { background: rgba(230, 57, 70, 0.1); color: #E63946; }
+  .dark .icon-toggle {
+   background: rgba(250, 247, 242, 0.08);
+   border-color: rgba(250, 247, 242, 0.15);
+   color: #FAF7F2;
+  }
+  .icon-toggle:hover {
+   background: rgba(230, 57, 70, 0.15);
+   border-color: rgba(230, 57, 70, 0.3);
+   color: #E63946;
+   transform: translateY(-1px);
+  }
+  .dark .icon-toggle:hover {
+   background: rgba(230, 57, 70, 0.25);
+   border-color: #E63946;
+   color: #FFFFFF;
+   transform: translateY(-1px);
+  }
 
   .mobile-menu {
    background: #FFFFFF;
@@ -282,44 +300,66 @@
    font-family: 'Fraunces', serif;
    font-style: italic;
    font-weight: 900;
-   font-size: clamp(3rem, 10vw, 8rem);
-   line-height: 0.85;
-   letter-spacing: -0.03em;
-   color: rgba(29, 29, 44, 0.06);
+   font-size: clamp(2.5rem, 6vw, 4.5rem);
+   line-height: 1;
+   letter-spacing: -0.02em;
+   color: rgba(29, 29, 44, 0.05);
    text-align: center;
    user-select: none;
    pointer-events: none;
+   padding-bottom: 0.5rem;
   }
   .dark .foot-display { color: rgba(250, 247, 242, 0.05); }
 
-  .btn-primary {
-   background: #E63946; color: #FFFFFF;
+    .btn-primary {
+   background: #E63946;
+   color: #FFFFFF !important;
    font-weight: 600;
    border-radius: 999px;
    letter-spacing: 0.08em;
    text-transform: uppercase;
-   font-size: 0.72rem;
-   padding: 0.95rem 1.2rem;
+   font-size: 0.75rem;
+   padding: 0.85rem 1.6rem;
    transition: all 0.3s ease;
-   display: inline-flex; align-items: center; gap: 0.5rem;
+   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
    box-shadow: 0 8px 20px -8px rgba(230,57,70,0.5);
    white-space: nowrap;
+   border: 1.5px solid transparent;
+   cursor: pointer;
   }
-  .btn-primary:hover { background: #C42A37; transform: translateY(-2px); box-shadow: 0 14px 28px -8px rgba(230,57,70,0.6); }
+  .btn-primary:hover {
+   background: #C42A37;
+   transform: translateY(-2px);
+   box-shadow: 0 14px 28px -8px rgba(230,57,70,0.6);
+  }
   .btn-outline {
-   border: 1.5px solid #1D1D2C; color: #1D1D2C;
+   border: 1.5px solid #1D1D2C;
+   color: #1D1D2C;
    background: transparent;
    border-radius: 999px;
    font-weight: 600;
    letter-spacing: 0.08em;
    text-transform: uppercase;
-   font-size: 0.72rem;
-   padding: 0.95rem 1.2rem;
+   font-size: 0.75rem;
+   padding: 0.85rem 1.6rem;
    transition: all 0.3s ease;
-   display: inline-flex; align-items: center; gap: 0.5rem;
+   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
    white-space: nowrap;
+   cursor: pointer;
   }
-  .btn-outline:hover { background: #1D1D2C; color: #FAF7F2; transform: translateY(-2px); }
+  .btn-outline:hover {
+   background: #1D1D2C;
+   color: #FAF7F2 !important;
+   transform: translateY(-2px);
+  }
+  .dark .btn-outline {
+   border-color: rgba(250,247,242,0.6);
+   color: #FAF7F2;
+  }
+  .dark .btn-outline:hover {
+   background: #FAF7F2;
+   color: #1D1D2C !important;
+  }
   .dark .btn-outline { border-color: #FAF7F2; color: #FAF7F2; }
   .dark .btn-outline:hover { background: #FAF7F2; color: #1D1D2C; }
 
@@ -660,7 +700,9 @@
    color: #1D1D2C;
    margin-bottom: 0.5rem;
    line-height: 1.35;
-   min-height: 5.5rem;
+   min-height: 3.5rem;
+   display: flex;
+   align-items: flex-start;
   }
   .dark .faq-tile h4 { color: #FAF7F2; }
   .faq-tile p {
@@ -853,12 +895,12 @@
   </div>
 
   <h1 class="font-display font-black text-ink dark:text-cream text-4xl leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl mb-5">
-   Let's Talk About<br>
-   <span class="italic text-coral">Your Celebration.</span>
+   Let's Design Your<br>
+   <span class="italic text-coral">Dream Celebration.</span>
   </h1>
 
   <p class="text-ink/60 dark:text-cream/65 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed mb-8">
-   Whether you're planning a birthday, wedding, or corporate event — tell us your vision and we'll get back within a few hours.
+   From bespoke organic balloon arches and custom backdrop walls to full-venue styling — share your vision, venue, and date, and we will prepare a personalized styling moodboard and quote.
   </p>
 
   <div class="flex flex-wrap justify-center gap-3">
@@ -923,14 +965,15 @@
        <div>
         <label for="event-type" class="form-label">Event Type <span class="req">*</span></label>
         <select id="event-type" name="eventType" class="form-select" required>
-         <option value="">Select an occasion</option>
-         <option>Birthday</option>
-         <option>Wedding</option>
-         <option>Corporate Event</option>
-         <option>Baby Shower</option>
-         <option>Anniversary</option>
-         <option>Party</option>
-         <option>Other</option>
+         <option value="">Select an occasion / styling type</option>
+         <option>Milestone Birthday &amp; Arch Styling</option>
+         <option>Luxury Wedding &amp; Ceremony Backdrop</option>
+         <option>Corporate Gala &amp; Brand Activation</option>
+         <option>Baby Shower &amp; Teddy / Cloud Theme</option>
+         <option>Anniversary / Engagement Celebration</option>
+         <option>Custom Backdrop &amp; Plinth Rental Only</option>
+         <option>Full-Venue Bespoke Production</option>
+         <option>Other Unique Celebration</option>
         </select>
        </div>
       </div>
@@ -1104,7 +1147,7 @@
      </div>
     </div>
     <a href="https://www.google.com/maps/dir/?api=1&destination=SoHo,New+York,NY" target="_blank" rel="noopener"
-      class="btn-outline justify-center whitespace-nowrap !text-xs !py-3">
+      class="btn-outline justify-center whitespace-nowrap">
      <i class="fas fa-diamond-turn-right"></i> Open in Maps
     </a>
    </div>
@@ -1235,7 +1278,7 @@
 <!-- ═══════════════════════════════════════════ -->
 <!-- FOOTER -->
 <!-- ═══════════════════════════════════════════ -->
-<footer class="site-footer pt-16 md:pt-20 pb-8 relative overflow-hidden">
+<footer class="site-footer pt-10 md:pt-12 pb-4 md:pb-6 relative overflow-hidden">
  <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-14">
@@ -1328,7 +1371,7 @@
    </div>
   </div>
 
-  <div class="foot-display mt-10 md:mt-14">Say Hello.</div>
+  <div class="foot-display mt-4 md:mt-6">Say Hello.</div>
 
  </div>
 </footer>

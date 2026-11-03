@@ -13,9 +13,9 @@
  </script>
  <meta charset="UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>Packages &middot; BalloonAura Event Styling</title>
+ <title>Packages &middot; Event Styling &amp; Balloon Art Collections &middot; BalloonAura</title>
  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E63946'%3E%3Cellipse cx='12' cy='9' rx='7' ry='8'/%3E%3C/svg%3E" />
- <meta name="description" content="Transparent pricing for BalloonAura event styling. Compare packages and pick the perfect fit for your celebration.">
+ <meta name="description" content="Transparent pricing for luxury balloon installations, custom arch backdrops, and complete venue styling packages. Delivery, setup &amp; teardown included.">
 
  <script src="https://cdn.tailwindcss.com"></script>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -202,17 +202,35 @@
    transform: rotate(-45deg);
   }
 
-  .icon-toggle {
+    .icon-toggle {
    display: inline-flex;
    align-items: center;
    justify-content: center;
-   width: 38px; height: 38px;
+   width: 40px; height: 40px;
    border-radius: 12px;
+   background: #F4F1EA;
+   border: 1px solid rgba(29, 29, 44, 0.1);
    color: #1D1D2C;
    transition: all 0.25s ease;
+   cursor: pointer;
   }
-  .dark .icon-toggle { color: #FAF7F2; }
-  .icon-toggle:hover { background: rgba(230, 57, 70, 0.1); color: #E63946; }
+  .dark .icon-toggle {
+   background: rgba(250, 247, 242, 0.08);
+   border-color: rgba(250, 247, 242, 0.15);
+   color: #FAF7F2;
+  }
+  .icon-toggle:hover {
+   background: rgba(230, 57, 70, 0.15);
+   border-color: rgba(230, 57, 70, 0.3);
+   color: #E63946;
+   transform: translateY(-1px);
+  }
+  .dark .icon-toggle:hover {
+   background: rgba(230, 57, 70, 0.25);
+   border-color: #E63946;
+   color: #FFFFFF;
+   transform: translateY(-1px);
+  }
 
   .mobile-menu {
    background: #FFFFFF;
@@ -282,44 +300,66 @@
    font-family: 'Fraunces', serif;
    font-style: italic;
    font-weight: 900;
-   font-size: clamp(3rem, 10vw, 8rem);
-   line-height: 0.85;
-   letter-spacing: -0.03em;
-   color: rgba(29, 29, 44, 0.06);
+   font-size: clamp(2.5rem, 6vw, 4.5rem);
+   line-height: 1;
+   letter-spacing: -0.02em;
+   color: rgba(29, 29, 44, 0.05);
    text-align: center;
    user-select: none;
    pointer-events: none;
+   padding-bottom: 0.5rem;
   }
   .dark .foot-display { color: rgba(250, 247, 242, 0.05); }
 
-  .btn-primary {
-   background: #E63946; color: #FFFFFF;
+    .btn-primary {
+   background: #E63946;
+   color: #FFFFFF !important;
    font-weight: 600;
    border-radius: 999px;
    letter-spacing: 0.08em;
    text-transform: uppercase;
-   font-size: 0.72rem;
-   padding: 0.95rem 1.2rem;
+   font-size: 0.75rem;
+   padding: 0.85rem 1.6rem;
    transition: all 0.3s ease;
-   display: inline-flex; align-items: center; gap: 0.5rem;
+   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
    box-shadow: 0 8px 20px -8px rgba(230,57,70,0.5);
    white-space: nowrap;
+   border: 1.5px solid transparent;
+   cursor: pointer;
   }
-  .btn-primary:hover { background: #C42A37; transform: translateY(-2px); box-shadow: 0 14px 28px -8px rgba(230,57,70,0.6); }
+  .btn-primary:hover {
+   background: #C42A37;
+   transform: translateY(-2px);
+   box-shadow: 0 14px 28px -8px rgba(230,57,70,0.6);
+  }
   .btn-outline {
-   border: 1.5px solid #1D1D2C; color: #1D1D2C;
+   border: 1.5px solid #1D1D2C;
+   color: #1D1D2C;
    background: transparent;
    border-radius: 999px;
    font-weight: 600;
    letter-spacing: 0.08em;
    text-transform: uppercase;
-   font-size: 0.72rem;
-   padding: 0.95rem 1.2rem;
+   font-size: 0.75rem;
+   padding: 0.85rem 1.6rem;
    transition: all 0.3s ease;
-   display: inline-flex; align-items: center; gap: 0.5rem;
+   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
    white-space: nowrap;
+   cursor: pointer;
   }
-  .btn-outline:hover { background: #1D1D2C; color: #FAF7F2; transform: translateY(-2px); }
+  .btn-outline:hover {
+   background: #1D1D2C;
+   color: #FAF7F2 !important;
+   transform: translateY(-2px);
+  }
+  .dark .btn-outline {
+   border-color: rgba(250,247,242,0.6);
+   color: #FAF7F2;
+  }
+  .dark .btn-outline:hover {
+   background: #FAF7F2;
+   color: #1D1D2C !important;
+  }
   .dark .btn-outline { border-color: #FAF7F2; color: #FAF7F2; }
   .dark .btn-outline:hover { background: #FAF7F2; color: #1D1D2C; }
 
@@ -733,32 +773,34 @@
    <i class="fas fa-house text-[10px]"></i>
    <a href="index.html" class="hover:opacity-70">Home</a>
    <span class="sep">/</span>
-   <span class="current">Packages</span>
+   <span class="current">Styling Packages</span>
   </div>
 
   <h1 class="font-display font-black text-ink dark:text-cream text-4xl leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl mb-5">
-   Honest Pricing,<br>
-   <span class="italic text-coral">Beautiful Results.</span>
+   Curated Styling Collections,<br>
+   <span class="italic text-coral">Honest Pricing.</span>
   </h1>
 
   <p class="text-ink/60 dark:text-cream/65 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed mb-8">
-   No hidden fees. No surprises. Every package includes delivery, install, and teardown — so you can focus on the celebration, not the logistics.
+   Whether you need a statement photo backdrop or complete venue transformation, our packages include full-service delivery, professional on-site installation, and seamless post-party strike.
   </p>
 
+  <!-- Stat pills -->
   <div class="flex flex-wrap justify-center gap-3">
    <div class="stat-pill">
-    <i class="fas fa-truck"></i>
-    <span>Free Delivery</span>
+    <i class="fas fa-check-double text-coral"></i>
+    <span>All-Inclusive Pricing</span>
    </div>
    <div class="stat-pill">
-    <i class="fas fa-tools"></i>
-    <span>Install + Teardown</span>
+    <i class="fas fa-truck text-coral"></i>
+    <span>White-Glove Setup &amp; Teardown</span>
    </div>
    <div class="stat-pill">
-    <i class="fas fa-shield-alt"></i>
-    <span>Fully Insured</span>
+    <i class="fas fa-paint-roller text-coral"></i>
+    <span>100% Custom Palettes</span>
    </div>
   </div>
+
  </div>
 </section>
 
@@ -783,67 +825,88 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-5 max-w-5xl mx-auto items-stretch">
 
-   <!-- Mini -->
-   <div class="price-card reveal">
+   <!-- Mini -> Focal Arch -->
+   <div class="price-card reveal overflow-hidden !p-0">
+    <div class="h-44 w-full overflow-hidden relative">
+     <img src="asserts/index1.avif" alt="The Focal Arch setup" class="w-full h-full object-cover" loading="lazy">
+     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+     <span class="absolute bottom-3 left-4 text-[9px] uppercase tracking-widest font-bold text-white bg-coral/90 px-2.5 py-1 rounded-full">Intimate Celebrations</span>
+    </div>
+    <div class="p-6 sm:p-7 flex flex-col flex-1">
     <div class="min-h-[170px] md:min-h-[190px] flex flex-col justify-start">
-     <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50 dark:text-cream/50 mb-3">Mini</div>
-     <h3 class="font-display font-bold text-2xl text-ink dark:text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Small Party</h3>
-     <p class="text-sm text-ink/55 dark:text-cream/55 mb-2">Perfect for intimate home celebrations.</p>
+     <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50 dark:text-cream/50 mb-3">Essential</div>
+     <h3 class="font-display font-bold text-2xl text-ink dark:text-cream mb-2 min-h-[4rem] flex flex-col justify-start">The Focal Arch</h3>
+     <p class="text-sm text-ink/55 dark:text-cream/55 mb-2">Ideal for cake backdrops &amp; intimate home celebrations.</p>
     </div>
     <div class="flex items-end gap-1 mb-7">
-     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$199</span>
-     <span class="text-ink/50 dark:text-cream/50 text-sm mb-1.5">/ event</span>
+     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$249</span>
+     <span class="text-ink/50 dark:text-cream/50 text-sm mb-1.5">/ setup</span>
     </div>
     <ul class="space-y-3 mb-8 text-sm text-ink/75 dark:text-cream/75 flex-1">
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 5-ft balloon arch</li>
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Table centerpiece</li>
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 2-hr install window</li>
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Standard color palette</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 8-ft Organic balloon garland</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Custom 3-tone color palette</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Indoor arch stand &amp; rigging</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 2-hr Professional install window</li>
     </ul>
-    <a href="contact.html" class="btn-outline justify-center w-full mt-auto !px-2 lg:!px-6 !text-[10px] lg:!text-xs">Choose Mini</a>
+    <a href="contact.html" class="btn-outline justify-center w-full mt-auto">Choose Focal Arch</a>
+    </div>
    </div>
 
-   <!-- Deluxe (Featured) -->
-   <div class="price-card featured reveal">
-    <div class="ribbon">⭐ Most Popular</div>
+   <!-- Deluxe -> The Backdrop Suite (Featured) -->
+   <div class="price-card featured reveal overflow-hidden !p-0">
+    <div class="ribbon !z-20">⭐ Most Popular</div>
+    <div class="h-44 w-full overflow-hidden relative">
+     <img src="asserts/g2.avif" alt="The Backdrop Suite installation" class="w-full h-full object-cover" loading="lazy">
+     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+     <span class="absolute bottom-3 left-4 text-[9px] uppercase tracking-widest font-bold text-white bg-coral/90 px-2.5 py-1 rounded-full">Signature Suite</span>
+    </div>
+    <div class="p-6 sm:p-7 flex flex-col flex-1">
     <div class="min-h-[170px] md:min-h-[190px] flex flex-col justify-start">
-     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-3">Deluxe</div>
-     <h3 class="font-display font-bold text-2xl text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Party Deluxe</h3>
-     <p class="text-sm text-cream/60 mb-2">The full styling experience.</p>
+     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-3">Signature</div>
+     <h3 class="font-display font-bold text-2xl text-cream mb-2 min-h-[4rem] flex flex-col justify-start">The Backdrop Suite</h3>
+     <p class="text-sm text-cream/60 mb-2">The complete photo-ready stage setup for memorable celebrations.</p>
     </div>
     <div class="flex items-end gap-1 mb-7">
-     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$499</span>
-     <span class="text-cream/50 text-sm mb-1.5">/ event</span>
+     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$599</span>
+     <span class="text-cream/50 text-sm mb-1.5">/ setup</span>
     </div>
     <ul class="space-y-3 mb-8 text-sm text-cream/90 flex-1">
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 10-ft balloon garland</li>
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Cake &amp; gift table styling</li>
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Custom name installation</li>
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 3-hr install + teardown</li>
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Premium color palette</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 12-ft Cascading organic balloon arch</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Custom arch wall or shimmer backdrop</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> LED neon quote sign or vinyl name</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> 1 Cylinder cake plinth included</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Full delivery, setup &amp; same-day strike</li>
     </ul>
-    <a href="contact.html" class="btn-primary justify-center w-full mt-auto !px-2 lg:!px-6 !text-[10px] lg:!text-xs">Book Deluxe</a>
+    <a href="contact.html" class="btn-primary justify-center w-full mt-auto">Book Backdrop Suite</a>
+    </div>
    </div>
 
-   <!-- Grand -->
-   <div class="price-card reveal">
+   <!-- Grand -> Full Venue Styling -->
+   <div class="price-card reveal overflow-hidden !p-0">
+    <div class="h-44 w-full overflow-hidden relative">
+     <img src="asserts/g3.avif" alt="Full Venue Styling gala" class="w-full h-full object-cover" loading="lazy">
+     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+     <span class="absolute bottom-3 left-4 text-[9px] uppercase tracking-widest font-bold text-white bg-coral/90 px-2.5 py-1 rounded-full">Luxury Event Production</span>
+    </div>
+    <div class="p-6 sm:p-7 flex flex-col flex-1">
     <div class="min-h-[170px] md:min-h-[190px] flex flex-col justify-start">
      <div class="text-[10px] uppercase tracking-widest font-bold text-ink/50 dark:text-cream/50 mb-3">Luxury</div>
-     <h3 class="font-display font-bold text-2xl text-ink dark:text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Grand Event</h3>
-     <p class="text-sm text-ink/55 dark:text-cream/55 mb-2">Full venue styling, no limits.</p>
+     <h3 class="font-display font-bold text-2xl text-ink dark:text-cream mb-2 min-h-[4rem] flex flex-col justify-start">Full Venue Styling</h3>
+     <p class="text-sm text-ink/55 dark:text-cream/55 mb-2">Immersive styling tailored for weddings, galas &amp; milestone bashes.</p>
     </div>
     <div class="flex items-end gap-1 mb-7">
-     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$999</span>
+     <span class="font-display font-black text-4xl sm:text-5xl text-coral leading-none">$1,199</span>
      <span class="text-ink/50 dark:text-cream/50 text-sm mb-1.5">+ up</span>
     </div>
     <ul class="space-y-3 mb-8 text-sm text-ink/75 dark:text-cream/75 flex-1">
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Full venue styling</li>
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Custom installations</li>
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Floral + balloon blends</li>
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Dedicated event stylist</li>
-     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Premium photo backdrop</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Grand entrance arch + stage photo-wall</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Multi-panel backdrop &amp; 3 cake plinths</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Silk &amp; fresh floral integration</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Dedicated stylist on-site coordination</li>
+     <li class="flex items-start gap-2.5"><i class="fas fa-check text-coral mt-1 text-xs"></i> Full teardown &amp; venue cleanup</li>
     </ul>
-    <a href="contact.html" class="btn-outline justify-center w-full mt-auto !px-2 lg:!px-6 !text-[10px] lg:!text-xs">Enquire Now</a>
+    <a href="contact.html" class="btn-outline justify-center w-full mt-auto">Enquire Now</a>
+    </div>
    </div>
 
   </div>
@@ -851,8 +914,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════════ -->
-<!-- SECTION 3 — DETAILED COMPARISON TABLE -->
-<!-- Layout: Full-width feature matrix across all 3 tiers -->
+<!-- SECTION 3 — COMPARISON TABLE -->
 <!-- ═══════════════════════════════════════════ -->
 <section class="py-16 md:py-24 bg-cream-2 dark:bg-dk-surface border-b border-coral/15 dark:border-white/5">
  <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -867,7 +929,7 @@
     <span class="italic text-coral">Side by Side.</span>
    </h2>
    <p class="text-ink/60 dark:text-cream/65 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-    See exactly what's included in each package — no fine print, no surprises.
+    See exactly what's included in each package — no hidden fees, transparent event styling.
    </p>
   </div>
 
@@ -883,23 +945,23 @@
     <table class="compare-table min-w-[640px]">
     <thead>
      <tr>
-      <th>Feature</th>
-      <th class="text-center">Mini</th>
+      <th>Styling Feature</th>
+      <th class="text-center">The Focal Arch</th>
       <th class="text-center col-featured">
        <div class="flex flex-col items-center">
-        <span>Deluxe</span>
-        <span class="text-[9px] font-semibold tracking-widest opacity-90 mt-1">⭐ POPULAR</span>
+        <span>Backdrop Suite</span>
+        <span class="text-[9px] font-semibold tracking-widest opacity-90 mt-1">⭐ SIGNATURE</span>
        </div>
       </th>
-      <th class="text-center">Grand</th>
+      <th class="text-center">Full Venue</th>
      </tr>
     </thead>
     <tbody>
      <tr>
-      <td>Balloon Arch / Garland</td>
-      <td class="text-center">5 ft</td>
-      <td class="text-center col-featured">10 ft</td>
-      <td class="text-center">Custom (12+ ft)</td>
+      <td>Organic Balloon Architecture</td>
+      <td class="text-center">8 ft Garland</td>
+      <td class="text-center col-featured">12 ft Cascading Arch</td>
+      <td class="text-center">Grand Arch + Entrance (24+ ft)</td>
      </tr>
      <tr>
       <td>Table Centerpieces</td>
@@ -980,9 +1042,9 @@
 
   <!-- Table CTA row -->
   <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6 max-w-4xl mx-auto">
-   <a href="contact.html" class="btn-outline justify-center !text-xs !py-3">Choose Mini</a>
-   <a href="contact.html" class="btn-primary justify-center !text-xs !py-3">Choose Deluxe</a>
-   <a href="contact.html" class="btn-outline justify-center !text-xs !py-3">Choose Grand</a>
+   <a href="contact.html" class="btn-outline justify-center">Choose Focal Arch</a>
+   <a href="contact.html" class="btn-primary justify-center">Book Backdrop Suite</a>
+   <a href="contact.html" class="btn-outline justify-center">Enquire Full Venue</a>
   </div>
 
  </div>
@@ -1141,7 +1203,7 @@
 <!-- ═══════════════════════════════════════════ -->
 <!-- FOOTER -->
 <!-- ═══════════════════════════════════════════ -->
-<footer class="site-footer pt-16 md:pt-20 pb-8 relative overflow-hidden">
+<footer class="site-footer pt-10 md:pt-12 pb-4 md:pb-6 relative overflow-hidden">
  <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-14">
@@ -1234,7 +1296,7 @@
    </div>
   </div>
 
-  <div class="foot-display mt-10 md:mt-14">Book A Package.</div>
+  <div class="foot-display mt-4 md:mt-6">Book A Package.</div>
 
  </div>
 </footer>

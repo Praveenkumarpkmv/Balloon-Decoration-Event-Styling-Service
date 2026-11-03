@@ -208,17 +208,35 @@
    transform: rotate(-45deg);
   }
 
-  .icon-toggle {
+    .icon-toggle {
    display: inline-flex;
    align-items: center;
    justify-content: center;
-   width: 38px; height: 38px;
+   width: 40px; height: 40px;
    border-radius: 12px;
+   background: #F4F1EA;
+   border: 1px solid rgba(29, 29, 44, 0.1);
    color: #1D1D2C;
    transition: all 0.25s ease;
+   cursor: pointer;
   }
-  .dark .icon-toggle { color: #FAF7F2; }
-  .icon-toggle:hover { background: rgba(230, 57, 70, 0.1); color: #E63946; }
+  .dark .icon-toggle {
+   background: rgba(250, 247, 242, 0.08);
+   border-color: rgba(250, 247, 242, 0.15);
+   color: #FAF7F2;
+  }
+  .icon-toggle:hover {
+   background: rgba(230, 57, 70, 0.15);
+   border-color: rgba(230, 57, 70, 0.3);
+   color: #E63946;
+   transform: translateY(-1px);
+  }
+  .dark .icon-toggle:hover {
+   background: rgba(230, 57, 70, 0.25);
+   border-color: #E63946;
+   color: #FFFFFF;
+   transform: translateY(-1px);
+  }
 
   .mobile-menu {
    background: #FFFFFF;
@@ -292,45 +310,67 @@
    font-family: 'Fraunces', serif;
    font-style: italic;
    font-weight: 900;
-   font-size: clamp(3rem, 10vw, 8rem);
-   line-height: 0.85;
-   letter-spacing: -0.03em;
-   color: rgba(29, 29, 44, 0.06);
+   font-size: clamp(2.5rem, 6vw, 4.5rem);
+   line-height: 1;
+   letter-spacing: -0.02em;
+   color: rgba(29, 29, 44, 0.05);
    text-align: center;
    user-select: none;
    pointer-events: none;
+   padding-bottom: 0.5rem;
   }
   .dark .foot-display { color: rgba(250, 247, 242, 0.05); }
 
   /* Base buttons */
-  .btn-primary {
-   background: #E63946; color: #FFFFFF;
+    .btn-primary {
+   background: #E63946;
+   color: #FFFFFF !important;
    font-weight: 600;
    border-radius: 999px;
    letter-spacing: 0.08em;
    text-transform: uppercase;
-   font-size: 0.72rem;
-   padding: 0.95rem 1.2rem;
+   font-size: 0.75rem;
+   padding: 0.85rem 1.6rem;
    transition: all 0.3s ease;
-   display: inline-flex; align-items: center; gap: 0.5rem;
+   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
    box-shadow: 0 8px 20px -8px rgba(230,57,70,0.5);
    white-space: nowrap;
+   border: 1.5px solid transparent;
+   cursor: pointer;
   }
-  .btn-primary:hover { background: #C42A37; transform: translateY(-2px); box-shadow: 0 14px 28px -8px rgba(230,57,70,0.6); }
+  .btn-primary:hover {
+   background: #C42A37;
+   transform: translateY(-2px);
+   box-shadow: 0 14px 28px -8px rgba(230,57,70,0.6);
+  }
   .btn-outline {
-   border: 1.5px solid #1D1D2C; color: #1D1D2C;
+   border: 1.5px solid #1D1D2C;
+   color: #1D1D2C;
    background: transparent;
    border-radius: 999px;
    font-weight: 600;
    letter-spacing: 0.08em;
    text-transform: uppercase;
-   font-size: 0.72rem;
-   padding: 0.95rem 1.2rem;
+   font-size: 0.75rem;
+   padding: 0.85rem 1.6rem;
    transition: all 0.3s ease;
-   display: inline-flex; align-items: center; gap: 0.5rem;
+   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
    white-space: nowrap;
+   cursor: pointer;
   }
-  .btn-outline:hover { background: #1D1D2C; color: #FAF7F2; transform: translateY(-2px); }
+  .btn-outline:hover {
+   background: #1D1D2C;
+   color: #FAF7F2 !important;
+   transform: translateY(-2px);
+  }
+  .dark .btn-outline {
+   border-color: rgba(250,247,242,0.6);
+   color: #FAF7F2;
+  }
+  .dark .btn-outline:hover {
+   background: #FAF7F2;
+   color: #1D1D2C !important;
+  }
   .dark .btn-outline { border-color: #FAF7F2; color: #FAF7F2; }
   .dark .btn-outline:hover { background: #FAF7F2; color: #1D1D2C; }
 
@@ -886,82 +926,126 @@
 </section>
 
 <!-- ═══════════════════════════════════════════ -->
-<!-- SECTION 5 — HORIZONTAL SCROLL THEME SHOWCASE -->
-<!-- Layout: 5 theme cards in a scrollable carousel (native scroll snap) -->
+<!-- SECTION 5 — SIGNATURE THEMES GRID -->
+<!-- Layout: Clean responsive 3-column card grid (no horizontal scrolling) -->
 <!-- ═══════════════════════════════════════════ -->
 <section class="py-16 md:py-24 bg-cream dark:bg-dk-surface border-b border-coral/15 dark:border-white/5">
  <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
 
-  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 reveal">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 reveal">
    <div>
     <div class="rule rule-left mb-4 justify-start">
-     </div>
+     <i class="fas fa-palette text-xs text-coral"></i>
+    </div>
     <span class="block text-[10px] uppercase tracking-[0.4em] text-coral font-bold mb-3">Signature Themes</span>
     <h2 class="font-display font-black text-ink dark:text-cream text-3xl sm:text-4xl md:text-5xl leading-[1.1]">
      Choose Your <span class="italic text-coral">Vibe.</span>
     </h2>
+    <p class="text-ink/60 dark:text-cream/65 text-sm sm:text-base max-w-xl mt-3 leading-relaxed">
+     Curated color palettes, custom organic garlands, and backdrop styles ready to adapt to your venue.
+    </p>
    </div>
-   <div class="flex items-center gap-3 text-ink/50 dark:text-cream/50 text-xs">
-    <i class="fas fa-arrow-right rtl:rotate-180"></i>
-    <span class="uppercase tracking-widest font-semibold">Scroll to explore</span>
-   </div>
+   <a href="themes.html" class="btn-outline self-start md:self-end">
+    <i class="fas fa-swatchbook"></i> View All Themes
+   </a>
   </div>
 
-  <!-- Horizontal scroll -->
-  <div class="hscroll reveal">
+  <!-- Responsive Theme Grid (Replaced horizontal scrolling) -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7 reveal">
 
-   <a href="themes.html" class="card !p-0 overflow-hidden group">
+   <a href="themes.html" class="card !p-0 overflow-hidden group flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
     <div class="relative h-56 sm:h-64 overflow-hidden">
-     <img src="asserts/home5.avif" alt="Pastel Dream" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+     <img src="asserts/home5.avif" alt="Pastel Dream" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+     <span class="absolute bottom-3 left-4 text-[9px] uppercase tracking-widest font-bold text-white bg-coral/90 px-2.5 py-1 rounded-full">Birthday &middot; 1st Milestone</span>
     </div>
-    <div class="p-5">
-     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-1">Birthday</div>
+    <div class="p-6 flex flex-col flex-1">
      <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-2">Pastel Dream</h3>
-     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Soft pastels, cloud balloons, and whimsical details.</p>
+     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed mb-4 flex-1">Soft pastel hues, organic balloon clouds, and delicate cake plinths.</p>
+     <div class="flex items-center justify-between pt-3 border-t border-ink/5 dark:border-cream/10 mt-auto text-xs font-semibold text-coral">
+      <span>From $299</span>
+      <span class="group-hover:translate-x-1 transition-transform">Explore Theme &rarr;</span>
+     </div>
     </div>
    </a>
 
-   <a href="themes.html" class="card !p-0 overflow-hidden group">
+   <a href="themes.html" class="card !p-0 overflow-hidden group flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
     <div class="relative h-56 sm:h-64 overflow-hidden">
-     <img src="asserts/home6.avif" alt="Golden Elegance" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+     <img src="asserts/home6.avif" alt="Golden Elegance" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+     <span class="absolute bottom-3 left-4 text-[9px] uppercase tracking-widest font-bold text-white bg-coral/90 px-2.5 py-1 rounded-full">Luxury Wedding &middot; Gala</span>
     </div>
-    <div class="p-5">
-     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-1">Wedding</div>
+    <div class="p-6 flex flex-col flex-1">
      <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-2">Golden Elegance</h3>
-     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Timeless golds, champagnes, and romantic florals.</p>
+     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed mb-4 flex-1">Timeless champagnes, mirror golds, and romantic fresh floral integrations.</p>
+     <div class="flex items-center justify-between pt-3 border-t border-ink/5 dark:border-cream/10 mt-auto text-xs font-semibold text-coral">
+      <span>From $799</span>
+      <span class="group-hover:translate-x-1 transition-transform">Explore Theme &rarr;</span>
+     </div>
     </div>
    </a>
 
-   <a href="themes.html" class="card !p-0 overflow-hidden group">
+   <a href="themes.html" class="card !p-0 overflow-hidden group flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
     <div class="relative h-56 sm:h-64 overflow-hidden">
-     <img src="asserts/home7.avif" alt="Neon Nights" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+     <img src="asserts/home7.avif" alt="Neon Nights" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+     <span class="absolute bottom-3 left-4 text-[9px] uppercase tracking-widest font-bold text-white bg-coral/90 px-2.5 py-1 rounded-full">Evening &middot; Club &middot; Party</span>
     </div>
-    <div class="p-5">
-     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-1">Party</div>
+    <div class="p-6 flex flex-col flex-1">
      <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-2">Neon Nights</h3>
-     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Bold neons, LED balloons, and energetic lighting.</p>
+     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed mb-4 flex-1">Bold neons, high-output LED balloon framing, and custom script signage.</p>
+     <div class="flex items-center justify-between pt-3 border-t border-ink/5 dark:border-cream/10 mt-auto text-xs font-semibold text-coral">
+      <span>From $449</span>
+      <span class="group-hover:translate-x-1 transition-transform">Explore Theme &rarr;</span>
+     </div>
     </div>
    </a>
 
-   <a href="themes.html" class="card !p-0 overflow-hidden group">
+   <a href="themes.html" class="card !p-0 overflow-hidden group flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
     <div class="relative h-56 sm:h-64 overflow-hidden">
-     <img src="asserts/home8.avif" alt="Botanical Garden" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+     <img src="asserts/home8.avif" alt="Botanical Garden" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+     <span class="absolute bottom-3 left-4 text-[9px] uppercase tracking-widest font-bold text-white bg-coral/90 px-2.5 py-1 rounded-full">Organic &middot; Baby Shower</span>
     </div>
-    <div class="p-5">
-     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-1">Wedding</div>
+    <div class="p-6 flex flex-col flex-1">
      <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-2">Botanical Garden</h3>
-     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Lush greens, earthy tones, and hanging florals.</p>
+     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed mb-4 flex-1">Earthy eucalyptus, sage greens, and cascading natural foliage garlands.</p>
+     <div class="flex items-center justify-between pt-3 border-t border-ink/5 dark:border-cream/10 mt-auto text-xs font-semibold text-coral">
+      <span>From $349</span>
+      <span class="group-hover:translate-x-1 transition-transform">Explore Theme &rarr;</span>
+     </div>
     </div>
    </a>
 
-   <a href="themes.html" class="card !p-0 overflow-hidden group">
+   <a href="themes.html" class="card !p-0 overflow-hidden group flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
     <div class="relative h-56 sm:h-64 overflow-hidden">
-     <img src="asserts/home9.avif" alt="Corporate Chic" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+     <img src="asserts/home9.avif" alt="Corporate Chic" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+     <span class="absolute bottom-3 left-4 text-[9px] uppercase tracking-widest font-bold text-white bg-coral/90 px-2.5 py-1 rounded-full">Brand Launch &middot; Corporate</span>
     </div>
-    <div class="p-5">
-     <div class="text-[10px] uppercase tracking-widest font-bold text-coral mb-1">Corporate</div>
+    <div class="p-6 flex flex-col flex-1">
      <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-2">Corporate Chic</h3>
-     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed">Clean lines, brand colors, and minimal luxury.</p>
+     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed mb-4 flex-1">Clean architectural lines, exact Pantone matching, and branded backdrops.</p>
+     <div class="flex items-center justify-between pt-3 border-t border-ink/5 dark:border-cream/10 mt-auto text-xs font-semibold text-coral">
+      <span>From $599</span>
+      <span class="group-hover:translate-x-1 transition-transform">Explore Theme &rarr;</span>
+     </div>
+    </div>
+   </a>
+
+   <a href="themes.html" class="card !p-0 overflow-hidden group flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+    <div class="relative h-56 sm:h-64 overflow-hidden">
+     <img src="asserts/g7.avif" alt="Sweet Sixteen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+     <span class="absolute bottom-3 left-4 text-[9px] uppercase tracking-widest font-bold text-white bg-coral/90 px-2.5 py-1 rounded-full">Milestone Bashes &middot; 16 / 21</span>
+    </div>
+    <div class="p-6 flex flex-col flex-1">
+     <h3 class="font-display font-bold text-xl text-ink dark:text-cream mb-2">Sweet Sixteen</h3>
+     <p class="text-sm text-ink/60 dark:text-cream/65 leading-relaxed mb-4 flex-1">Dramatic arch framing, vibrant magentas, chrome balloons, and custom name signs.</p>
+     <div class="flex items-center justify-between pt-3 border-t border-ink/5 dark:border-cream/10 mt-auto text-xs font-semibold text-coral">
+      <span>From $399</span>
+      <span class="group-hover:translate-x-1 transition-transform">Explore Theme &rarr;</span>
+     </div>
     </div>
    </a>
 
@@ -973,7 +1057,7 @@
 <!-- SECTION 6 — TESTIMONIAL TRIO + CONTACT CTA -->
 <!-- Layout: 3 stacked testimonial cards on top, coral CTA banner below -->
 <!-- ═══════════════════════════════════════════ -->
-<section class="py-16 md:py-24 bg-cream-2 dark:bg-dk-surface border-b border-coral/15 dark:border-white/5">
+<section class="pt-16 md:pt-24 pb-0 bg-cream-2 dark:bg-dk-surface border-b border-coral/15 dark:border-white/5">
  <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
 
   <div class="text-center mb-14 reveal">
@@ -1069,7 +1153,7 @@
 <!-- ═══════════════════════════════════════════ -->
 <!-- FOOTER (same as Home 1) -->
 <!-- ═══════════════════════════════════════════ -->
-<footer class="site-footer pt-16 md:pt-20 pb-8 relative overflow-hidden">
+<footer class="site-footer pt-10 md:pt-12 pb-4 md:pb-6 relative overflow-hidden">
  <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-14">
@@ -1162,7 +1246,7 @@
    </div>
   </div>
 
-  <div class="foot-display mt-10 md:mt-14">Style On.</div>
+  <div class="foot-display mt-4 md:mt-6">Style On.</div>
 
  </div>
 </footer>

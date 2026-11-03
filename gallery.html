@@ -202,17 +202,35 @@
    transform: rotate(-45deg);
   }
 
-  .icon-toggle {
+    .icon-toggle {
    display: inline-flex;
    align-items: center;
    justify-content: center;
-   width: 38px; height: 38px;
+   width: 40px; height: 40px;
    border-radius: 12px;
+   background: #F4F1EA;
+   border: 1px solid rgba(29, 29, 44, 0.1);
    color: #1D1D2C;
    transition: all 0.25s ease;
+   cursor: pointer;
   }
-  .dark .icon-toggle { color: #FAF7F2; }
-  .icon-toggle:hover { background: rgba(230, 57, 70, 0.1); color: #E63946; }
+  .dark .icon-toggle {
+   background: rgba(250, 247, 242, 0.08);
+   border-color: rgba(250, 247, 242, 0.15);
+   color: #FAF7F2;
+  }
+  .icon-toggle:hover {
+   background: rgba(230, 57, 70, 0.15);
+   border-color: rgba(230, 57, 70, 0.3);
+   color: #E63946;
+   transform: translateY(-1px);
+  }
+  .dark .icon-toggle:hover {
+   background: rgba(230, 57, 70, 0.25);
+   border-color: #E63946;
+   color: #FFFFFF;
+   transform: translateY(-1px);
+  }
 
   .mobile-menu {
    background: #FFFFFF;
@@ -282,44 +300,66 @@
    font-family: 'Fraunces', serif;
    font-style: italic;
    font-weight: 900;
-   font-size: clamp(3rem, 10vw, 8rem);
-   line-height: 0.85;
-   letter-spacing: -0.03em;
-   color: rgba(29, 29, 44, 0.06);
+   font-size: clamp(2.5rem, 6vw, 4.5rem);
+   line-height: 1;
+   letter-spacing: -0.02em;
+   color: rgba(29, 29, 44, 0.05);
    text-align: center;
    user-select: none;
    pointer-events: none;
+   padding-bottom: 0.5rem;
   }
   .dark .foot-display { color: rgba(250, 247, 242, 0.05); }
 
-  .btn-primary {
-   background: #E63946; color: #FFFFFF;
+    .btn-primary {
+   background: #E63946;
+   color: #FFFFFF !important;
    font-weight: 600;
    border-radius: 999px;
    letter-spacing: 0.08em;
    text-transform: uppercase;
-   font-size: 0.72rem;
-   padding: 0.95rem 1.2rem;
+   font-size: 0.75rem;
+   padding: 0.85rem 1.6rem;
    transition: all 0.3s ease;
-   display: inline-flex; align-items: center; gap: 0.5rem;
+   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
    box-shadow: 0 8px 20px -8px rgba(230,57,70,0.5);
    white-space: nowrap;
+   border: 1.5px solid transparent;
+   cursor: pointer;
   }
-  .btn-primary:hover { background: #C42A37; transform: translateY(-2px); box-shadow: 0 14px 28px -8px rgba(230,57,70,0.6); }
+  .btn-primary:hover {
+   background: #C42A37;
+   transform: translateY(-2px);
+   box-shadow: 0 14px 28px -8px rgba(230,57,70,0.6);
+  }
   .btn-outline {
-   border: 1.5px solid #1D1D2C; color: #1D1D2C;
+   border: 1.5px solid #1D1D2C;
+   color: #1D1D2C;
    background: transparent;
    border-radius: 999px;
    font-weight: 600;
    letter-spacing: 0.08em;
    text-transform: uppercase;
-   font-size: 0.72rem;
-   padding: 0.95rem 1.2rem;
+   font-size: 0.75rem;
+   padding: 0.85rem 1.6rem;
    transition: all 0.3s ease;
-   display: inline-flex; align-items: center; gap: 0.5rem;
+   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
    white-space: nowrap;
+   cursor: pointer;
   }
-  .btn-outline:hover { background: #1D1D2C; color: #FAF7F2; transform: translateY(-2px); }
+  .btn-outline:hover {
+   background: #1D1D2C;
+   color: #FAF7F2 !important;
+   transform: translateY(-2px);
+  }
+  .dark .btn-outline {
+   border-color: rgba(250,247,242,0.6);
+   color: #FAF7F2;
+  }
+  .dark .btn-outline:hover {
+   background: #FAF7F2;
+   color: #1D1D2C !important;
+  }
   .dark .btn-outline { border-color: #FAF7F2; color: #FAF7F2; }
   .dark .btn-outline:hover { background: #FAF7F2; color: #1D1D2C; }
 
@@ -1198,7 +1238,7 @@
 <!-- ═══════════════════════════════════════════ -->
 <!-- FOOTER -->
 <!-- ═══════════════════════════════════════════ -->
-<footer class="site-footer pt-16 md:pt-20 pb-8 relative overflow-hidden">
+<footer class="site-footer pt-10 md:pt-12 pb-4 md:pb-6 relative overflow-hidden">
  <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-14">
@@ -1291,7 +1331,7 @@
    </div>
   </div>
 
-  <div class="foot-display mt-10 md:mt-14">Say Cheese.</div>
+  <div class="foot-display mt-4 md:mt-6">Say Cheese.</div>
 
  </div>
 </footer>
